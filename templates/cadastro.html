@@ -500,6 +500,10 @@
                 translateY(-50%);
         }
 
+        /* =========================
+           ÍCONE DO OLHO
+        ========================= */
+
         .toggle-password svg {
 
             width: 21px;
@@ -812,10 +816,6 @@
                 novalidate
             >
 
-                <!-- =========================
-                     NOME
-                ========================= -->
-
                 <div class="form-group">
 
                     <label for="campoPerfil">
@@ -837,10 +837,6 @@
 
                 </div>
 
-
-                <!-- =========================
-                     E-MAIL
-                ========================= -->
 
                 <div class="form-group">
 
@@ -874,10 +870,6 @@
 
                 </div>
 
-
-                <!-- =========================
-                     SENHA
-                ========================= -->
 
                 <div class="form-group">
 
@@ -997,10 +989,6 @@
                     );
 
 
-                /* =========================
-                   VALIDA NOME
-                ========================= */
-
                 if (
                     nome.value.trim() === ""
                 ) {
@@ -1013,10 +1001,6 @@
 
                 }
 
-
-                /* =========================
-                   VALIDA E-MAIL
-                ========================= */
 
                 const emailValor =
                     email.value.trim();
@@ -1038,10 +1022,6 @@
                 }
 
 
-                /* =========================
-                   VALIDA SENHA
-                ========================= */
-
                 if (
                     senha.value.trim() === ""
                 ) {
@@ -1053,20 +1033,6 @@
                     return;
 
                 }
-
-
-                /*
-                 * IMPORTANTE:
-                 * Não alteramos os nomes dos campos aqui.
-                 *
-                 * O formulário já possui:
-                 * nome="nome"
-                 * nome="email"
-                 * nome="senha"
-                 *
-                 * Portanto o Flask recebe os dados
-                 * diretamente pelo POST.
-                 */
 
             }
         );
@@ -1136,10 +1102,6 @@
             );
 
 
-            /* =========================
-               OLHO RISCADO
-            ========================= */
-
             eyeIcon.innerHTML = `
 
                 <path
@@ -1170,10 +1132,6 @@
                 "Mostrar senha"
             );
 
-
-            /* =========================
-               OLHO NORMAL
-            ========================= */
 
             eyeIcon.innerHTML = `
 
