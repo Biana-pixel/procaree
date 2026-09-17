@@ -1,37 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-<head>
+«»
 
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>{% block title %}ProCareer{% endblock %}</title>
-
-
-<!-- =====================================================
+<title>{% block title %}ProCareer{% endblock %}</title><!-- =====================================================
      FONTE
-====================================================== -->
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
+====================================================== --><link rel="preconnect" href="https://fonts.googleapis.com"><link
     rel="preconnect"
     href="https://fonts.gstatic.com"
     crossorigin
->
-
-<link
+><link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
->
-
-
-<style>
+><style>
 
     /* =====================================================
        RESET
@@ -48,6 +30,7 @@
         width: 100%;
         min-height: 100%;
         overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
     }
 
 
@@ -79,6 +62,8 @@
         width: 100%;
 
         overflow-x: hidden;
+
+        -webkit-tap-highlight-color: transparent;
     }
 
 
@@ -124,7 +109,7 @@
 
 
     /* =====================================================
-       BRILHO DECORATIVO
+       BRILHOS DECORATIVOS
     ====================================================== */
 
     .sidebar::before {
@@ -231,14 +216,11 @@
                 #67e8f9,
                 #2dd4bf
             );
-
-        box-shadow:
-            0 3px 10px rgba(45,212,191,.20);
     }
 
 
     /* =====================================================
-       TÍTULOS DAS SEÇÕES
+       TÍTULOS
     ====================================================== */
 
     .menu-title {
@@ -317,14 +299,21 @@
 
         font-weight: 600;
 
-        transition:
-            background .25s ease,
-            border-color .25s ease,
-            color .25s ease,
-            transform .25s ease,
-            box-shadow .25s ease;
+        /*
+         * Resposta mais rápida no toque.
+         */
+        touch-action: manipulation;
 
         -webkit-tap-highlight-color: transparent;
+
+        /*
+         * Apenas propriedades leves.
+         */
+        transition:
+            background .15s ease,
+            border-color .15s ease,
+            color .15s ease,
+            transform .12s ease;
     }
 
 
@@ -362,8 +351,8 @@
         opacity: 0;
 
         transition:
-            height .25s ease,
-            opacity .25s ease;
+            height .15s ease,
+            opacity .15s ease;
     }
 
 
@@ -401,10 +390,8 @@
         font-weight: 700;
 
         transition:
-            background .25s ease,
-            color .25s ease,
-            transform .25s ease,
-            box-shadow .25s ease;
+            background .15s ease,
+            color .15s ease;
     }
 
 
@@ -427,11 +414,7 @@
             rgba(103,232,249,.14);
 
         transform:
-            translateX(3px);
-
-        box-shadow:
-            0 7px 18px
-            rgba(0,0,0,.07);
+            translateX(2px);
     }
 
 
@@ -449,16 +432,6 @@
 
         background:
             rgba(103,232,249,.14);
-
-        border-color:
-            rgba(103,232,249,.10);
-
-        transform:
-            scale(1.06);
-
-        box-shadow:
-            0 4px 10px
-            rgba(0,0,0,.08);
     }
 
 
@@ -481,8 +454,8 @@
             rgba(210,247,246,.95);
 
         box-shadow:
-            0 8px 20px
-            rgba(0,0,0,.12);
+            0 5px 14px
+            rgba(0,0,0,.09);
     }
 
 
@@ -513,17 +486,13 @@
             );
 
         border-color: transparent;
-
-        box-shadow:
-            0 5px 12px
-            rgba(13,148,136,.25);
     }
 
 
     .menu a.active:hover {
 
         transform:
-            translateX(3px);
+            translateX(2px);
 
         background:
             linear-gradient(
@@ -531,6 +500,73 @@
                 #edfdff 0%,
                 #ddfaf7 100%
             );
+    }
+
+
+    /* =====================================================
+       TOQUE / CLIQUE
+    ====================================================== */
+
+    .menu a.is-loading {
+
+        pointer-events: none;
+
+        opacity: .72;
+
+        transform: scale(.985);
+
+        transition:
+            opacity .08s ease,
+            transform .08s ease;
+    }
+
+
+    .menu a.is-loading .menu-icon {
+
+        opacity: .65;
+    }
+
+
+    /* =====================================================
+       INDICADOR DE NAVEGAÇÃO
+    ====================================================== */
+
+    #navigation-progress {
+
+        position: fixed;
+
+        top: 0;
+
+        left: 0;
+
+        width: 0;
+
+        height: 3px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #06b6d4,
+                #2dd4bf
+            );
+
+        z-index: 99999;
+
+        opacity: 0;
+
+        pointer-events: none;
+
+        transition:
+            width .18s ease,
+            opacity .12s ease;
+    }
+
+
+    #navigation-progress.active {
+
+        width: 72%;
+
+        opacity: 1;
     }
 
 
@@ -561,15 +597,15 @@
 
         min-height: 100vh;
 
-        animation:
-            pageEnter .35s ease;
-
         overflow-x: hidden;
+
+        animation:
+            pageEnter .22s ease;
     }
 
 
     /* =====================================================
-       ANIMAÇÃO
+       ANIMAÇÃO LEVE
     ====================================================== */
 
     @keyframes pageEnter {
@@ -579,7 +615,7 @@
             opacity: 0;
 
             transform:
-                translateY(5px);
+                translateY(3px);
         }
 
         to {
@@ -652,19 +688,29 @@
 
             position: relative;
 
-            padding: 18px;
+            padding: 16px 14px;
 
             box-shadow:
-                0 8px 25px rgba(3, 52, 64, 0.12);
+                0 6px 20px rgba(3, 52, 64, 0.10);
 
-            /* Evita trabalho desnecessário do navegador */
+            /*
+             * Evita que o navegador fique recalculando
+             * elementos externos desnecessariamente.
+             */
             contain: layout paint;
         }
 
 
         .brand {
 
-            padding-bottom: 18px;
+            padding:
+                0 8px 16px;
+        }
+
+
+        .brand-name {
+
+            font-size: 23px;
         }
 
 
@@ -675,7 +721,7 @@
             grid-template-columns:
                 repeat(2, minmax(0, 1fr));
 
-            gap: 6px;
+            gap: 7px;
         }
 
 
@@ -683,11 +729,18 @@
 
             min-width: 0;
 
-            min-height: 42px;
+            min-height: 44px;
 
-            transition: none;
+            padding: 7px 9px;
 
-            transform: none !important;
+            gap: 8px;
+
+            font-size: 12px;
+
+            transition:
+                background .08s ease,
+                border-color .08s ease,
+                transform .08s ease;
         }
 
 
@@ -699,12 +752,19 @@
 
         .menu-icon {
 
-            flex-shrink: 0;
+            width: 29px;
+
+            height: 29px;
+
+            min-width: 29px;
 
             transition: none;
         }
 
 
+        /*
+         * No celular o hover não precisa existir.
+         */
         .menu a:hover {
 
             transform: none;
@@ -721,9 +781,30 @@
         }
 
 
+        /*
+         * Feedback imediato ao toque.
+         */
+        .menu a:active {
+
+            transform: scale(.975);
+
+            background:
+                rgba(103,232,249,.16);
+
+            border-color:
+                rgba(103,232,249,.20);
+        }
+
+
+        .menu a.active:active {
+
+            transform: scale(.975);
+        }
+
+
         .menu-section {
 
-            margin-top: 18px;
+            margin-top: 17px;
         }
 
 
@@ -733,21 +814,20 @@
 
             width: 100%;
 
-            padding: 20px 16px;
+            padding:
+                18px 14px;
 
-            min-height: calc(100vh - 1px);
+            min-height:
+                calc(100vh - 1px);
 
             animation: none;
         }
 
 
-        /* Remove apenas os brilhos decorativos no celular.
-           O visual principal permanece igual. */
-
         .sidebar::before,
         .sidebar::after {
 
-            opacity: .45;
+            opacity: .30;
         }
     }
 
@@ -760,15 +840,16 @@
 
         .sidebar {
 
-            padding: 16px 14px;
+            padding:
+                15px 12px;
         }
 
 
         .brand {
 
-            padding-left: 10px;
+            padding-left: 8px;
 
-            padding-right: 10px;
+            padding-right: 8px;
         }
 
 
@@ -783,13 +864,14 @@
 
         .menu a {
 
-            min-height: 42px;
+            min-height: 44px;
 
-            padding: 8px 9px;
+            padding:
+                7px 8px;
 
-            gap: 8px;
+            gap: 7px;
 
-            font-size: 12px;
+            font-size: 11.5px;
         }
 
 
@@ -807,7 +889,8 @@
 
         .content {
 
-            padding: 18px 14px;
+            padding:
+                16px 12px;
         }
     }
 
@@ -821,20 +904,34 @@
         .menu {
 
             grid-template-columns: 1fr;
+
+            gap: 6px;
         }
 
 
         .menu a {
 
+            min-height: 43px;
+
             font-size: 13px;
 
             gap: 10px;
+        }
+
+
+        .menu-icon {
+
+            width: 29px;
+
+            height: 29px;
+
+            min-width: 29px;
         }
     }
 
 
     /* =====================================================
-       ACESSIBILIDADE / REDUÇÃO DE MOVIMENTO
+       ACESSIBILIDADE
     ====================================================== */
 
     @media (prefers-reduced-motion: reduce) {
@@ -843,230 +940,322 @@
         *::before,
         *::after {
 
-            animation-duration: 0.01ms !important;
+            animation-duration:
+                0.01ms !important;
 
-            animation-iteration-count: 1 !important;
+            animation-iteration-count:
+                1 !important;
 
-            transition-duration: 0.01ms !important;
+            transition-duration:
+                0.01ms !important;
 
-            scroll-behavior: auto !important;
+            scroll-behavior:
+                auto !important;
         }
     }
 
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =====================================================
+</style></head><body><!-- =====================================================
+     INDICADOR DE NAVEGAÇÃO
+====================================================== --><div id="navigation-progress"></div><!-- =====================================================
      SIDEBAR
-====================================================== -->
+====================================================== --><aside class="sidebar"><!-- LOGO -->
 
-<aside class="sidebar">
+<div class="brand">
 
-
-    <!-- LOGO -->
-
-    <div class="brand">
-
-        <div class="brand-name">
-            Pro<span>Career</span>
-        </div>
-
-        <div class="brand-line"></div>
-
+    <div class="brand-name">
+        Pro<span>Career</span>
     </div>
 
+    <div class="brand-line"></div>
 
-    <!-- WORKSPACE -->
+</div>
 
-    <div class="menu-title">
-        Workspace
-    </div>
 
+<!-- WORKSPACE -->
 
-    <nav class="menu">
+<div class="menu-title">
+    Workspace
+</div>
 
 
-        <!-- VISÃO GERAL -->
+<nav class="menu">
 
-        <a
-            href="{{ url_for('pagina_inicio') }}"
-            class="{% if request.endpoint == 'pagina_inicio' %}active{% endif %}"
-        >
 
-            <span class="menu-icon">
-                ⌂
-            </span>
+    <!-- VISÃO GERAL -->
 
-            <span>
-                Visão geral
-            </span>
+    <a
+        href="{{ url_for('pagina_inicio') }}"
+        class="{% if request.endpoint == 'pagina_inicio' %}active{% endif %}"
+    >
 
-        </a>
+        <span class="menu-icon">
+            ⌂
+        </span>
 
+        <span>
+            Visão geral
+        </span>
 
-        <!-- CANDIDATURAS -->
+    </a>
 
-        <a
-            href="{{ url_for('candidaturas.listar') }}"
-            class="{% if request.endpoint == 'candidaturas.listar' %}active{% endif %}"
-        >
 
-            <span class="menu-icon">
-                ✓
-            </span>
+    <!-- CANDIDATURAS -->
 
-            <span>
-                Candidaturas
-            </span>
+    <a
+        href="{{ url_for('candidaturas.listar') }}"
+        class="{% if request.endpoint == 'candidaturas.listar' %}active{% endif %}"
+    >
 
-        </a>
+        <span class="menu-icon">
+            ✓
+        </span>
 
+        <span>
+            Candidaturas
+        </span>
 
-        <!-- ENTREVISTAS -->
+    </a>
 
-        <a
-            href="{{ url_for('entrevistas.listar') }}"
-            class="{% if request.endpoint == 'entrevistas.listar' %}active{% endif %}"
-        >
 
-            <span class="menu-icon">
-                ◷
-            </span>
+    <!-- ENTREVISTAS -->
 
-            <span>
-                Entrevistas
-            </span>
+    <a
+        href="{{ url_for('entrevistas.listar') }}"
+        class="{% if request.endpoint == 'entrevistas.listar' %}active{% endif %}"
+    >
 
-        </a>
+        <span class="menu-icon">
+            ◷
+        </span>
 
+        <span>
+            Entrevistas
+        </span>
 
-        <!-- EMPRESAS -->
+    </a>
 
-        <a
-            href="{{ url_for('empresas.listar') }}"
-            class="{% if request.endpoint == 'empresas.listar' %}active{% endif %}"
-        >
 
-            <span class="menu-icon">
-                ▣
-            </span>
+    <!-- EMPRESAS -->
 
-            <span>
-                Empresas
-            </span>
+    <a
+        href="{{ url_for('empresas.listar') }}"
+        class="{% if request.endpoint == 'empresas.listar' %}active{% endif %}"
+    >
 
-        </a>
+        <span class="menu-icon">
+            ▣
+        </span>
 
+        <span>
+            Empresas
+        </span>
 
-        <!-- CURRÍCULOS -->
+    </a>
 
-        <a
-            href="{{ url_for('curriculos.listar') }}"
-            class="{% if request.endpoint == 'curriculos.listar' %}active{% endif %}"
-        >
 
-            <span class="menu-icon">
-                ▤
-            </span>
+    <!-- CURRÍCULOS -->
 
-            <span>
-                Currículos
-            </span>
+    <a
+        href="{{ url_for('curriculos.listar') }}"
+        class="{% if request.endpoint == 'curriculos.listar' %}active{% endif %}"
+    >
 
-        </a>
+        <span class="menu-icon">
+            ▤
+        </span>
 
+        <span>
+            Currículos
+        </span>
 
-    </nav>
+    </a>
 
 
-    <!-- CARREIRA -->
+</nav>
 
-    <div class="menu-title menu-section">
-        Carreira
-    </div>
 
+<!-- CARREIRA -->
 
-    <nav class="menu">
+<div class="menu-title menu-section">
+    Carreira
+</div>
 
 
-        <!-- ANÁLISE DE PERFIL -->
+<nav class="menu">
 
-        <a
-            href="{{ url_for('analise.perfil') }}"
-            class="{% if request.endpoint == 'analise.perfil' %}active{% endif %}"
-        >
 
-            <span class="menu-icon">
-                ◉
-            </span>
+    <!-- ANÁLISE DE PERFIL -->
 
-            <span>
-                Análise de perfil
-            </span>
+    <a
+        href="{{ url_for('analise.perfil') }}"
+        class="{% if request.endpoint == 'analise.perfil' %}active{% endif %}"
+    >
 
-        </a>
+        <span class="menu-icon">
+            ◉
+        </span>
 
+        <span>
+            Análise de perfil
+        </span>
 
-        <!-- COMPETÊNCIAS -->
+    </a>
 
-        <a
-            href="{{ url_for('competencias.listar') }}"
-            class="{% if request.endpoint == 'competencias.listar' %}active{% endif %}"
-        >
 
-            <span class="menu-icon">
-                ◆
-            </span>
+    <!-- COMPETÊNCIAS -->
 
-            <span>
-                Competências
-            </span>
+    <a
+        href="{{ url_for('competencias.listar') }}"
+        class="{% if request.endpoint == 'competencias.listar' %}active{% endif %}"
+    >
 
-        </a>
+        <span class="menu-icon">
+            ◆
+        </span>
 
+        <span>
+            Competências
+        </span>
 
-        <!-- METAS -->
+    </a>
 
-        <a
-            href="{{ url_for('metas.listar') }}"
-            class="{% if request.endpoint == 'metas.listar' %}active{% endif %}"
-        >
 
-            <span class="menu-icon">
-                ↗
-            </span>
+    <!-- METAS -->
 
-            <span>
-                Metas
-            </span>
+    <a
+        href="{{ url_for('metas.listar') }}"
+        class="{% if request.endpoint == 'metas.listar' %}active{% endif %}"
+    >
 
-        </a>
+        <span class="menu-icon">
+            ↗
+        </span>
 
+        <span>
+            Metas
+        </span>
 
-    </nav>
+    </a>
 
 
-</aside>
+</nav>
 
-
-<!-- =====================================================
+</aside><!-- =====================================================
      CONTEÚDO
-====================================================== -->
+====================================================== --><main class="content">{% block content %}
 
-<main class="content">
+{% endblock %}
 
-    {% block content %}
+</main><!-- =====================================================
+     NAVEGAÇÃO RÁPIDA
+====================================================== --><script>
 
-    {% endblock %}
+(function () {
 
-</main>
+    const links =
+        document.querySelectorAll(".menu a");
+
+    const progress =
+        document.getElementById(
+            "navigation-progress"
+        );
 
 
-</body>
+    links.forEach(function (link) {
 
-</html>
+        link.addEventListener(
+            "click",
+            function (event) {
+
+                /*
+                 * Não interfere em Ctrl + clique,
+                 * botão direito ou abertura em nova aba.
+                 */
+                if (
+                    event.ctrlKey ||
+                    event.metaKey ||
+                    event.shiftKey ||
+                    event.altKey ||
+                    event.button !== 0
+                ) {
+                    return;
+                }
+
+
+                /*
+                 * Se já está na página atual,
+                 * não mostra carregamento.
+                 */
+                if (
+                    link.classList.contains("active")
+                ) {
+                    return;
+                }
+
+
+                /*
+                 * Resposta visual IMEDIATA.
+                 */
+                link.classList.add("is-loading");
+
+                progress.classList.add("active");
+
+
+                /*
+                 * Pequeno avanço visual enquanto
+                 * o navegador aguarda o servidor.
+                 */
+                requestAnimationFrame(function () {
+
+                    setTimeout(function () {
+
+                        if (
+                            document.body.contains(link)
+                        ) {
+
+                            progress.style.width =
+                                "88%";
+
+                        }
+
+                    }, 80);
+
+                });
+
+            },
+            {
+                passive: true
+            }
+        );
+
+    });
+
+
+    /*
+     * Se o navegador voltar pelo histórico,
+     * limpa o indicador.
+     */
+    window.addEventListener(
+        "pageshow",
+        function () {
+
+            progress.classList.remove(
+                "active"
+            );
+
+            progress.style.width = "0";
+
+            links.forEach(function (link) {
+
+                link.classList.remove(
+                    "is-loading"
+                );
+
+            });
+
+        }
+    );
+
+})();
+
+</script></body></html>
