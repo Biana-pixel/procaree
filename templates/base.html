@@ -1,21 +1,11 @@
 <!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>{% block title %}ProCareer{% endblock %}</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
->
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
 
 <style>
 
@@ -39,12 +29,22 @@
     }
 
     body {
-        font-family: "Inter", Arial, sans-serif;
+        font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Arial,
+            sans-serif;
+
         background: #f5fafb;
         color: #123238;
+
         min-height: 100vh;
         width: 100%;
+
         overflow-x: hidden;
+
         -webkit-tap-highlight-color: transparent;
     }
 
@@ -71,57 +71,9 @@
 
         color: white;
 
-        background: linear-gradient(
-            155deg,
-            #083d4a 0%,
-            #064c5a 48%,
-            #063c49 100%
-        );
-
-        box-shadow: 8px 0 22px rgba(3, 52, 64, 0.10);
+        background: #064c5a;
 
         overflow: hidden;
-    }
-
-
-    /* =====================================================
-       BRILHOS DECORATIVOS
-    ====================================================== */
-
-    .sidebar::before {
-        content: "";
-
-        position: absolute;
-
-        width: 260px;
-        height: 260px;
-
-        right: -180px;
-        top: -130px;
-
-        border-radius: 50%;
-
-        background: rgba(56, 189, 248, 0.07);
-
-        pointer-events: none;
-    }
-
-    .sidebar::after {
-        content: "";
-
-        position: absolute;
-
-        width: 210px;
-        height: 210px;
-
-        left: -150px;
-        bottom: -110px;
-
-        border-radius: 50%;
-
-        background: rgba(45, 212, 191, 0.05);
-
-        pointer-events: none;
     }
 
 
@@ -130,9 +82,6 @@
     ====================================================== */
 
     .brand {
-        position: relative;
-        z-index: 2;
-
         padding: 0 13px 18px;
     }
 
@@ -155,26 +104,7 @@
 
         border-radius: 20px;
 
-        background: linear-gradient(
-            90deg,
-            #67e8f9,
-            #2dd4bf
-        );
-    }
-
-
-    /* =====================================================
-       HOVER DA LOGO - DESKTOP
-    ====================================================== */
-
-    @media (min-width: 651px) {
-
-        .brand:hover .brand-line {
-            width: 65px;
-            box-shadow: 0 0 10px rgba(103, 232, 249, .22);
-            transition: width .2s ease;
-        }
-
+        background: #2dd4bf;
     }
 
 
@@ -183,10 +113,8 @@
     ====================================================== */
 
     .menu-title {
-        position: relative;
-        z-index: 2;
-
         padding: 0 11px;
+
         margin-bottom: 8px;
 
         color: rgba(255, 255, 255, .47);
@@ -204,9 +132,6 @@
     ====================================================== */
 
     .menu {
-        position: relative;
-        z-index: 2;
-
         display: flex;
         flex-direction: column;
 
@@ -250,7 +175,7 @@
 
 
     /* =====================================================
-       BARRA DO ITEM
+       BARRA DO ITEM ATIVO
     ====================================================== */
 
     .menu a::before {
@@ -266,11 +191,7 @@
 
         border-radius: 0 5px 5px 0;
 
-        background: linear-gradient(
-            180deg,
-            #67e8f9,
-            #2dd4bf
-        );
+        background: #2dd4bf;
 
         transform: translateY(-50%);
 
@@ -305,18 +226,10 @@
 
 
     /* =====================================================
-       HOVER DESKTOP
+       HOVER SOMENTE DESKTOP
     ====================================================== */
 
     @media (min-width: 651px) {
-
-        .menu a {
-            transition:
-                background .15s ease,
-                border-color .15s ease,
-                color .15s ease,
-                transform .15s ease;
-        }
 
         .menu a:hover {
             color: #ffffff;
@@ -324,8 +237,6 @@
             background: rgba(103, 232, 249, .09);
 
             border-color: rgba(103, 232, 249, .13);
-
-            transform: translateX(3px);
         }
 
         .menu a:hover::before {
@@ -335,7 +246,9 @@
 
         .menu a:hover .menu-icon {
             color: #67e8f9;
+
             background: rgba(103, 232, 249, .12);
+
             border-color: rgba(103, 232, 249, .12);
         }
 
@@ -349,49 +262,24 @@
     .menu a.active {
         color: #064c5a;
 
-        background: linear-gradient(
-            135deg,
-            #e5fbff 0%,
-            #d8f7f6 100%
-        );
+        background: #e5fbff;
 
-        border-color: rgba(210, 247, 246, .95);
-
-        box-shadow: 0 4px 10px rgba(0, 0, 0, .07);
+        border-color: #d2f7f6;
     }
 
     .menu a.active::before {
         height: 27px;
         opacity: 1;
 
-        background: linear-gradient(
-            180deg,
-            #06b6d4,
-            #0d9488
-        );
+        background: #06b6d4;
     }
 
     .menu a.active .menu-icon {
         color: white;
 
-        background: linear-gradient(
-            135deg,
-            #06b6d4,
-            #0d9488
-        );
+        background: #0d9488;
 
         border-color: transparent;
-
-        box-shadow: 0 3px 7px rgba(13, 148, 136, .16);
-    }
-
-
-    @media (min-width: 651px) {
-
-        .menu a.active:hover {
-            transform: translateX(2px);
-        }
-
     }
 
 
@@ -435,7 +323,9 @@
 
         .content {
             margin-left: 210px;
+
             width: calc(100% - 210px);
+
             padding: 25px;
         }
 
@@ -459,33 +349,16 @@
 
     @media (max-width: 650px) {
 
-        body {
-            background: #f5fafb;
-        }
-
-        /* SIDEBAR */
-
         .sidebar {
             width: 100%;
             height: auto;
             min-height: 0;
 
             position: relative;
-            top: auto;
-            left: auto;
-            bottom: auto;
 
             padding: 15px 14px;
 
-            box-shadow: 0 4px 14px rgba(3, 52, 64, .08);
-        }
-
-
-        /* DESATIVA OS BRILHOS PESADOS NO CELULAR */
-
-        .sidebar::before,
-        .sidebar::after {
-            display: none;
+            box-shadow: none;
         }
 
 
@@ -557,11 +430,10 @@
         }
 
 
-        /* REMOVE TODAS AS ANIMAÇÕES DE HOVER */
+        /* REMOVE EFEITOS DE TOQUE */
 
         .menu a:hover {
             transform: none;
-            box-shadow: none;
 
             color: rgba(255, 255, 255, .74);
 
@@ -584,33 +456,16 @@
         }
 
 
-        /* TOQUE */
-
-        .menu a:active {
-            transform: scale(.99);
-        }
-
-
         /* ATIVO */
 
         .menu a.active {
-            box-shadow: 0 2px 7px rgba(0, 0, 0, .05);
+            background: #e5fbff;
+            border-color: #d2f7f6;
         }
 
         .menu a.active:hover {
-            transform: none;
-
             color: #064c5a;
-
-            background: linear-gradient(
-                135deg,
-                #e5fbff 0%,
-                #d8f7f6 100%
-            );
-        }
-
-        .menu a.active:active {
-            transform: scale(.99);
+            background: #e5fbff;
         }
 
 
@@ -626,6 +481,7 @@
 
         .content {
             margin-left: 0;
+
             width: 100%;
 
             min-height: 100vh;
