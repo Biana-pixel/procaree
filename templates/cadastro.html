@@ -24,7 +24,7 @@
 
     <link
         rel="preconnect"
-        href="https://fonts.gstatic.com"
+        href="https://fonts.googleapis.com"
         crossorigin
     >
 
@@ -41,8 +41,11 @@
             box-sizing: border-box;
         }
 
+
         body {
+
             font-family: "Inter", sans-serif;
+
             min-height: 100vh;
 
             background:
@@ -68,37 +71,53 @@
                 );
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             padding: 20px;
 
             color: #111827;
+
+            overflow-x: hidden;
         }
 
+
         .container {
+
             width: 100%;
+
             max-width: 900px;
+
             min-height: 480px;
 
             background: white;
 
             border-radius: 24px;
+
             overflow: hidden;
 
             display: grid;
+
             grid-template-columns: 45% 55%;
 
             box-shadow:
                 0 25px 70px
                 rgba(15, 23, 42, 0.15);
 
-            animation:
-                containerEntrada
-                0.7s ease;
+            /* SEM ANIMAÇÃO */
+
+            animation: none;
         }
 
+
+        /* =========================
+           LADO ESQUERDO
+        ========================= */
+
         .left {
+
             background: #083b42;
 
             color: white;
@@ -106,19 +125,27 @@
             padding: 45px;
 
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
 
             position: relative;
+
             overflow: hidden;
         }
 
+
+        /* BOLHA SUPERIOR - PARADA */
+
         .left::before {
+
             content: "";
 
             position: absolute;
 
             width: 300px;
+
             height: 300px;
 
             border-radius: 50%;
@@ -128,19 +155,23 @@
             opacity: 0.15;
 
             top: -110px;
+
             right: -100px;
 
-            animation:
-                flutuar1
-                7s ease-in-out infinite;
+            animation: none;
         }
 
+
+        /* BOLHA INFERIOR - PARADA */
+
         .left::after {
+
             content: "";
 
             position: absolute;
 
             width: 250px;
+
             height: 250px;
 
             border-radius: 50%;
@@ -150,41 +181,55 @@
             opacity: 0.10;
 
             bottom: -110px;
+
             left: -100px;
 
-            animation:
-                flutuar2
-                9s ease-in-out infinite;
+            animation: none;
         }
 
+
+        /* =========================
+           LOGO
+        ========================= */
+
         .logo {
+
             position: relative;
+
             z-index: 2;
 
             font-size: 25px;
+
             font-weight: 800;
 
             margin-bottom: 45px;
 
-            animation:
-                aparecer
-                0.8s ease;
+            animation: none;
         }
 
+
         .logo span {
+
             color: #5eead4;
         }
 
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
         .content {
+
             position: relative;
+
             z-index: 2;
 
-            animation:
-                formEntrada
-                0.8s ease;
+            animation: none;
         }
 
+
         .content h1 {
+
             font-size: 36px;
 
             line-height: 1.15;
@@ -194,7 +239,9 @@
             letter-spacing: -1.5px;
         }
 
+
         .content p {
+
             color: #cbd5e1;
 
             font-size: 15px;
@@ -204,16 +251,25 @@
             max-width: 360px;
         }
 
+
+        /* =========================
+           FEATURES
+        ========================= */
+
         .features {
+
             margin-top: 28px;
 
             display: flex;
+
             flex-direction: column;
 
             gap: 13px;
         }
 
+
         .feature {
+
             display: flex;
 
             align-items: center;
@@ -224,61 +280,72 @@
 
             font-size: 13px;
 
-            transition: 0.25s ease;
+            transition: none;
         }
 
-        .feature:hover {
-            transform:
-                translateX(5px);
-        }
 
         .check {
+
             width: 24px;
+
             height: 24px;
 
             border-radius: 50%;
 
             background:
-                rgba(94, 234, 212, 0.15);
+                rgba(
+                    94,
+                    234,
+                    212,
+                    0.15
+                );
 
             color: #5eead4;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             font-weight: bold;
 
-            transition: 0.25s ease;
+            transition: none;
         }
 
-        .feature:hover .check {
-            transform:
-                scale(1.1);
 
-            background:
-                rgba(94, 234, 212, 0.25);
-        }
+        /* =========================
+           LADO DIREITO
+        ========================= */
 
         .right {
+
             padding: 40px 50px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
         }
 
+
+        /* =========================
+           FORMULÁRIO
+        ========================= */
+
         .form-container {
+
             width: 100%;
 
             max-width: 380px;
 
-            animation:
-                formEntrada
-                0.8s ease;
+            animation: none;
         }
 
+
         .form-container h2 {
+
             font-size: 28px;
 
             margin-bottom: 8px;
@@ -286,7 +353,9 @@
             letter-spacing: -0.7px;
         }
 
+
         .subtitle {
+
             color: #6b7280;
 
             font-size: 14px;
@@ -294,11 +363,19 @@
             margin-bottom: 25px;
         }
 
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
         .form-group {
+
             margin-bottom: 15px;
         }
 
+
         label {
+
             display: block;
 
             font-size: 14px;
@@ -310,7 +387,9 @@
             color: #374151;
         }
 
+
         input {
+
             width: 100%;
 
             height: 47px;
@@ -327,41 +406,86 @@
 
             font-size: 14px;
 
-            transition: 0.25s ease;
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
 
             background: white;
         }
 
+
         input:hover {
+
             border-color: #7ccdc7;
         }
 
+
         input:focus {
+
             border-color: #0f9f99;
 
             box-shadow:
                 0 0 0 4px
-                rgba(15, 159, 153, 0.10);
+                rgba(
+                    15,
+                    159,
+                    153,
+                    0.10
+                );
         }
 
+
+        /* =========================
+           ERRO DO E-MAIL
+        ========================= */
+
+        .email-error {
+
+            display: none;
+
+            margin-top: 7px;
+
+            color: #b91c1c;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           SENHA
+        ========================= */
+
         .password-container {
+
             position: relative;
         }
 
+
         .password-container input {
+
             padding-right: 50px;
         }
 
+
+        /* =========================
+           BOTÃO OLHO
+        ========================= */
+
         .toggle-password {
+
             position: absolute;
 
             right: 15px;
+
             top: 50%;
 
             transform:
                 translateY(-50%);
 
             width: auto;
+
             height: auto;
 
             padding: 5px;
@@ -379,33 +503,36 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
-            transition: 0.2s ease;
+            transition:
+                color 0.2s ease;
         }
 
+
         .toggle-password:hover {
+
             background: transparent;
 
             color: #0f9f99;
-
-            transform:
-                translateY(-50%)
-                scale(1.08);
         }
 
-        .toggle-password:active {
-            transform:
-                translateY(-50%)
-                scale(0.95);
-        }
 
         .toggle-password svg {
+
             width: 20px;
+
             height: 20px;
         }
 
+
+        /* =========================
+           BOTÃO CADASTRO
+        ========================= */
+
         button[type="submit"] {
+
             width: 100%;
 
             height: 47px;
@@ -431,30 +558,52 @@
 
             cursor: pointer;
 
-            transition: 0.25s ease;
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
 
             margin-top: 4px;
 
             box-shadow:
                 0 8px 20px
-                rgba(15, 118, 110, 0.18);
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.18
+                );
         }
 
+
         button[type="submit"]:hover {
+
             transform:
                 translateY(-2px);
 
             box-shadow:
                 0 12px 25px
-                rgba(15, 118, 110, 0.25);
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.25
+                );
         }
 
+
         button[type="submit"]:active {
+
             transform:
                 translateY(0);
         }
 
+
+        /* =========================
+           LOGIN
+        ========================= */
+
         .login {
+
             text-align: center;
 
             margin-top: 18px;
@@ -464,109 +613,33 @@
             color: #6b7280;
         }
 
+
         .login a {
+
             color: #0f766e;
 
             font-weight: 700;
 
             text-decoration: none;
-
-            transition: 0.2s ease;
         }
 
+
         .login a:hover {
+
             color: #0f9f99;
 
             text-decoration: underline;
         }
 
-        @keyframes containerEntrada {
 
-            from {
-                opacity: 0;
-
-                transform:
-                    translateY(15px)
-                    scale(0.98);
-            }
-
-            to {
-                opacity: 1;
-
-                transform:
-                    translateY(0)
-                    scale(1);
-            }
-
-        }
-
-        @keyframes formEntrada {
-
-            from {
-                opacity: 0;
-
-                transform:
-                    translateX(15px);
-            }
-
-            to {
-                opacity: 1;
-
-                transform:
-                    translateX(0);
-            }
-
-        }
-
-        @keyframes aparecer {
-
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-
-        }
-
-        @keyframes flutuar1 {
-
-            0%,
-            100% {
-                transform:
-                    translate(0, 0)
-                    scale(1);
-            }
-
-            50% {
-                transform:
-                    translate(-25px, 25px)
-                    scale(1.08);
-            }
-
-        }
-
-        @keyframes flutuar2 {
-
-            0%,
-            100% {
-                transform:
-                    translate(0, 0)
-                    scale(1);
-            }
-
-            50% {
-                transform:
-                    translate(25px, -20px)
-                    scale(1.06);
-            }
-
-        }
+        /* =========================
+           RESPONSIVO
+        ========================= */
 
         @media (max-width: 800px) {
 
             .container {
+
                 grid-template-columns: 1fr;
 
                 max-width: 520px;
@@ -574,42 +647,58 @@
                 min-height: auto;
             }
 
+
             .left {
+
                 padding: 40px;
 
                 min-height: 330px;
             }
 
+
             .logo {
+
                 margin-bottom: 30px;
             }
 
+
             .content h1 {
+
                 font-size: 32px;
             }
 
+
             .features {
+
                 display: none;
             }
 
+
             .right {
+
                 padding: 40px;
             }
 
         }
 
+
         @media (max-width: 500px) {
 
             body {
+
                 padding: 15px;
             }
 
+
             .container {
+
                 border-radius: 18px;
             }
 
+
             .left,
             .right {
+
                 padding: 30px;
             }
 
@@ -626,27 +715,38 @@
 <div class="container">
 
 
+    <!-- =========================
+         LADO ESQUERDO
+    ========================= -->
+
     <section class="left">
 
         <div class="logo">
+
             Pro<span>Career</span>
+
         </div>
 
 
         <div class="content">
 
             <h1>
+
                 Sua próxima oportunidade começa aqui.
+
             </h1>
 
 
             <p>
+
                 Crie sua conta e comece a organizar sua jornada profissional
                 de forma mais inteligente e estratégica.
+
             </p>
 
 
             <div class="features">
+
 
                 <div class="feature">
 
@@ -686,12 +786,17 @@
 
                 </div>
 
+
             </div>
 
         </div>
 
     </section>
 
+
+    <!-- =========================
+         LADO DIREITO
+    ========================= -->
 
     <section class="right">
 
@@ -745,7 +850,7 @@
 
 
                 <!-- =========================
-                     EMAIL
+                     E-MAIL
                 ========================= -->
 
                 <div class="form-group">
@@ -768,6 +873,16 @@
                         value=""
                         required
                     >
+
+
+                    <div
+                        id="emailErro"
+                        class="email-error"
+                    >
+
+                        Digite um e-mail válido com @.
+
+                    </div>
 
                 </div>
 
@@ -838,7 +953,9 @@
 
 
                 <button type="submit">
+
                     Criar minha conta
+
                 </button>
 
 
@@ -850,7 +967,9 @@
                 Já possui uma conta?
 
                 <a href="/login">
+
                     Entrar
+
                 </a>
 
             </div>
@@ -866,11 +985,10 @@
 
 <script>
 
-    /*
-     * ================================
-     * LIMPEZA DOS CAMPOS
-     * ================================
-     */
+
+    /* ================================
+       LIMPAR CAMPOS
+    ================================ */
 
     function limparCampos() {
 
@@ -915,11 +1033,9 @@
     }
 
 
-    /*
-     * ================================
-     * AO CARREGAR O DOM
-     * ================================
-     */
+    /* ================================
+       AO CARREGAR
+    ================================ */
 
     document.addEventListener(
         "DOMContentLoaded",
@@ -927,33 +1043,13 @@
 
             limparCampos();
 
-
-            setTimeout(
-                limparCampos,
-                50
-            );
-
-
-            setTimeout(
-                limparCampos,
-                300
-            );
-
-
-            setTimeout(
-                limparCampos,
-                1000
-            );
-
         }
     );
 
 
-    /*
-     * ================================
-     * AO RESTAURAR A PÁGINA
-     * ================================
-     */
+    /* ================================
+       AO RESTAURAR
+    ================================ */
 
     window.addEventListener(
         "pageshow",
@@ -961,115 +1057,19 @@
 
             limparCampos();
 
-
-            setTimeout(
-                limparCampos,
-                100
-            );
-
         }
     );
 
 
-    /*
-     * ================================
-     * DETECTA DIGITAÇÃO MANUAL
-     * ================================
-     */
-
-    document
-        .getElementById("campoPerfil")
-        .addEventListener(
-            "input",
-            function () {
-
-                this.dataset.usuarioDigitou = "sim";
-
-            }
-        );
-
-
-    document
-        .getElementById("campoContato")
-        .addEventListener(
-            "input",
-            function () {
-
-                this.dataset.usuarioDigitou = "sim";
-
-            }
-        );
-
-
-    document
-        .getElementById("campoSeguranca")
-        .addEventListener(
-            "input",
-            function () {
-
-                this.dataset.usuarioDigitou = "sim";
-
-            }
-        );
-
-
-    /*
-     * ================================
-     * EVITA VALORES AUTOMÁTICOS
-     * ================================
-     */
-
-    document.addEventListener(
-        "focusin",
-        function (event) {
-
-            const camposProtegidos = [
-
-                "campoPerfil",
-                "campoContato",
-                "campoSeguranca"
-
-            ];
-
-
-            if (
-                camposProtegidos.includes(
-                    event.target.id
-                )
-            ) {
-
-                if (
-                    event.target.dataset.usuarioDigitou !== "sim"
-                    &&
-                    event.target.value !== ""
-                ) {
-
-                    event.target.value = "";
-
-                }
-
-            }
-
-        }
-    );
-
-
-    /*
-     * ================================
-     * ANTES DE ENVIAR
-     *
-     * O Flask continua recebendo:
-     * nome
-     * email
-     * senha
-     * ================================
-     */
+    /* ================================
+       VALIDAÇÃO DO CADASTRO
+    ================================ */
 
     document
         .getElementById("cadastroForm")
         .addEventListener(
             "submit",
-            function () {
+            function (event) {
 
                 const nome =
                     document.getElementById(
@@ -1086,6 +1086,73 @@
                         "campoSeguranca"
                     );
 
+                const emailErro =
+                    document.getElementById(
+                        "emailErro"
+                    );
+
+
+                /* =========================
+                   VALIDA NOME
+                ========================= */
+
+                if (
+                    nome.value.trim() === ""
+                ) {
+
+                    event.preventDefault();
+
+                    nome.focus();
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   VALIDA E-MAIL
+                ========================= */
+
+                const emailValor =
+                    email.value.trim();
+
+
+                if (
+                    !emailValor.includes("@")
+                ) {
+
+                    event.preventDefault();
+
+                    emailErro.style.display =
+                        "block";
+
+                    email.focus();
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   VALIDA SENHA
+                ========================= */
+
+                if (
+                    senha.value.trim() === ""
+                ) {
+
+                    event.preventDefault();
+
+                    senha.focus();
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   ENVIA PARA O FLASK
+                ========================= */
 
                 nome.name = "nome";
 
@@ -1097,11 +1164,38 @@
         );
 
 
-    /*
-     * ================================
-     * MOSTRAR / ESCONDER SENHA
-     * ================================
-     */
+    /* ================================
+       ESCONDE AVISO AO CORRIGIR
+    ================================ */
+
+    document
+        .getElementById("campoContato")
+        .addEventListener(
+            "input",
+            function () {
+
+                const emailErro =
+                    document.getElementById(
+                        "emailErro"
+                    );
+
+
+                if (
+                    this.value.includes("@")
+                ) {
+
+                    emailErro.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+    /* ================================
+       MOSTRAR / ESCONDER SENHA
+    ================================ */
 
     function togglePassword() {
 
@@ -1116,7 +1210,9 @@
             );
 
 
-        if (senha.type === "password") {
+        if (
+            senha.type === "password"
+        ) {
 
             senha.type = "text";
 
@@ -1164,7 +1260,7 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268 2.943-9.542 7-4.477-8.268-7.943-9.542-7-1.274 4.057 5.065 7 9.542 7 4.477 0 8.268-2.943 9.542-7z"
                 />
 
                 <path
@@ -1179,6 +1275,7 @@
         }
 
     }
+
 
 </script>
 
