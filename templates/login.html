@@ -17,17 +17,48 @@
 
     <title>Login | ProCareer</title>
 
+
+    <!-- =========================
+         FONTE
+    ========================= -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
     <style>
 
+        /* =========================
+           RESET
+        ========================= */
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
+
+        /* =========================
+           BODY
+        ========================= */
 
         body {
 
-            font-family: Arial, sans-serif;
+            font-family: "Inter", sans-serif;
 
             min-height: 100vh;
 
@@ -39,27 +70,31 @@
 
             padding: 20px;
 
+            color: #111827;
+
             background:
                 radial-gradient(
-                    circle at 10% 20%,
-                    rgba(15, 159, 153, 0.12),
+                    circle at 10% 15%,
+                    rgba(45, 212, 191, 0.30),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(14, 165, 233, 0.18),
                     transparent 30%
                 ),
                 radial-gradient(
-                    circle at 90% 80%,
-                    rgba(8, 59, 66, 0.10),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 80% 10%,
-                    rgba(15, 118, 110, 0.08),
-                    transparent 25%
+                    circle at 80% 90%,
+                    rgba(20, 184, 166, 0.25),
+                    transparent 35%
                 ),
                 linear-gradient(
                     135deg,
-                    #f4fbfa,
-                    #eef8f7
+                    #e8f8f6,
+                    #eaf7fc
                 );
+
+            overflow-x: hidden;
         }
 
 
@@ -75,7 +110,7 @@
 
             min-height: 480px;
 
-            background: #ffffff;
+            background: white;
 
             border-radius: 24px;
 
@@ -91,7 +126,7 @@
 
             animation:
                 containerEntrada
-                0.7s ease;
+                0.7s ease both;
         }
 
 
@@ -102,6 +137,8 @@
         .left {
 
             position: relative;
+
+            overflow: hidden;
 
             background: #083b42;
 
@@ -114,10 +151,10 @@
             flex-direction: column;
 
             justify-content: center;
-
-            overflow: hidden;
         }
 
+
+        /* BOLHA SUPERIOR */
 
         .left::before {
 
@@ -125,24 +162,27 @@
 
             position: absolute;
 
-            width: 190px;
+            width: 300px;
 
-            height: 190px;
+            height: 300px;
 
             border-radius: 50%;
 
-            background:
-                rgba(15, 159, 153, 0.12);
+            background: #0f9f99;
 
-            top: -75px;
+            opacity: 0.15;
 
-            right: -65px;
+            top: -110px;
+
+            right: -100px;
 
             animation:
                 flutuar1
-                6s ease-in-out infinite;
+                7s ease-in-out infinite;
         }
 
+
+        /* BOLHA INFERIOR */
 
         .left::after {
 
@@ -150,22 +190,23 @@
 
             position: absolute;
 
-            width: 150px;
+            width: 250px;
 
-            height: 150px;
+            height: 250px;
 
             border-radius: 50%;
 
-            background:
-                rgba(255, 255, 255, 0.05);
+            background: #5eead4;
 
-            bottom: -60px;
+            opacity: 0.10;
 
-            left: -55px;
+            bottom: -110px;
+
+            left: -100px;
 
             animation:
                 flutuar2
-                7s ease-in-out infinite;
+                9s ease-in-out infinite;
         }
 
 
@@ -181,19 +222,19 @@
 
             font-size: 25px;
 
-            font-weight: 700;
+            font-weight: 800;
 
             margin-bottom: 45px;
 
             animation:
                 aparecer
-                0.7s ease;
+                0.7s ease both;
         }
 
 
         .logo span {
 
-            color: #0f9f99;
+            color: #5eead4;
         }
 
 
@@ -215,13 +256,15 @@
 
             line-height: 1.15;
 
-            margin-bottom: 15px;
+            letter-spacing: -1.5px;
+
+            margin-bottom: 18px;
 
             max-width: 340px;
 
             animation:
                 aparecer
-                0.8s ease;
+                0.8s ease both;
         }
 
 
@@ -233,13 +276,13 @@
 
             color: #d7eeee;
 
-            max-width: 330px;
+            max-width: 350px;
 
             margin-bottom: 25px;
 
             animation:
                 aparecer
-                0.9s ease;
+                0.9s ease both;
         }
 
 
@@ -253,15 +296,17 @@
 
             align-items: center;
 
-            gap: 10px;
+            gap: 12px;
+
+            color: #e5e7eb;
 
             font-size: 13px;
 
-            margin-bottom: 12px;
+            margin-bottom: 13px;
 
             transition:
                 transform
-                0.2s ease;
+                0.25s ease;
         }
 
 
@@ -274,13 +319,23 @@
 
         .check {
 
-            width: 22px;
+            width: 24px;
 
-            height: 22px;
+            height: 24px;
 
-            min-width: 22px;
+            min-width: 24px;
 
             border-radius: 50%;
+
+            background:
+                rgba(
+                    94,
+                    234,
+                    212,
+                    0.15
+                );
+
+            color: #5eead4;
 
             display: flex;
 
@@ -288,18 +343,13 @@
 
             justify-content: center;
 
-            background:
-                rgba(15, 159, 153, 0.18);
-
-            color: #7ce0da;
-
-            font-size: 12px;
-
             font-weight: bold;
 
             transition:
                 transform
-                0.2s ease;
+                0.25s ease,
+                background
+                0.25s ease;
         }
 
 
@@ -307,6 +357,14 @@
 
             transform:
                 scale(1.1);
+
+            background:
+                rgba(
+                    94,
+                    234,
+                    212,
+                    0.25
+                );
         }
 
 
@@ -327,7 +385,7 @@
 
 
         /* =========================
-           FORM CONTAINER
+           FORMULÁRIO
         ========================= */
 
         .form-container {
@@ -338,7 +396,7 @@
 
             animation:
                 formEntrada
-                0.7s ease;
+                0.8s ease both;
         }
 
 
@@ -346,9 +404,11 @@
 
             font-size: 28px;
 
-            color: #0f172a;
+            color: #111827;
 
             margin-bottom: 8px;
+
+            letter-spacing: -0.7px;
         }
 
 
@@ -356,7 +416,7 @@
 
             font-size: 14px;
 
-            color: #64748b;
+            color: #6b7280;
 
             margin-bottom: 25px;
         }
@@ -386,7 +446,7 @@
 
             animation:
                 aparecer
-                0.25s ease;
+                0.25s ease both;
         }
 
 
@@ -404,13 +464,25 @@
 
             display: block;
 
-            font-size: 13px;
+            font-size: 14px;
 
             font-weight: 600;
 
-            color: #334155;
+            color: #374151;
 
             margin-bottom: 7px;
+        }
+
+
+        /* =========================
+           INPUT WRAPPER
+        ========================= */
+
+        .input-wrapper {
+
+            position: relative;
+
+            width: 100%;
         }
 
 
@@ -418,36 +490,34 @@
            INPUT
         ========================= */
 
-        .input-wrapper {
-
-            position: relative;
-        }
-
-
         .input-wrapper input {
 
             width: 100%;
 
             height: 47px;
 
-            padding: 0 13px;
+            padding: 0 16px;
 
-            border: 1px solid #dbe4e8;
+            border: 1px solid #d1d5db;
 
             border-radius: 10px;
 
             outline: none;
 
+            font-family: inherit;
+
             font-size: 14px;
 
-            color: #0f172a;
+            color: #111827;
 
-            background: #ffffff;
+            background: white;
 
             transition:
-                border
-                0.2s ease,
+                border-color
+                0.25s ease,
                 box-shadow
+                0.25s ease,
+                transform
                 0.2s ease;
         }
 
@@ -463,44 +533,59 @@
             border-color: #0f9f99;
 
             box-shadow:
-                0 0 0 3px
+                0 0 0 4px
                 rgba(
                     15,
                     159,
                     153,
                     0.10
                 );
+
+            transform:
+                translateY(-1px);
         }
 
 
         /* =========================
-           SENHA
+           CAMPO SENHA
         ========================= */
 
         .password-input {
 
-            padding-right: 45px !important;
+            padding-right: 50px !important;
         }
 
+
+        /* =========================
+           BOTÃO OLHO
+        ========================= */
 
         .toggle-password {
 
             position: absolute;
 
-            right: 12px;
+            right: 13px;
 
             top: 50%;
 
             transform:
                 translateY(-50%);
 
+            width: auto;
+
+            height: auto;
+
+            padding: 5px;
+
+            margin: 0;
+
             border: none;
 
             background: transparent;
 
-            cursor: pointer;
+            color: #6b7280;
 
-            padding: 3px;
+            cursor: pointer;
 
             display: flex;
 
@@ -509,12 +594,18 @@
             justify-content: center;
 
             transition:
+                color
+                0.2s ease,
                 transform
                 0.2s ease;
         }
 
 
         .toggle-password:hover {
+
+            background: transparent;
+
+            color: #0f9f99;
 
             transform:
                 translateY(-50%)
@@ -535,13 +626,11 @@
             width: 20px;
 
             height: 20px;
-
-            stroke: #64748b;
         }
 
 
         /* =========================
-           BOTÃO
+           BOTÃO LOGIN
         ========================= */
 
         .btn {
@@ -565,7 +654,9 @@
 
             color: white;
 
-            font-size: 14px;
+            font-family: inherit;
+
+            font-size: 15px;
 
             font-weight: 700;
 
@@ -573,9 +664,9 @@
 
             transition:
                 transform
-                0.2s ease,
+                0.25s ease,
                 box-shadow
-                0.2s ease;
+                0.25s ease;
         }
 
 
@@ -585,12 +676,12 @@
                 translateY(-2px);
 
             box-shadow:
-                0 8px 20px
+                0 12px 25px
                 rgba(
                     15,
                     118,
                     110,
-                    0.22
+                    0.25
                 );
         }
 
@@ -599,11 +690,20 @@
 
             transform:
                 translateY(0);
+
+            box-shadow:
+                0 5px 12px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.18
+                );
         }
 
 
         /* =========================
-           LINK
+           LINK CADASTRO
         ========================= */
 
         .register-link {
@@ -612,9 +712,9 @@
 
             margin-top: 18px;
 
-            font-size: 13px;
+            font-size: 14px;
 
-            color: #64748b;
+            color: #6b7280;
         }
 
 
@@ -673,7 +773,7 @@
                 opacity: 0;
 
                 transform:
-                    translateX(12px);
+                    translateX(15px);
             }
 
             to {
@@ -712,13 +812,15 @@
             100% {
 
                 transform:
-                    translateY(0);
+                    translate(0, 0)
+                    scale(1);
             }
 
             50% {
 
                 transform:
-                    translateY(12px);
+                    translate(-25px, 25px)
+                    scale(1.08);
             }
         }
 
@@ -729,13 +831,15 @@
             100% {
 
                 transform:
-                    translateY(0);
+                    translate(0, 0)
+                    scale(1);
             }
 
             50% {
 
                 transform:
-                    translateY(-10px);
+                    translate(25px, -20px)
+                    scale(1.06);
             }
         }
 
@@ -750,21 +854,35 @@
 
                 grid-template-columns: 1fr;
 
-                max-width: 500px;
+                max-width: 520px;
+
+                min-height: auto;
             }
 
 
             .left {
 
-                padding: 35px;
+                padding: 40px;
 
-                min-height: 320px;
+                min-height: 330px;
+            }
+
+
+            .logo {
+
+                margin-bottom: 30px;
+            }
+
+
+            .content h1 {
+
+                font-size: 32px;
             }
 
 
             .right {
 
-                padding: 35px;
+                padding: 40px;
             }
 
         }
@@ -774,7 +892,7 @@
 
             body {
 
-                padding: 12px;
+                padding: 15px;
             }
 
 
@@ -786,9 +904,15 @@
 
             .left {
 
-                padding: 28px;
+                padding: 30px;
 
                 min-height: 300px;
+            }
+
+
+            .right {
+
+                padding: 30px 24px;
             }
 
 
@@ -804,9 +928,29 @@
             }
 
 
-            .right {
+            .content p {
 
-                padding: 30px 24px;
+                font-size: 14px;
+            }
+
+        }
+
+
+        /* =========================
+           REDUÇÃO DE MOVIMENTO
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration: 0.01ms !important;
+
+                animation-iteration-count: 1 !important;
+
+                transition-duration: 0.01ms !important;
             }
 
         }
@@ -826,7 +970,7 @@
          LADO ESQUERDO
     ========================= -->
 
-    <div class="left">
+    <section class="left">
 
         <div class="logo">
 
@@ -855,10 +999,16 @@
 
             <div class="feature">
 
-                <div class="check">✓</div>
+                <div class="check">
+
+                    ✓
+
+                </div>
 
                 <span>
+
                     Organize suas candidaturas
+
                 </span>
 
             </div>
@@ -866,10 +1016,16 @@
 
             <div class="feature">
 
-                <div class="check">✓</div>
+                <div class="check">
+
+                    ✓
+
+                </div>
 
                 <span>
+
                     Acompanhe suas entrevistas
+
                 </span>
 
             </div>
@@ -877,10 +1033,16 @@
 
             <div class="feature">
 
-                <div class="check">✓</div>
+                <div class="check">
+
+                    ✓
+
+                </div>
 
                 <span>
+
                     Gerencie seus currículos
+
                 </span>
 
             </div>
@@ -888,24 +1050,30 @@
 
             <div class="feature">
 
-                <div class="check">✓</div>
+                <div class="check">
+
+                    ✓
+
+                </div>
 
                 <span>
+
                     Defina suas metas profissionais
+
                 </span>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
 
     <!-- =========================
          LADO DIREITO
     ========================= -->
 
-    <div class="right">
+    <section class="right">
 
 
         <div class="form-container">
@@ -944,14 +1112,10 @@
                 novalidate
             >
 
-                <!--
-                    Campos propositalmente com nomes
-                    internos diferentes para dificultar
-                    o reconhecimento automático do Chrome.
-                -->
 
-
-                <!-- EMAIL -->
+                <!-- =========================
+                     E-MAIL
+                ========================= -->
 
                 <div class="form-group">
 
@@ -974,6 +1138,7 @@
                             autocorrect="off"
                             spellcheck="false"
                             inputmode="email"
+                            value=""
                             required
                         >
 
@@ -982,7 +1147,9 @@
                 </div>
 
 
-                <!-- SENHA -->
+                <!-- =========================
+                     SENHA
+                ========================= -->
 
                 <div class="form-group">
 
@@ -1005,6 +1172,7 @@
                             autocapitalize="none"
                             autocorrect="off"
                             spellcheck="false"
+                            value=""
                             required
                         >
 
@@ -1018,24 +1186,24 @@
 
                             <svg
                                 id="eyeIcon"
-                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
+                                viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
                             >
 
                                 <path
-                                    d="M2 12s3.5-7 10-7
-                                       10 7 10 7-3.5 7-10 7
-                                       -10-7-10-7z"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                                 />
 
-                                <circle
-                                    cx="12"
-                                    cy="12"
-                                    r="3"
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                                 />
 
                             </svg>
@@ -1047,7 +1215,9 @@
                 </div>
 
 
-                <!-- BOTÃO -->
+                <!-- =========================
+                     BOTÃO
+                ========================= -->
 
                 <button
                     type="submit"
@@ -1077,25 +1247,28 @@
 
         </div>
 
-    </div>
+    </section>
 
 </div>
 
 
 <script>
 
-    /*
-     * Limpa valores inseridos automaticamente
-     * pelo navegador.
-     */
+    /* =========================
+       LIMPAR CAMPOS
+    ========================= */
 
     function limparCampos() {
 
         const email =
-            document.getElementById("campoAcesso");
+            document.getElementById(
+                "campoAcesso"
+            );
 
         const senha =
-            document.getElementById("campoChave");
+            document.getElementById(
+                "campoChave"
+            );
 
 
         if (email) {
@@ -1116,9 +1289,9 @@
     }
 
 
-    /*
-     * Executa assim que o DOM estiver disponível.
-     */
+    /* =========================
+       AO CARREGAR
+    ========================= */
 
     document.addEventListener(
         "DOMContentLoaded",
@@ -1126,15 +1299,18 @@
 
             limparCampos();
 
+
             setTimeout(
                 limparCampos,
                 50
             );
 
+
             setTimeout(
                 limparCampos,
                 300
             );
+
 
             setTimeout(
                 limparCampos,
@@ -1145,16 +1321,16 @@
     );
 
 
-    /*
-     * Executa novamente quando o navegador
-     * restaura a página pelo histórico.
-     */
+    /* =========================
+       AO RESTAURAR PÁGINA
+    ========================= */
 
     window.addEventListener(
         "pageshow",
         function () {
 
             limparCampos();
+
 
             setTimeout(
                 limparCampos,
@@ -1165,24 +1341,57 @@
     );
 
 
-    /*
-     * Evita que um valor automático seja mantido
-     * ao focar novamente no campo.
-     */
+    /* =========================
+       DETECTA DIGITAÇÃO
+    ========================= */
+
+    document
+        .getElementById("campoAcesso")
+        .addEventListener(
+            "input",
+            function () {
+
+                this.dataset.usuarioDigitou =
+                    "sim";
+
+            }
+        );
+
+
+    document
+        .getElementById("campoChave")
+        .addEventListener(
+            "input",
+            function () {
+
+                this.dataset.usuarioDigitou =
+                    "sim";
+
+            }
+        );
+
+
+    /* =========================
+       EVITA AUTOPREENCHIMENTO
+    ========================= */
 
     document.addEventListener(
         "focusin",
         function (event) {
 
-            if (
-                event.target.id === "campoAcesso" ||
-                event.target.id === "campoChave"
-            ) {
+            const camposProtegidos = [
 
-                /*
-                 * Só limpa se o campo não tiver sido
-                 * preenchido manualmente pelo usuário.
-                 */
+                "campoAcesso",
+                "campoChave"
+
+            ];
+
+
+            if (
+                camposProtegidos.includes(
+                    event.target.id
+                )
+            ) {
 
                 if (
                     event.target.dataset.usuarioDigitou !== "sim"
@@ -1200,39 +1409,9 @@
     );
 
 
-    /*
-     * Detecta digitação manual.
-     */
-
-    document
-        .getElementById("campoAcesso")
-        .addEventListener(
-            "input",
-            function () {
-
-                this.dataset.usuarioDigitou = "sim";
-
-            }
-        );
-
-
-    document
-        .getElementById("campoChave")
-        .addEventListener(
-            "input",
-            function () {
-
-                this.dataset.usuarioDigitou = "sim";
-
-            }
-        );
-
-
-    /*
-     * Antes de enviar, transforma os nomes
-     * internos novamente nos nomes esperados
-     * pelo Flask.
-     */
+    /* =========================
+       ANTES DE ENVIAR
+    ========================= */
 
     document
         .getElementById("loginForm")
@@ -1241,11 +1420,19 @@
             function () {
 
                 const email =
-                    document.getElementById("campoAcesso");
+                    document.getElementById(
+                        "campoAcesso"
+                    );
 
                 const senha =
-                    document.getElementById("campoChave");
+                    document.getElementById(
+                        "campoChave"
+                    );
 
+
+                /*
+                 * Mantém os nomes que o Flask espera.
+                 */
 
                 email.name = "email";
 
@@ -1255,17 +1442,21 @@
         );
 
 
-    /*
-     * Mostrar / esconder senha.
-     */
+    /* =========================
+       MOSTRAR / ESCONDER SENHA
+    ========================= */
 
     function togglePassword() {
 
         const password =
-            document.getElementById("campoChave");
+            document.getElementById(
+                "campoChave"
+            );
 
         const icon =
-            document.getElementById("eyeIcon");
+            document.getElementById(
+                "eyeIcon"
+            );
 
         const button =
             document.querySelector(
@@ -1273,9 +1464,12 @@
             );
 
 
-        if (password.type === "password") {
+        if (
+            password.type === "password"
+        ) {
 
             password.type = "text";
+
 
             button.setAttribute(
                 "aria-label",
@@ -1285,25 +1479,32 @@
 
             icon.innerHTML = `
 
-                <path d="M3 3l18 18" />
-
                 <path
-                    d="M10.6 10.6
-                       a2 2 0 0 0 2.8 2.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3l18 18"
                 />
 
                 <path
-                    d="M9.9 4.2
-                       A10.7 10.7 0 0 1 12 4
-                       c6.5 0 10 8 10 8
-                       a17.3 17.3 0 0 1-3.2 4.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10.584 10.587a2 2 0 001.414.586"
                 />
 
                 <path
-                    d="M6.1 6.1
-                       C3.6 8.1 2 12 2 12
-                       s3.5 8 10 8
-                       c1.4 0 2.7-.3 3.8-.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.88 4.24A9.77 9.77 0 0112 4c4.477 0 8.268 2.943 9.542 7a10.06 10.06 0 01-4.132 5.114"
+                />
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6.228 6.228A10.06 10.06 0 002.458 12C3.732 16.057 7.523 19 12 19a9.77 9.77 0 004.24-.88"
                 />
 
             `;
@@ -1311,6 +1512,7 @@
         } else {
 
             password.type = "password";
+
 
             button.setAttribute(
                 "aria-label",
@@ -1321,15 +1523,17 @@
             icon.innerHTML = `
 
                 <path
-                    d="M2 12s3.5-7 10-7
-                       10 7 10 7-3.5 7-10 7
-                       -10-7-10-7z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                 />
 
-                <circle
-                    cx="12"
-                    cy="12"
-                    r="3"
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                 />
 
             `;

@@ -18,6 +18,7 @@
     ====================================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link
         rel="preconnect"
         href="https://fonts.gstatic.com"
@@ -44,9 +45,13 @@
 
 
         html {
+
             width: 100%;
+
             min-height: 100%;
+
             overflow-x: hidden;
+
             -webkit-text-size-adjust: 100%;
         }
 
@@ -113,7 +118,9 @@
             position: fixed;
 
             top: 0;
+
             left: 0;
+
             bottom: 0;
 
             z-index: 1000;
@@ -136,9 +143,11 @@
             position: absolute;
 
             width: 300px;
+
             height: 300px;
 
             right: -205px;
+
             top: -145px;
 
             border-radius: 50%;
@@ -161,9 +170,11 @@
             position: absolute;
 
             width: 240px;
+
             height: 240px;
 
             left: -170px;
+
             bottom: -125px;
 
             border-radius: 50%;
@@ -230,6 +241,28 @@
                     #67e8f9,
                     #2dd4bf
                 );
+
+            transition:
+                width .25s ease,
+                box-shadow .25s ease;
+        }
+
+
+        /* =====================================================
+           HOVER DA LINHA - SOMENTE DESKTOP
+        ====================================================== */
+
+        @media (min-width: 651px) {
+
+            .brand:hover .brand-line {
+
+                width: 68px;
+
+                box-shadow:
+                    0 0 12px
+                    rgba(103, 232, 249, .30);
+            }
+
         }
 
 
@@ -298,7 +331,8 @@
 
             border-radius: 12px;
 
-            border: 1px solid
+            border:
+                1px solid
                 rgba(255, 255, 255, .035);
 
             background:
@@ -317,13 +351,12 @@
 
             -webkit-tap-highlight-color: transparent;
 
-            /*
-             * Sem animações pesadas.
-             */
             transition:
-                background .12s ease,
-                border-color .12s ease,
-                color .12s ease;
+                background .16s ease,
+                border-color .16s ease,
+                color .16s ease,
+                transform .16s ease,
+                box-shadow .16s ease;
         }
 
 
@@ -360,7 +393,9 @@
 
             opacity: 0;
 
-            transition: none;
+            transition:
+                height .18s ease,
+                opacity .18s ease;
         }
 
 
@@ -387,7 +422,8 @@
             background:
                 rgba(255, 255, 255, .065);
 
-            border: 1px solid
+            border:
+                1px solid
                 rgba(255, 255, 255, .035);
 
             color:
@@ -397,7 +433,11 @@
 
             font-weight: 700;
 
-            transition: none;
+            transition:
+                transform .16s ease,
+                color .16s ease,
+                background .16s ease,
+                border-color .16s ease;
         }
 
 
@@ -405,36 +445,53 @@
            HOVER - DESKTOP
         ====================================================== */
 
-        .menu a:hover {
+        @media (min-width: 651px) {
 
-            color: #ffffff;
+            .menu a:hover {
 
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(103, 232, 249, .12),
-                    rgba(45, 212, 191, .045)
-                );
+                color: #ffffff;
 
-            border-color:
-                rgba(103, 232, 249, .14);
-        }
+                background:
+                    linear-gradient(
+                        90deg,
+                        rgba(103, 232, 249, .12),
+                        rgba(45, 212, 191, .045)
+                    );
+
+                border-color:
+                    rgba(103, 232, 249, .14);
+
+                transform:
+                    translateX(3px);
+
+                box-shadow:
+                    0 5px 16px
+                    rgba(0, 0, 0, .08);
+            }
 
 
-        .menu a:hover::before {
+            .menu a:hover::before {
 
-            height: 23px;
+                height: 23px;
 
-            opacity: .85;
-        }
+                opacity: .85;
+            }
 
 
-        .menu a:hover .menu-icon {
+            .menu a:hover .menu-icon {
 
-            color: #67e8f9;
+                color: #67e8f9;
 
-            background:
-                rgba(103, 232, 249, .14);
+                background:
+                    rgba(103, 232, 249, .14);
+
+                border-color:
+                    rgba(103, 232, 249, .15);
+
+                transform:
+                    scale(1.06);
+            }
+
         }
 
 
@@ -489,6 +546,25 @@
                 );
 
             border-color: transparent;
+
+            box-shadow:
+                0 4px 10px
+                rgba(13, 148, 136, .20);
+        }
+
+
+        @media (min-width: 651px) {
+
+            .menu a.active:hover {
+
+                transform:
+                    translateX(2px);
+
+                box-shadow:
+                    0 7px 18px
+                    rgba(0, 0, 0, .11);
+            }
+
         }
 
 
@@ -527,7 +603,7 @@
            TABLET
         ====================================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 900px) and (min-width: 651px) {
 
             .sidebar {
 
@@ -564,6 +640,7 @@
 
                 min-width: 27px;
             }
+
         }
 
 
@@ -572,6 +649,22 @@
         ====================================================== */
 
         @media (max-width: 650px) {
+
+            body {
+
+                background:
+                    radial-gradient(
+                        circle at 10% 5%,
+                        rgba(14, 165, 233, 0.05),
+                        transparent 28%
+                    ),
+                    #f5fafb;
+            }
+
+
+            /* =================================================
+               SIDEBAR MOBILE
+            ================================================== */
 
             .sidebar {
 
@@ -583,20 +676,62 @@
 
                 position: relative;
 
-                padding: 16px 14px;
+                top: auto;
+
+                left: auto;
+
+                bottom: auto;
+
+                padding: 15px 14px;
 
                 box-shadow:
-                    0 6px 20px
+                    0 5px 18px
                     rgba(3, 52, 64, .10);
 
-                contain: layout paint;
+                overflow: hidden;
             }
 
+
+            /* =================================================
+               BRILHOS MOBILE
+            ================================================== */
+
+            .sidebar::before {
+
+                width: 220px;
+
+                height: 220px;
+
+                right: -150px;
+
+                top: -120px;
+
+                opacity: .22;
+            }
+
+
+            .sidebar::after {
+
+                width: 180px;
+
+                height: 180px;
+
+                left: -130px;
+
+                bottom: -110px;
+
+                opacity: .18;
+            }
+
+
+            /* =================================================
+               LOGO MOBILE
+            ================================================== */
 
             .brand {
 
                 padding:
-                    0 8px 16px;
+                    0 8px 14px;
             }
 
 
@@ -606,6 +741,34 @@
             }
 
 
+            .brand-line {
+
+                width: 45px;
+
+                margin-top: 7px;
+            }
+
+
+            /* =================================================
+               TÍTULO MOBILE
+            ================================================== */
+
+            .menu-title {
+
+                padding: 0 8px;
+
+                margin-bottom: 7px;
+
+                font-size: 8.5px;
+
+                letter-spacing: 1.7px;
+            }
+
+
+            /* =================================================
+               MENU MOBILE
+            ================================================== */
+
             .menu {
 
                 display: grid;
@@ -613,31 +776,39 @@
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
 
-                gap: 7px;
+                gap: 6px;
             }
 
+
+            /* =================================================
+               LINKS MOBILE
+            ================================================== */
 
             .menu a {
 
                 min-width: 0;
 
-                min-height: 44px;
+                min-height: 45px;
 
-                padding: 7px 9px;
+                padding:
+                    7px 9px;
 
                 gap: 8px;
 
                 font-size: 12px;
 
-                transition: none;
+                border-radius: 11px;
+
+                transition:
+                    background .12s ease,
+                    border-color .12s ease,
+                    transform .12s ease;
             }
 
 
-            .menu a::before {
-
-                transition: none;
-            }
-
+            /* =================================================
+               ÍCONES MOBILE
+            ================================================== */
 
             .menu-icon {
 
@@ -647,13 +818,15 @@
 
                 min-width: 29px;
 
-                transition: none;
+                border-radius: 8px;
+
+                font-size: 12px;
             }
 
 
-            /*
-             * Remove efeitos de hover no celular.
-             */
+            /* =================================================
+               DESATIVA HOVER NO CELULAR
+            ================================================== */
 
             .menu a:hover {
 
@@ -672,6 +845,14 @@
             }
 
 
+            .menu a:hover::before {
+
+                height: 0;
+
+                opacity: 0;
+            }
+
+
             .menu a:hover .menu-icon {
 
                 color:
@@ -679,24 +860,53 @@
 
                 background:
                     rgba(255, 255, 255, .065);
+
+                border-color:
+                    rgba(255, 255, 255, .035);
+
+                transform: none;
             }
 
 
-            /*
-             * Clique/toque imediato.
-             */
+            /* =================================================
+               TOQUE MOBILE
+            ================================================== */
 
             .menu a:active {
 
+                transform:
+                    scale(.98);
+
                 background:
-                    rgba(103, 232, 249, .16);
+                    rgba(103, 232, 249, .12);
 
                 border-color:
-                    rgba(103, 232, 249, .20);
+                    rgba(103, 232, 249, .16);
+            }
+
+
+            .menu a:active .menu-icon {
+
+                transform:
+                    scale(.95);
+            }
+
+
+            /* =================================================
+               ITEM ATIVO MOBILE
+            ================================================== */
+
+            .menu a.active {
+
+                box-shadow:
+                    0 3px 10px
+                    rgba(0, 0, 0, .06);
             }
 
 
             .menu a.active:hover {
+
+                transform: none;
 
                 color: #064c5a;
 
@@ -711,6 +921,9 @@
 
             .menu a.active:active {
 
+                transform:
+                    scale(.98);
+
                 background:
                     linear-gradient(
                         135deg,
@@ -720,11 +933,21 @@
             }
 
 
+            /* =================================================
+               CARREIRA MOBILE
+            ================================================== */
+
             .menu-section {
 
-                margin-top: 17px;
+                margin-top: 14px;
+
+                padding-top: 1px;
             }
 
+
+            /* =================================================
+               CONTEÚDO MOBILE
+            ================================================== */
 
             .content {
 
@@ -736,14 +959,10 @@
                     18px 14px;
 
                 min-height: 100vh;
+
+                overflow-x: hidden;
             }
 
-
-            .sidebar::before,
-            .sidebar::after {
-
-                opacity: .30;
-            }
         }
 
 
@@ -756,7 +975,7 @@
             .sidebar {
 
                 padding:
-                    15px 12px;
+                    14px 12px;
             }
 
 
@@ -765,6 +984,14 @@
                 padding-left: 8px;
 
                 padding-right: 8px;
+
+                padding-bottom: 13px;
+            }
+
+
+            .brand-name {
+
+                font-size: 22px;
             }
 
 
@@ -807,6 +1034,7 @@
                 padding:
                     16px 12px;
             }
+
         }
 
 
@@ -842,6 +1070,7 @@
 
                 min-width: 29px;
             }
+
         }
 
 
@@ -861,6 +1090,7 @@
 
                 scroll-behavior: auto !important;
             }
+
         }
 
     </style>
@@ -1056,9 +1286,7 @@
 
             </a>
 
-
         </nav>
-
 
     </aside>
 
