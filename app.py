@@ -1,6 +1,4 @@
-import time
-
-from flask import Flask, render_template, session, redirect, url_for, request
+from flask import Flask, render_template, session, redirect, url_for
 from flask_cors import CORS
 
 from config import Config
@@ -32,34 +30,6 @@ app.register_blueprint(empresas)
 app.register_blueprint(analise)
 app.register_blueprint(competencias)
 app.register_blueprint(metas)
-
-
-# =====================================================
-# MEDIDOR TEMPORÁRIO DE DESEMPENHO
-# =====================================================
-
-@app.before_request
-def iniciar_medicao():
-
-    request.inicio_performance = time.perf_counter()
-
-
-@app.after_request
-def finalizar_medicao(response):
-
-    inicio = getattr(request, "inicio_performance", None)
-
-    if inicio is not None:
-
-        duracao = time.perf_counter() - inicio
-
-        print(
-            f"[PERFORMANCE] "
-            f"{request.method} {request.path} "
-            f"-> {duracao:.3f}s"
-        )
-
-    return response
 
 
 # =====================================================
