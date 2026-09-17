@@ -1,1053 +1,1047 @@
-<meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<head>
 
-<meta
-    name="autocomplete"
-    content="off"
->
+    <meta charset="UTF-8">
 
-<title>Login | ProCareer</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
+    <meta
+        name="autocomplete"
+        content="off"
+    >
 
-<link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
->
+    <title>Login | ProCareer</title>
 
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
->
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-<style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
+    <style>
 
-    body {
-
-        font-family: "Inter", sans-serif;
-
-        min-height: 100vh;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        padding: 20px;
-
-        color: #111827;
-
-        background:
-            radial-gradient(
-                circle at 10% 15%,
-                rgba(45, 212, 191, 0.30),
-                transparent 32%
-            ),
-            radial-gradient(
-                circle at 90% 20%,
-                rgba(14, 165, 233, 0.18),
-                transparent 30%
-            ),
-            radial-gradient(
-                circle at 80% 90%,
-                rgba(20, 184, 166, 0.25),
-                transparent 35%
-            ),
-            linear-gradient(
-                135deg,
-                #e8f8f6,
-                #eaf7fc
-            );
-
-        overflow-x: hidden;
-    }
-
-
-    /* =========================
-       CONTAINER
-    ========================= */
-
-    .container {
-
-        width: 100%;
-
-        max-width: 900px;
-
-        min-height: 480px;
-
-        background: white;
-
-        border-radius: 24px;
-
-        overflow: hidden;
-
-        display: grid;
-
-        grid-template-columns: 45% 55%;
-
-        box-shadow:
-            0 25px 70px
-            rgba(15, 23, 42, 0.15);
-    }
-
-
-    /* =========================
-       LADO ESQUERDO
-    ========================= */
-
-    .left {
-
-        position: relative;
-
-        overflow: hidden;
-
-        background: #083b42;
-
-        color: white;
-
-        padding: 45px;
-
-        display: flex;
-
-        flex-direction: column;
-
-        justify-content: center;
-    }
-
-
-    /* BOLHA SUPERIOR
-       Mantida, mas sem movimento */
-
-    .left::before {
-
-        content: "";
-
-        position: absolute;
-
-        width: 300px;
-
-        height: 300px;
-
-        border-radius: 50%;
-
-        background: #0f9f99;
-
-        opacity: 0.15;
-
-        top: -110px;
-
-        right: -100px;
-
-        pointer-events: none;
-    }
-
-
-    /* BOLHA INFERIOR
-       Mantida, mas sem movimento */
-
-    .left::after {
-
-        content: "";
-
-        position: absolute;
-
-        width: 250px;
-
-        height: 250px;
-
-        border-radius: 50%;
-
-        background: #5eead4;
-
-        opacity: 0.10;
-
-        bottom: -110px;
-
-        left: -100px;
-
-        pointer-events: none;
-    }
-
-
-    /* =========================
-       LOGO
-    ========================= */
-
-    .logo {
-
-        position: relative;
-
-        z-index: 2;
-
-        font-size: 25px;
-
-        font-weight: 800;
-
-        margin-bottom: 45px;
-    }
-
-
-    .logo span {
-
-        color: #5eead4;
-    }
-
-
-    /* =========================
-       CONTEÚDO
-    ========================= */
-
-    .content {
-
-        position: relative;
-
-        z-index: 2;
-    }
-
-
-    .content h1 {
-
-        font-size: 36px;
-
-        line-height: 1.15;
-
-        letter-spacing: -1.5px;
-
-        margin-bottom: 18px;
-
-        max-width: 340px;
-    }
-
-
-    .content p {
-
-        font-size: 14px;
-
-        line-height: 1.6;
-
-        color: #d7eeee;
-
-        max-width: 350px;
-
-        margin-bottom: 25px;
-    }
-
-
-    /* =========================
-       FEATURES
-    ========================= */
-
-    .feature {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 12px;
-
-        color: #e5e7eb;
-
-        font-size: 13px;
-
-        margin-bottom: 13px;
-    }
-
-
-    .check {
-
-        width: 24px;
-
-        height: 24px;
-
-        min-width: 24px;
-
-        border-radius: 50%;
-
-        background:
-            rgba(
-                94,
-                234,
-                212,
-                0.15
-            );
-
-        color: #5eead4;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        font-weight: bold;
-    }
-
-
-    /* =========================
-       LADO DIREITO
-    ========================= */
-
-    .right {
-
-        padding: 40px 50px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-    }
-
-
-    /* =========================
-       FORMULÁRIO
-    ========================= */
-
-    .form-container {
-
-        width: 100%;
-
-        max-width: 380px;
-    }
-
-
-    .form-container h2 {
-
-        font-size: 28px;
-
-        color: #111827;
-
-        margin-bottom: 8px;
-
-        letter-spacing: -0.7px;
-    }
-
-
-    .subtitle {
-
-        font-size: 14px;
-
-        color: #6b7280;
-
-        margin-bottom: 25px;
-    }
-
-
-    /* =========================
-       ERRO
-    ========================= */
-
-    .login-error {
-
-        background: #fef2f2;
-
-        color: #b91c1c;
-
-        border: 1px solid #fecaca;
-
-        border-radius: 10px;
-
-        padding: 10px 13px;
-
-        font-size: 13px;
-
-        font-weight: 600;
-
-        margin-bottom: 15px;
-    }
-
-
-    /* =========================
-       FORM GROUP
-    ========================= */
-
-    .form-group {
-
-        margin-bottom: 15px;
-    }
-
-
-    .form-group label {
-
-        display: block;
-
-        font-size: 14px;
-
-        font-weight: 600;
-
-        color: #374151;
-
-        margin-bottom: 7px;
-    }
-
-
-    /* =========================
-       INPUT WRAPPER
-    ========================= */
-
-    .input-wrapper {
-
-        position: relative;
-
-        width: 100%;
-    }
-
-
-    /* =========================
-       INPUT
-    ========================= */
-
-    .input-wrapper input {
-
-        width: 100%;
-
-        height: 47px;
-
-        padding: 0 16px;
-
-        border: 1px solid #d1d5db;
-
-        border-radius: 10px;
-
-        outline: none;
-
-        font-family: inherit;
-
-        font-size: 14px;
-
-        color: #111827;
-
-        background: white;
-
-        transition:
-            border-color
-            0.15s ease,
-            box-shadow
-            0.15s ease;
-    }
-
-
-    .input-wrapper input:hover {
-
-        border-color: #7ccdc7;
-    }
-
-
-    .input-wrapper input:focus {
-
-        border-color: #0f9f99;
-
-        box-shadow:
-            0 0 0 3px
-            rgba(
-                15,
-                159,
-                153,
-                0.10
-            );
-    }
-
-
-    /* =========================
-       CAMPO SENHA
-    ========================= */
-
-    .password-input {
-
-        padding-right: 50px !important;
-    }
-
-
-    /* =========================
-       BOTÃO OLHO
-       CORREÇÃO SOMENTE AQUI
-    ========================= */
-
-    .toggle-password {
-
-        position: absolute;
-
-        right: 8px;
-
-        top: 50%;
-
-        transform: translateY(-50%);
-
-        width: 38px;
-
-        height: 38px;
-
-        padding: 0;
-
-        margin: 0;
-
-        border: none;
-
-        border-radius: 8px;
-
-        background: transparent;
-
-        color: #6b7280;
-
-        cursor: pointer;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        line-height: 0;
-
-        appearance: none;
-
-        -webkit-appearance: none;
-
-        outline: none;
-
-        transition:
-            color
-            0.15s ease;
-    }
-
-
-    .toggle-password:hover {
-
-        background: transparent;
-
-        color: #0f9f99;
-    }
-
-
-    .toggle-password:focus {
-
-        outline: none;
-
-        background: transparent;
-    }
-
-
-    .toggle-password:active {
-
-        transform: translateY(-50%);
-
-    }
-
-
-    .toggle-password svg {
-
-        display: block;
-
-        width: 20px;
-
-        height: 20px;
-
-        flex-shrink: 0;
-
-        pointer-events: none;
-    }
-
-
-    /* =========================
-       BOTÃO LOGIN
-    ========================= */
-
-    .btn {
-
-        width: 100%;
-
-        height: 47px;
-
-        border: none;
-
-        border-radius: 10px;
-
-        margin-top: 5px;
-
-        background:
-            linear-gradient(
-                135deg,
-                #0f766e,
-                #0f9f99
-            );
-
-        color: white;
-
-        font-family: inherit;
-
-        font-size: 15px;
-
-        font-weight: 700;
-
-        cursor: pointer;
-
-        transition:
-            box-shadow
-            0.15s ease;
-    }
-
-
-    .btn:hover {
-
-        box-shadow:
-            0 8px 18px
-            rgba(
-                15,
-                118,
-                110,
-                0.20
-            );
-    }
-
-
-    .btn:active {
-
-        box-shadow:
-            0 4px 10px
-            rgba(
-                15,
-                118,
-                110,
-                0.15
-            );
-    }
-
-
-    /* =========================
-       LINK CADASTRO
-    ========================= */
-
-    .register-link {
-
-        text-align: center;
-
-        margin-top: 18px;
-
-        font-size: 14px;
-
-        color: #6b7280;
-    }
-
-
-    .register-link a {
-
-        color: #0f766e;
-
-        font-weight: 700;
-
-        text-decoration: none;
-    }
-
-
-    .register-link a:hover {
-
-        color: #0f9f99;
-
-        text-decoration: underline;
-    }
-
-
-    /* =========================
-       RESPONSIVO
-    ========================= */
-
-    @media (max-width: 800px) {
-
-        .container {
-
-            grid-template-columns: 1fr;
-
-            max-width: 520px;
-
-            min-height: auto;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-
-        .left {
-
-            padding: 40px;
-
-            min-height: 330px;
-        }
-
-
-        .logo {
-
-            margin-bottom: 30px;
-        }
-
-
-        .content h1 {
-
-            font-size: 32px;
-        }
-
-
-        .right {
-
-            padding: 40px;
-        }
-
-    }
-
-
-    @media (max-width: 500px) {
 
         body {
 
-            padding: 15px;
+            font-family: "Inter", sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            color: #111827;
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(45, 212, 191, 0.30),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(14, 165, 233, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 90%,
+                    rgba(20, 184, 166, 0.25),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #e8f8f6,
+                    #eaf7fc
+                );
+
+            overflow-x: hidden;
         }
 
+
+        /* =========================
+           CONTAINER
+        ========================= */
 
         .container {
 
-            border-radius: 18px;
+            width: 100%;
+
+            max-width: 900px;
+
+            min-height: 480px;
+
+            background: white;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            display: grid;
+
+            grid-template-columns: 45% 55%;
 
             box-shadow:
-                0 12px 35px
-                rgba(15, 23, 42, 0.12);
+                0 25px 70px
+                rgba(15, 23, 42, 0.15);
         }
 
+
+        /* =========================
+           LADO ESQUERDO
+        ========================= */
 
         .left {
 
-            padding: 30px;
+            position: relative;
 
-            min-height: 300px;
+            overflow: hidden;
+
+            background: #083b42;
+
+            color: white;
+
+            padding: 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
         }
 
 
-        .right {
+        .left::before {
 
-            padding: 30px 24px;
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: #0f9f99;
+
+            opacity: 0.15;
+
+            top: -110px;
+
+            right: -100px;
+
+            pointer-events: none;
         }
 
+
+        .left::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+
+            height: 250px;
+
+            border-radius: 50%;
+
+            background: #5eead4;
+
+            opacity: 0.10;
+
+            bottom: -110px;
+
+            left: -100px;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           LOGO
+        ========================= */
 
         .logo {
 
-            margin-bottom: 25px;
+            position: relative;
+
+            z-index: 2;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            margin-bottom: 45px;
+        }
+
+
+        .logo span {
+
+            color: #5eead4;
+        }
+
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
+        .content {
+
+            position: relative;
+
+            z-index: 2;
         }
 
 
         .content h1 {
 
-            font-size: 28px;
+            font-size: 36px;
+
+            line-height: 1.15;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 18px;
+
+            max-width: 340px;
         }
 
 
         .content p {
 
             font-size: 14px;
+
+            line-height: 1.6;
+
+            color: #d7eeee;
+
+            max-width: 350px;
+
+            margin-bottom: 25px;
         }
 
 
-        /* Bolas continuam,
-           mas sem interação */
+        /* =========================
+           FEATURES
+        ========================= */
 
-        .left::before {
+        .feature {
 
-            width: 240px;
+            display: flex;
 
-            height: 240px;
+            align-items: center;
 
-            top: -100px;
+            gap: 12px;
 
-            right: -100px;
+            color: #e5e7eb;
+
+            font-size: 13px;
+
+            margin-bottom: 13px;
         }
 
 
-        .left::after {
+        .check {
 
-            width: 200px;
+            width: 24px;
 
-            height: 200px;
+            height: 24px;
 
-            bottom: -90px;
+            min-width: 24px;
 
-            left: -90px;
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    94,
+                    234,
+                    212,
+                    0.15
+                );
+
+            color: #5eead4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
         }
 
-    }
 
+        /* =========================
+           LADO DIREITO
+        ========================= */
 
-    /* =========================
-       ACESSIBILIDADE
-    ========================= */
+        .right {
 
-    @media (prefers-reduced-motion: reduce) {
+            padding: 40px 50px;
 
-        *,
-        *::before,
-        *::after {
+            display: flex;
 
-            animation: none !important;
+            align-items: center;
 
-            transition: none !important;
+            justify-content: center;
         }
 
-    }
 
-</style>
+        /* =========================
+           FORMULÁRIO
+        ========================= */
 
+        .form-container {
 
-<!-- =========================
-     LADO ESQUERDO
-========================= -->
+            width: 100%;
 
-<section class="left">
-
-    <div class="logo">
-
-        Pro<span>Career</span>
-
-    </div>
+            max-width: 380px;
+        }
 
 
-    <div class="content">
+        .form-container h2 {
 
-        <h1>
+            font-size: 28px;
 
-            Transforme sua busca por emprego.
+            color: #111827;
 
-        </h1>
+            margin-bottom: 8px;
 
-
-        <p>
-
-            Organize suas candidaturas,
-            entrevistas, currículos e metas
-            profissionais em um só lugar.
-
-        </p>
+            letter-spacing: -0.7px;
+        }
 
 
-        <div class="feature">
+        .subtitle {
 
-            <div class="check">
-                ✓
-            </div>
+            font-size: 14px;
 
-            <span>
-                Organize suas candidaturas
-            </span>
+            color: #6b7280;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           ERRO
+        ========================= */
+
+        .login-error {
+
+            background: #fef2f2;
+
+            color: #b91c1c;
+
+            border: 1px solid #fecaca;
+
+            border-radius: 10px;
+
+            padding: 10px 13px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           FORM GROUP
+        ========================= */
+
+        .form-group {
+
+            margin-bottom: 15px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #374151;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* =========================
+           INPUT WRAPPER
+        ========================= */
+
+        .input-wrapper {
+
+            position: relative;
+
+            width: 100%;
+        }
+
+
+        /* =========================
+           INPUT
+        ========================= */
+
+        .input-wrapper input {
+
+            width: 100%;
+
+            height: 47px;
+
+            padding: 0 16px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            color: #111827;
+
+            background: white;
+
+            transition:
+                border-color
+                0.15s ease,
+                box-shadow
+                0.15s ease;
+        }
+
+
+        .input-wrapper input:hover {
+
+            border-color: #7ccdc7;
+        }
+
+
+        .input-wrapper input:focus {
+
+            border-color: #0f9f99;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    15,
+                    159,
+                    153,
+                    0.10
+                );
+        }
+
+
+        /* =========================
+           CAMPO SENHA
+        ========================= */
+
+        .password-input {
+
+            padding-right: 50px !important;
+        }
+
+
+        /* =========================
+           BOTÃO OLHO
+        ========================= */
+
+        .toggle-password {
+
+            position: absolute;
+
+            right: 13px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            width: 34px;
+
+            height: 34px;
+
+            padding: 0;
+
+            margin: 0;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: transparent;
+
+            color: #6b7280;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transition:
+                color
+                0.15s ease;
+        }
+
+
+        .toggle-password:hover {
+
+            background: transparent;
+
+            color: #0f9f99;
+        }
+
+
+        .toggle-password:active {
+
+            transform:
+                translateY(-50%);
+        }
+
+
+        .toggle-password svg {
+
+            width: 21px;
+
+            height: 21px;
+
+            display: block;
+        }
+
+
+        .toggle-password svg path {
+
+            fill: none;
+
+            stroke: currentColor;
+
+            stroke-width: 2;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+        }
+
+
+        /* =========================
+           BOTÃO LOGIN
+        ========================= */
+
+        .btn {
+
+            width: 100%;
+
+            height: 47px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            margin-top: 5px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f766e,
+                    #0f9f99
+                );
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                box-shadow
+                0.15s ease;
+        }
+
+
+        .btn:hover {
+
+            box-shadow:
+                0 8px 18px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.20
+                );
+        }
+
+
+        .btn:active {
+
+            box-shadow:
+                0 4px 10px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.15
+                );
+        }
+
+
+        /* =========================
+           LINK CADASTRO
+        ========================= */
+
+        .register-link {
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            font-size: 14px;
+
+            color: #6b7280;
+        }
+
+
+        .register-link a {
+
+            color: #0f766e;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        .register-link a:hover {
+
+            color: #0f9f99;
+
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .container {
+
+                grid-template-columns: 1fr;
+
+                max-width: 520px;
+
+                min-height: auto;
+            }
+
+
+            .left {
+
+                padding: 40px;
+
+                min-height: 330px;
+            }
+
+
+            .logo {
+
+                margin-bottom: 30px;
+            }
+
+
+            .content h1 {
+
+                font-size: 32px;
+            }
+
+
+            .right {
+
+                padding: 40px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            body {
+
+                padding: 15px;
+            }
+
+
+            .container {
+
+                border-radius: 18px;
+
+                box-shadow:
+                    0 12px 35px
+                    rgba(15, 23, 42, 0.12);
+            }
+
+
+            .left {
+
+                padding: 30px;
+
+                min-height: 300px;
+            }
+
+
+            .right {
+
+                padding: 30px 24px;
+            }
+
+
+            .logo {
+
+                margin-bottom: 25px;
+            }
+
+
+            .content h1 {
+
+                font-size: 28px;
+            }
+
+
+            .content p {
+
+                font-size: 14px;
+            }
+
+
+            .left::before {
+
+                width: 240px;
+
+                height: 240px;
+
+                top: -100px;
+
+                right: -100px;
+            }
+
+
+            .left::after {
+
+                width: 200px;
+
+                height: 200px;
+
+                bottom: -90px;
+
+                left: -90px;
+            }
+
+        }
+
+
+        /* =========================
+           ACESSIBILIDADE
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation: none !important;
+
+                transition: none !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- =========================
+         LADO ESQUERDO
+    ========================= -->
+
+    <section class="left">
+
+        <div class="logo">
+
+            Pro<span>Career</span>
 
         </div>
 
 
-        <div class="feature">
+        <div class="content">
 
-            <div class="check">
-                ✓
-            </div>
+            <h1>
 
-            <span>
-                Acompanhe suas entrevistas
-            </span>
+                Transforme sua busca por emprego.
 
-        </div>
+            </h1>
 
 
-        <div class="feature">
+            <p>
 
-            <div class="check">
-                ✓
-            </div>
+                Organize suas candidaturas,
+                entrevistas, currículos e metas
+                profissionais em um só lugar.
 
-            <span>
-                Gerencie seus currículos
-            </span>
-
-        </div>
+            </p>
 
 
-        <div class="feature">
+            <div class="feature">
 
-            <div class="check">
-                ✓
-            </div>
-
-            <span>
-                Defina suas metas profissionais
-            </span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     LADO DIREITO
-========================= -->
-
-<section class="right">
-
-    <div class="form-container">
-
-        <h2>
-            Bem-vindo de volta
-        </h2>
-
-
-        <p class="subtitle">
-            Entre na sua conta para continuar.
-        </p>
-
-
-        {% if erro %}
-
-            <div class="login-error">
-                {{ erro }}
-            </div>
-
-        {% endif %}
-
-
-        <form
-            method="POST"
-            action="{{ url_for('auth.login') }}"
-            autocomplete="off"
-            id="loginForm"
-            novalidate
-        >
-
-            <!-- E-MAIL -->
-
-            <div class="form-group">
-
-                <label for="campoAcesso">
-                    E-mail
-                </label>
-
-                <div class="input-wrapper">
-
-                    <input
-                        type="text"
-                        id="campoAcesso"
-                        name="campoAcesso"
-                        placeholder="Digite seu e-mail"
-                        autocomplete="new-password"
-                        autocapitalize="none"
-                        autocorrect="off"
-                        spellcheck="false"
-                        inputmode="email"
-                        value=""
-                        required
-                    >
-
+                <div class="check">
+                    ✓
                 </div>
 
+                <span>
+                    Organize suas candidaturas
+                </span>
+
             </div>
 
 
-            <!-- SENHA -->
+            <div class="feature">
 
-            <div class="form-group">
+                <div class="check">
+                    ✓
+                </div>
 
-                <label for="campoChave">
-                    Senha
-                </label>
+                <span>
+                    Acompanhe suas entrevistas
+                </span>
 
-                <div class="input-wrapper">
-
-                    <input
-                        type="password"
-                        id="campoChave"
-                        name="campoChave"
-                        class="password-input"
-                        placeholder="Digite sua senha"
-                        autocomplete="new-password"
-                        autocapitalize="none"
-                        autocorrect="off"
-                        spellcheck="false"
-                        value=""
-                        required
-                    >
+            </div>
 
 
-                    <button
-                        type="button"
-                        class="toggle-password"
-                        onclick="togglePassword()"
-                        aria-label="Mostrar senha"
-                    >
+            <div class="feature">
 
-                        <svg
-                            id="eyeIcon"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            aria-hidden="true"
+                <div class="check">
+                    ✓
+                </div>
+
+                <span>
+                    Gerencie seus currículos
+                </span>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="check">
+                    ✓
+                </div>
+
+                <span>
+                    Defina suas metas profissionais
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LADO DIREITO
+    ========================= -->
+
+    <section class="right">
+
+        <div class="form-container">
+
+            <h2>
+                Bem-vindo de volta
+            </h2>
+
+
+            <p class="subtitle">
+                Entre na sua conta para continuar.
+            </p>
+
+
+            {% if erro %}
+
+                <div class="login-error">
+                    {{ erro }}
+                </div>
+
+            {% endif %}
+
+
+            <form
+                method="POST"
+                action="{{ url_for('auth.login') }}"
+                autocomplete="off"
+                id="loginForm"
+                novalidate
+            >
+
+                <!-- E-MAIL -->
+
+                <div class="form-group">
+
+                    <label for="campoAcesso">
+                        E-mail
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="text"
+                            id="campoAcesso"
+                            name="campoAcesso"
+                            placeholder="Digite seu e-mail"
+                            autocomplete="new-password"
+                            autocapitalize="none"
+                            autocorrect="off"
+                            spellcheck="false"
+                            inputmode="email"
+                            value=""
+                            required
                         >
 
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                            />
-
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-
-                        </svg>
-
-                    </button>
+                    </div>
 
                 </div>
 
+
+                <!-- SENHA -->
+
+                <div class="form-group">
+
+                    <label for="campoChave">
+                        Senha
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="campoChave"
+                            name="campoChave"
+                            class="password-input"
+                            placeholder="Digite sua senha"
+                            autocomplete="new-password"
+                            autocapitalize="none"
+                            autocorrect="off"
+                            spellcheck="false"
+                            value=""
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            onclick="togglePassword()"
+                            aria-label="Mostrar senha"
+                        >
+
+                            <svg
+                                id="eyeIcon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    d="M2.062 12.348a1 1 0 0 1 0-.696C3.423 7.356 7.33 5 12 5s8.577 2.356 9.938 6.652a1 1 0 0 1 0 .696C20.577 16.644 16.67 19 12 19S3.423 16.644 2.062 12.348Z"
+                                />
+
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="3"
+                                />
+
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Entrar
+                </button>
+
+            </form>
+
+
+            <div class="register-link">
+
+                Ainda não possui uma conta?
+
+                <a href="{{ url_for('auth.cadastro') }}">
+                    Crie sua conta
+                </a>
+
             </div>
-
-
-            <!-- BOTÃO -->
-
-            <button
-                type="submit"
-                class="btn"
-            >
-                Entrar
-            </button>
-
-        </form>
-
-
-        <div class="register-link">
-
-            Ainda não possui uma conta?
-
-            <a href="{{ url_for('auth.cadastro') }}">
-                Crie sua conta
-            </a>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
+</div>
 
 
 <script>
@@ -1235,34 +1229,24 @@
             );
 
 
+            /* OLHO RISCADO */
+
             icon.innerHTML = `
 
                 <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
                     d="M3 3l18 18"
                 />
 
                 <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10.584 10.587a2 2 0 001.414.586"
+                    d="M10.58 10.58a2 2 0 0 0 2.83 2.83"
                 />
 
                 <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9.88 4.24A9.77 9.77 0 0112 4c4.477 0 8.268 2.943 9.542 7a10.06 10.06 0 01-4.132 5.114"
+                    d="M9.88 5.09A9.8 9.8 0 0 1 12 5c4.67 0 8.58 2.36 9.94 6.65a1 1 0 0 1 0 .7 10.45 10.45 0 0 1-4.14 5.08"
                 />
 
                 <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6.228 6.228A10.06 10.06 0 002.458 12C3.732 16.057 7.523 19 12 19a9.77 9.77 0 004.24-.88"
+                    d="M6.23 6.23a10.45 10.45 0 0 0-4.17 5.42 1 1 0 0 0 0 .7C3.42 16.64 7.33 19 12 19a9.8 9.8 0 0 0 3.86-.79"
                 />
 
             `;
@@ -1278,20 +1262,18 @@
             );
 
 
+            /* OLHO NORMAL */
+
             icon.innerHTML = `
 
                 <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542 7-9.542 7-4.477 9.542 7z"
+                    d="M2.062 12.348a1 1 0 0 1 0-.696C3.423 7.356 7.33 5 12 5s8.577 2.356 9.938 6.652a1 1 0 0 1 0 .696C20.577 16.644 16.67 19 12 19S3.423 16.644 2.062 12.348Z"
                 />
 
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="3"
                 />
 
             `;
@@ -1301,3 +1283,8 @@
     }
 
 </script>
+
+
+</body>
+
+</html>
