@@ -2,8 +2,13 @@ from database.connection import get_connection
 
 
 def criar_tabelas():
+
     conn = get_connection()
     cursor = conn.cursor()
+
+    # =====================================================
+    # USUÁRIOS
+    # =====================================================
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS usuarios (
@@ -15,6 +20,11 @@ def criar_tabelas():
         );
     """)
 
+
+    # =====================================================
+    # EMPRESAS
+    # =====================================================
+
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS empresas (
             id SERIAL PRIMARY KEY,
@@ -23,6 +33,19 @@ def criar_tabelas():
             criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     """)
+
+    # Adiciona usuario_id caso a tabela empresas já exista
+    # sem essa coluna.
+    cursor.execute("""
+        ALTER TABLE empresas
+        ADD COLUMN IF NOT EXISTS usuario_id
+        INTEGER REFERENCES usuarios(id) ON DELETE CASCADE;
+    """)
+
+
+    # =====================================================
+    # CANDIDATURAS
+    # =====================================================
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS candidaturas (
@@ -38,14 +61,21 @@ def criar_tabelas():
             observacoes TEXT,
             data_candidatura DATE,
             criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE
+            usuario_id INTEGER NOT NULL
+                REFERENCES usuarios(id) ON DELETE CASCADE
         );
     """)
+
+
+    # =====================================================
+    # ENTREVISTAS
+    # =====================================================
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS entrevistas (
             id SERIAL PRIMARY KEY,
-            candidatura_id INTEGER NOT NULL REFERENCES candidaturas(id) ON DELETE CASCADE,
+            candidatura_id INTEGER NOT NULL
+                REFERENCES candidaturas(id) ON DELETE CASCADE,
             data_hora TIMESTAMP NOT NULL,
             tipo VARCHAR(50),
             observacoes TEXT,
@@ -53,30 +83,48 @@ def criar_tabelas():
         );
     """)
 
+
+    # =====================================================
+    # CURRÍCULOS
+    # =====================================================
+
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS curriculos (
             id SERIAL PRIMARY KEY,
-            usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+            usuario_id INTEGER NOT NULL
+                REFERENCES usuarios(id) ON DELETE CASCADE,
             nome VARCHAR(150) NOT NULL,
             arquivo_url VARCHAR(500),
             criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     """)
 
+
+    # =====================================================
+    # COMPETÊNCIAS
+    # =====================================================
+
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS competencias (
             id SERIAL PRIMARY KEY,
-            usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+            usuario_id INTEGER NOT NULL
+                REFERENCES usuarios(id) ON DELETE CASCADE,
             nome VARCHAR(150) NOT NULL,
             nivel VARCHAR(50) NOT NULL,
             criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     """)
 
+
+    # =====================================================
+    # METAS
+    # =====================================================
+
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS metas (
             id SERIAL PRIMARY KEY,
-            usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+            usuario_id INTEGER NOT NULL
+                REFERENCES usuarios(id) ON DELETE CASCADE,
             titulo VARCHAR(150) NOT NULL,
             descricao TEXT,
             prazo DATE,
@@ -85,7 +133,13 @@ def criar_tabelas():
         );
     """)
 
+
+    # =====================================================
+    # SALVAR ALTERAÇÕES
+    # =====================================================
+
     conn.commit()
+
     cursor.close()
     conn.close()
 
