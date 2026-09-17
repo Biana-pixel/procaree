@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Nova candidatura | ProCareer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(14, 165, 233, .08),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f4fbfc,
+                    #eef8f8,
+                    #f8fcfc
+                );
+
+            color: #334155;
+
+            min-height: 100vh;
+        }
+
+
+        .new-application {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            padding:
+                35px 25px 55px;
+
+            animation:
+                pageIn .5s ease both;
+        }
+
+
+        @keyframes pageIn {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        .application-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                flex-start;
+
+            margin-bottom: 27px;
+        }
+
+
+        .back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                11px 17px;
+
+            border-radius: 11px;
+
+            color: #087f8c;
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #d5e8e9;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 750;
+
+            box-shadow:
+                0 5px 16px
+                rgba(8,127,140,.05);
+
+            transition:
+                transform .22s ease,
+                box-shadow .22s ease,
+                border-color .22s ease,
+                background .22s ease;
+        }
+
+
+        .back-icon {
+
+            font-size: 20px;
+
+            transition:
+                transform .22s ease;
+        }
+
+
+        .back:hover {
+
+            transform:
+                translateY(-2px);
+
+            background: white;
+
+            border-color:
+                #9ed9df;
+
+            box-shadow:
+                0 9px 22px
+                rgba(8,127,140,.10);
+        }
+
+
+        .back:hover .back-icon {
+
+            transform:
+                translateX(-3px);
+        }
+
+
+        .title-area {
+
+            text-align: center;
+
+            margin-bottom: 31px;
+        }
+
+
+        .title-icon {
+
+            position: relative;
+
+            width: 64px;
+            height: 64px;
+
+            margin:
+                0 auto 15px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dffaff,
+                    #dff8f4
+                );
+
+            border:
+                1px solid #c9e9eb;
+
+            color: #087f8c;
+
+            font-size: 27px;
+
+            box-shadow:
+                0 12px 27px
+                rgba(8,127,140,.10);
+
+            animation:
+                iconFloat 3s
+                ease-in-out infinite;
+        }
+
+
+        .title-icon::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: -5px;
+
+            border-radius: 21px;
+
+            border:
+                1px solid
+                rgba(14,165,233,.08);
+
+            pointer-events: none;
+        }
+
+
+        @keyframes iconFloat {
+
+            0%, 100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-4px);
+            }
+
+        }
+
+
+        .title-area h1 {
+
+            color: #12383d;
+
+            font-size: 31px;
+
+            font-weight: 900;
+
+            letter-spacing: -.8px;
+
+            margin-bottom: 0;
+
+            text-shadow:
+
+                0 3px 5px
+                rgba(14,165,233,.20),
+
+                0 6px 12px
+                rgba(14,165,233,.14);
+        }
+
+
+        .application-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                rgba(255,255,255,.97);
+
+            border:
+                1px solid #dcebec;
+
+            border-radius: 23px;
+
+            padding: 34px;
+
+            box-shadow:
+                0 18px 48px
+                rgba(8,91,103,.065);
+
+            transition:
+                box-shadow .3s ease,
+                transform .3s ease;
+        }
+
+
+        .application-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #06b6d4,
+                    #14b8a6,
+                    #38bdf8
+                );
+        }
+
+
+        .application-card:hover {
+
+            box-shadow:
+                0 23px 55px
+                rgba(8,91,103,.09);
+        }
+
+
+        .section {
+
+            margin-bottom: 32px;
+        }
+
+
+        .section:last-of-type {
+
+            margin-bottom: 0;
+        }
+
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            padding-bottom: 13px;
+
+            border-bottom:
+                1px solid #edf3f3;
+        }
+
+
+        .section-dot {
+
+            width: 10px;
+            height: 10px;
+
+            min-width: 10px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #06b6d4,
+                    #14b8a6
+                );
+
+            box-shadow:
+                0 0 0 4px
+                rgba(14,165,233,.07);
+        }
+
+
+        .section-heading h2 {
+
+            color: #23494d;
+
+            font-size: 20px;
+
+            font-weight: 850;
+
+            letter-spacing: -.2px;
+        }
+
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        .field {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+        }
+
+
+        .field.full {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            color: #38565b;
+
+            font-size: 16px;
+
+            font-weight: 750;
+        }
+
+
+        .required {
+
+            color: #0891b2;
+
+            font-size: 17px;
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            border:
+                1px solid #d4e3e5;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 16px;
+
+            color: #334155;
+
+            background: #fbfefe;
+
+            transition:
+                border-color .22s ease,
+                box-shadow .22s ease,
+                background .22s ease,
+                transform .22s ease;
+        }
+
+
+        input,
+        select {
+
+            height: 52px;
+
+            padding:
+                0 15px;
+        }
+
+
+        textarea {
+
+            min-height: 130px;
+
+            padding:
+                14px 15px;
+
+            resize: vertical;
+
+            line-height: 1.65;
+        }
+
+
+        input::placeholder,
+        textarea::placeholder {
+
+            color: #9aa9ad;
+
+            font-size: 15px;
+        }
+
+
+        input:hover,
+        select:hover,
+        textarea:hover {
+
+            background: white;
+
+            border-color:
+                #abd6dc;
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            background: white;
+
+            border-color:
+                #06a6bc;
+
+            box-shadow:
+
+                0 0 0 3px
+                rgba(6,166,188,.09),
+
+                0 6px 16px
+                rgba(8,127,140,.05);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        select {
+
+            cursor: pointer;
+        }
+
+
+        .textarea-wrapper {
+
+            position: relative;
+        }
+
+
+        .textarea-wrapper textarea {
+
+            padding-bottom: 34px;
+        }
+
+
+        .counter {
+
+            position: absolute;
+
+            right: 14px;
+            bottom: 10px;
+
+            color: #8d9da1;
+
+            font-size: 13px;
+
+            pointer-events: none;
+
+            transition:
+                color .2s ease;
+        }
+
+
+        .textarea-wrapper:focus-within
+        .counter {
+
+            color: #0891a2;
+        }
+
+
+        .buttons {
+
+            display: flex;
+
+            justify-content:
+                flex-end;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-top: 31px;
+
+            padding-top: 24px;
+
+            border-top:
+                1px solid #edf3f3;
+        }
+
+
+        .cancel {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            height: 48px;
+
+            padding:
+                0 21px;
+
+            border-radius: 11px;
+
+            color: #64777b;
+
+            background: white;
+
+            border:
+                1px solid #d7e3e4;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 750;
+
+            transition:
+                transform .22s ease,
+                background .22s ease,
+                border-color .22s ease,
+                box-shadow .22s ease;
+        }
+
+
+        .cancel:hover {
+
+            transform:
+                translateY(-2px);
+
+            background: #f7fbfb;
+
+            border-color:
+                #b9d5d8;
+
+            box-shadow:
+                0 7px 16px
+                rgba(8,91,103,.06);
+        }
+
+
+        .save {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            height: 48px;
+
+            padding:
+                0 23px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087f8c,
+                    #0d9488,
+                    #14b8a6
+                );
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 9px 22px
+                rgba(8,127,140,.20);
+
+            transition:
+                transform .22s ease,
+                box-shadow .22s ease,
+                opacity .22s ease;
+        }
+
+
+        .save:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 14px 29px
+                rgba(8,127,140,.27);
+        }
+
+
+        .save-icon {
+
+            font-size: 18px;
+        }
+
+
+        @media (max-width: 800px) {
+
+            .new-application {
+
+                padding:
+                    28px 20px 35px;
+            }
+
+            .application-card {
+
+                padding: 27px;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .application-top {
+
+                margin-bottom: 22px;
+            }
+
+            .title-area {
+
+                margin-bottom: 25px;
+            }
+
+            .title-area h1 {
+
+                font-size: 27px;
+            }
+
+            .title-icon {
+
+                width: 57px;
+                height: 57px;
+
+                font-size: 23px;
+            }
+
+            .application-card {
+
+                padding:
+                    23px 18px;
+
+                border-radius: 19px;
+            }
+
+            .grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 18px;
+            }
+
+            .field.full {
+
+                grid-column: auto;
+            }
+
+            .section-heading h2 {
+
+                font-size: 18px;
+            }
+
+            .buttons {
+
+                flex-direction:
+                    column-reverse;
+            }
+
+            .cancel,
+            .save {
+
+                width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .new-application {
+
+                padding:
+                    22px 14px 30px;
+            }
+
+            .back {
+
+                font-size: 14px;
+
+                padding:
+                    10px 13px;
+            }
+
+            .title-area h1 {
+
+                font-size: 24px;
+            }
+
+            .application-card {
+
+                padding:
+                    20px 15px;
+            }
+
+            label {
+
+                font-size: 15px;
+            }
+
+            input,
+            select,
+            textarea {
+
+                font-size: 16px;
+            }
+
+            input::placeholder,
+            textarea::placeholder {
+
+                font-size: 14px;
+            }
+
+            .counter {
+
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="new-application">
+
+
+    <div class="application-top">
+
+        <a
+            href="{{ url_for('candidaturas.listar') }}"
+            class="back"
+        >
+
+            <span class="back-icon">
+                ←
+            </span>
+
+            Voltar para candidaturas
+
+        </a>
+
+    </div>
+
+
+    <div class="title-area">
+
+
+        <div class="title-icon">
+            💼
+        </div>
+
+
+        <h1>
+            Nova candidatura
+        </h1>
+
+
+    </div>
+
+
+    <form
+        class="application-card"
+        method="POST"
+        autocomplete="off"
+    >
+
+
+        <section class="section">
+
+
+            <div class="section-heading">
+
+                <span class="section-dot"></span>
+
+                <h2>
+                    Informações da oportunidade
+                </h2>
+
+            </div>
+
+
+            <div class="grid">
+
+
+                <div class="field">
+
+                    <label for="cargo">
+
+                        Cargo
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cargo"
+                        name="cargo"
+                        placeholder="Ex: Desenvolvedor Python"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="empresa">
+                        Empresa
+                    </label>
+
+                    <input
+                        type="text"
+                        id="empresa"
+                        name="empresa"
+                        placeholder="Ex: Empresa Tech"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                    >
+
+                        <option value="interessado">
+                            Interessado
+                        </option>
+
+                        <option value="candidatado">
+                            Candidatado
+                        </option>
+
+                        <option value="entrevista">
+                            Entrevista
+                        </option>
+
+                        <option value="teste">
+                            Teste
+                        </option>
+
+                        <option value="aprovado">
+                            Aprovado
+                        </option>
+
+                        <option value="rejeitado">
+                            Rejeitado
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="modalidade">
+                        Modalidade
+                    </label>
+
+                    <select
+                        id="modalidade"
+                        name="modalidade"
+                    >
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="remoto">
+                            Remoto
+                        </option>
+
+                        <option value="hibrido">
+                            Híbrido
+                        </option>
+
+                        <option value="presencial">
+                            Presencial
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="localizacao">
+                        Localização
+                    </label>
+
+                    <input
+                        type="text"
+                        id="localizacao"
+                        name="localizacao"
+                        placeholder="Ex: São Paulo - SP"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="salario">
+                        Salário
+                    </label>
+
+                    <input
+                        type="text"
+                        id="salario"
+                        name="salario"
+                        placeholder="Ex: R$ 2.500"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <section class="section">
+
+
+            <div class="section-heading">
+
+                <span class="section-dot"></span>
+
+                <h2>
+                    Referência da vaga
+                </h2>
+
+            </div>
+
+
+            <div class="grid">
+
+
+                <div class="field full">
+
+                    <label for="link_vaga">
+                        Link da vaga
+                    </label>
+
+                    <input
+                        type="url"
+                        id="link_vaga"
+                        name="link_vaga"
+                        placeholder="https://..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <section class="section">
+
+
+            <div class="section-heading">
+
+                <span class="section-dot"></span>
+
+                <h2>
+                    Detalhes
+                </h2>
+
+            </div>
+
+
+            <div class="grid">
+
+
+                <div class="field full">
+
+                    <label for="descricao">
+                        Descrição da vaga
+                    </label>
+
+
+                    <div class="textarea-wrapper">
+
+                        <textarea
+                            id="descricao"
+                            name="descricao"
+                            placeholder="Cole aqui os principais detalhes da vaga..."
+                            autocomplete="off"
+                        ></textarea>
+
+
+                        <span
+                            class="counter"
+                            id="descricaoCounter"
+                        >
+                            0 caracteres
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label for="observacoes">
+                        Observações
+                    </label>
+
+
+                    <div class="textarea-wrapper">
+
+                        <textarea
+                            id="observacoes"
+                            name="observacoes"
+                            placeholder="Anote informações importantes sobre essa oportunidade..."
+                            autocomplete="off"
+                        ></textarea>
+
+
+                        <span
+                            class="counter"
+                            id="observacoesCounter"
+                        >
+                            0 caracteres
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <div class="buttons">
+
+
+            <a
+                href="{{ url_for('candidaturas.listar') }}"
+                class="cancel"
+            >
+                Cancelar
+            </a>
+
+
+            <button
+                type="submit"
+                class="save"
+            >
+
+                <span class="save-icon">
+                    ✓
+                </span>
+
+                Salvar candidatura
+
+            </button>
+
+
+        </div>
+
+
+    </form>
+
+
+</div>
+
+
+<script>
+
+
+    const descricao =
+        document.getElementById(
+            "descricao"
+        );
+
+
+    const observacoes =
+        document.getElementById(
+            "observacoes"
+        );
+
+
+    const descricaoCounter =
+        document.getElementById(
+            "descricaoCounter"
+        );
+
+
+    const observacoesCounter =
+        document.getElementById(
+            "observacoesCounter"
+        );
+
+
+    function atualizarContador(
+        campo,
+        contador
+    ) {
+
+        const quantidade =
+            campo.value.length;
+
+
+        contador.textContent =
+            quantidade +
+            (
+                quantidade === 1
+                    ? " caractere"
+                    : " caracteres"
+            );
+
+    }
+
+
+    descricao.addEventListener(
+        "input",
+        function() {
+
+            atualizarContador(
+                descricao,
+                descricaoCounter
+            );
+
+        }
+    );
+
+
+    observacoes.addEventListener(
+        "input",
+        function() {
+
+            atualizarContador(
+                observacoes,
+                observacoesCounter
+            );
+
+        }
+    );
+
+
+    const form =
+        document.querySelector(
+            ".application-card"
+        );
+
+
+    const saveButton =
+        document.querySelector(
+            ".save"
+        );
+
+
+    form.addEventListener(
+        "submit",
+        function() {
+
+            saveButton.innerHTML =
+                '<span class="save-icon">✓</span> Salvando...';
+
+            saveButton.style.opacity =
+                "0.82";
+
+            saveButton.style.pointerEvents =
+                "none";
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

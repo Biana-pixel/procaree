@@ -1,0 +1,1873 @@
+{% extends "base.html" %}
+
+{% block title %}
+Entrevistas | ProCareer
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    /* =====================================================
+       BASE
+    ===================================================== */
+
+    .interviews-page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        animation: pageEnter 0.55s ease;
+    }
+
+    @keyframes pageEnter {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    /* =====================================================
+       TOPO
+    ===================================================== */
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+    }
+
+    .page-heading {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .heading-icon {
+        width: 48px;
+        height: 48px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 14px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #e0f2fe,
+                #cffafe
+            );
+
+        color: #0284c7;
+
+        font-size: 21px;
+
+        box-shadow:
+            0 8px 22px
+            rgba(14, 165, 233, 0.10);
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .heading-icon:hover {
+        transform:
+            rotate(-5deg)
+            scale(1.06);
+
+        box-shadow:
+            0 11px 26px
+            rgba(14, 165, 233, 0.16);
+    }
+
+    .topbar h1 {
+        margin: 0 0 5px;
+
+        font-size: 28px;
+
+        color: #12383d;
+
+        letter-spacing: -0.5px;
+
+        font-weight: 900;
+
+        text-shadow:
+            0 3px 5px rgba(14, 165, 233, 0.35),
+            0 6px 12px rgba(14, 165, 233, 0.28);
+    }
+
+    .topbar p {
+        margin: 0;
+
+        color: #64748b;
+
+        font-size: 15px;
+    }
+
+
+    /* =====================================================
+       PERFIL
+    ===================================================== */
+
+    .profile {
+        width: 43px;
+        height: 43px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0ea5e9,
+                #06b6d4
+            );
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        box-shadow:
+            0 7px 18px
+            rgba(14, 165, 233, 0.20);
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
+    }
+
+    .profile:hover {
+        transform:
+            translateY(-2px)
+            scale(1.05);
+
+        box-shadow:
+            0 10px 24px
+            rgba(14, 165, 233, 0.28);
+    }
+
+
+    /* =====================================================
+       RESUMO
+    ===================================================== */
+
+    .summary {
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 14px;
+
+        margin-bottom: 28px;
+    }
+
+    .summary-card {
+        background:
+            rgba(255,255,255,0.94);
+
+        border:
+            1px solid #e1ecef;
+
+        border-radius: 17px;
+
+        padding: 19px;
+
+        position: relative;
+
+        overflow: hidden;
+
+        box-shadow:
+            0 7px 22px
+            rgba(14, 165, 233, 0.045);
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+    }
+
+    .summary-card:hover {
+        transform:
+            translateY(-4px);
+
+        border-color:
+            #b9dfea;
+
+        box-shadow:
+            0 14px 30px
+            rgba(14, 165, 233, 0.10);
+    }
+
+    .summary-top {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-bottom: 13px;
+    }
+
+    .summary-label {
+        color: #64748b;
+
+        font-size: 14px;
+
+        font-weight: 650;
+
+        letter-spacing: 0.1px;
+    }
+
+    .summary-icon {
+        width: 36px;
+        height: 36px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 10px;
+
+        background:
+            #eff9ff;
+
+        color:
+            #0284c7;
+
+        font-size: 16px;
+
+        transition:
+            transform 0.25s ease,
+            background 0.25s ease;
+    }
+
+    .summary-card:hover .summary-icon {
+        transform:
+            scale(1.08)
+            rotate(-4deg);
+
+        background:
+            #e0f2fe;
+    }
+
+    .summary-number {
+        color: #12383d;
+
+        font-size: 34px;
+
+        font-weight: 850;
+
+        line-height: 1;
+
+        letter-spacing: -1px;
+
+        display: block;
+
+        margin-top: 3px;
+    }
+
+
+    /* =====================================================
+       AÇÕES
+    ===================================================== */
+
+    .actions {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 18px;
+    }
+
+    .actions-title h2 {
+        margin: 0 0 4px;
+
+        color: #183f43;
+
+        font-size: 21px;
+
+        font-weight: 750;
+
+        letter-spacing: -0.3px;
+    }
+
+    .actions-title p {
+        margin: 0;
+
+        color: #94a3b8;
+
+        font-size: 14px;
+    }
+
+    .new-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0284c7,
+                #06b6d4
+            );
+
+        color: white;
+
+        border: none;
+
+        padding: 11px 17px;
+
+        border-radius: 11px;
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        cursor: pointer;
+
+        text-decoration: none;
+
+        box-shadow:
+            0 8px 18px
+            rgba(14, 165, 233, 0.18);
+
+        transition:
+            transform 0.22s ease,
+            box-shadow 0.22s ease;
+    }
+
+    .new-button:hover {
+        transform:
+            translateY(-2px);
+
+        box-shadow:
+            0 12px 24px
+            rgba(14, 165, 233, 0.27);
+    }
+
+    .new-button span {
+        font-size: 19px;
+
+        line-height: 1;
+    }
+
+
+    /* =====================================================
+       FILTROS
+    ===================================================== */
+
+    .filters {
+        background:
+            rgba(255,255,255,0.95);
+
+        border:
+            1px solid #e1ecef;
+
+        border-radius: 17px;
+
+        padding: 13px;
+
+        display: grid;
+
+        grid-template-columns:
+            1.7fr 1fr;
+
+        gap: 10px;
+
+        margin-bottom: 20px;
+
+        box-shadow:
+            0 6px 20px
+            rgba(14, 165, 233, 0.035);
+    }
+
+    .search-box {
+        position: relative;
+    }
+
+    .search-icon {
+        position: absolute;
+
+        left: 14px;
+
+        top: 50%;
+
+        transform:
+            translateY(-50%);
+
+        color: #94a3b8;
+
+        font-size: 15px;
+
+        pointer-events: none;
+    }
+
+    .filters input,
+    .filters select {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        height: 46px;
+
+        padding:
+            0 13px;
+
+        border:
+            1px solid #dce7ea;
+
+        border-radius: 10px;
+
+        outline: none;
+
+        font-size: 15px;
+
+        color: #334155;
+
+        background:
+            #fbfefe;
+
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .search-box input {
+        padding-left: 39px;
+    }
+
+    .filters input::placeholder {
+        color: #8e9aa4;
+
+        font-size: 15px;
+    }
+
+    .filters input:hover,
+    .filters select:hover {
+        border-color:
+            #a7d7e4;
+
+        background:
+            white;
+    }
+
+    .filters input:focus,
+    .filters select:focus {
+        border-color:
+            #0ea5e9;
+
+        background:
+            white;
+
+        box-shadow:
+            0 0 0 3px
+            rgba(14, 165, 233, 0.10);
+    }
+
+
+    /* =====================================================
+       LISTA DE ENTREVISTAS
+    ===================================================== */
+
+    .interviews {
+        display: grid;
+
+        gap: 12px;
+    }
+
+    .interview {
+        position: relative;
+
+        background:
+            white;
+
+        border:
+            1px solid #e1ecef;
+
+        border-radius: 17px;
+
+        padding:
+            19px 20px;
+
+        display: flex;
+
+        justify-content:
+            space-between;
+
+        align-items:
+            center;
+
+        overflow:
+            hidden;
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+
+        animation:
+            interviewEnter 0.45s ease both;
+    }
+
+    @keyframes interviewEnter {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .interview:nth-child(1) {
+        animation-delay: 0.04s;
+    }
+
+    .interview:nth-child(2) {
+        animation-delay: 0.08s;
+    }
+
+    .interview:nth-child(3) {
+        animation-delay: 0.12s;
+    }
+
+    .interview:nth-child(4) {
+        animation-delay: 0.16s;
+    }
+
+    .interview:nth-child(5) {
+        animation-delay: 0.20s;
+    }
+
+
+    /* LINHA LATERAL */
+
+    .interview::before {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+
+        top: 0;
+
+        bottom: 0;
+
+        width: 3px;
+
+        background:
+            linear-gradient(
+                to bottom,
+                #0ea5e9,
+                #06b6d4
+            );
+
+        opacity: 0;
+
+        transition:
+            opacity 0.25s ease;
+    }
+
+    .interview:hover {
+        transform:
+            translateY(-3px);
+
+        border-color:
+            #b9dfea;
+
+        box-shadow:
+            0 12px 30px
+            rgba(14, 165, 233, 0.09);
+    }
+
+    .interview:hover::before {
+        opacity: 1;
+    }
+
+
+    /* =====================================================
+       INFORMAÇÕES
+    ===================================================== */
+
+    .interview-info {
+        min-width: 0;
+    }
+
+    .company {
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        color:
+            #64748b;
+
+        font-size:
+            14px;
+
+        font-weight:
+            600;
+
+        margin-bottom:
+            6px;
+    }
+
+    .company-dot {
+        width: 6px;
+        height: 6px;
+
+        min-width: 6px;
+
+        border-radius: 50%;
+
+        background:
+            #06b6d4;
+    }
+
+    .job {
+        color:
+            #183f43;
+
+        font-size:
+            18px;
+
+        font-weight:
+            800;
+
+        margin-bottom:
+            8px;
+
+        letter-spacing:
+            -0.2px;
+
+        transition:
+            color 0.2s ease;
+    }
+
+    .interview:hover .job {
+        color:
+            #0284c7;
+    }
+
+    .details {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        align-items: center;
+
+        gap: 7px;
+
+        color:
+            #7b8794;
+
+        font-size:
+            14px;
+    }
+
+    .detail-item {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 4px;
+    }
+
+    .detail-separator {
+        color:
+            #cbd5e1;
+    }
+
+
+    /* =====================================================
+       AÇÕES
+    ===================================================== */
+
+    .interview-actions {
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin-left: 20px;
+    }
+
+
+    /* =====================================================
+       TIPO
+    ===================================================== */
+
+    .type {
+        display: inline-flex;
+
+        align-items: center;
+
+        padding:
+            8px 12px;
+
+        border-radius:
+            20px;
+
+        font-size:
+            13px;
+
+        font-weight:
+            800;
+
+        background:
+            #e0f2fe;
+
+        color:
+            #0369a1;
+
+        white-space:
+            nowrap;
+
+        border:
+            1px solid #bae6fd;
+
+        transition:
+            transform 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .interview:hover .type {
+        transform:
+            translateY(-1px);
+
+        background:
+            #d9f1fd;
+    }
+
+
+    /* =====================================================
+       BOTÃO DETALHES
+    ===================================================== */
+
+    .details-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        color:
+            #0284c7;
+
+        text-decoration:
+            none;
+
+        font-size:
+            14px;
+
+        font-weight:
+            800;
+
+        padding:
+            9px 12px;
+
+        border:
+            1px solid #bae6fd;
+
+        border-radius:
+            9px;
+
+        background:
+            white;
+
+        transition:
+            background 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .details-button:hover {
+        background:
+            #eff9ff;
+
+        border-color:
+            #7dd3fc;
+
+        transform:
+            translateX(2px);
+
+        box-shadow:
+            0 5px 14px
+            rgba(14, 165, 233, 0.10);
+    }
+
+    .details-arrow {
+        transition:
+            transform 0.2s ease;
+    }
+
+    .details-button:hover .details-arrow {
+        transform:
+            translateX(3px);
+    }
+
+
+    /* =====================================================
+       VAZIO
+    ===================================================== */
+
+    .empty {
+        background:
+            white;
+
+        border:
+            1px dashed #b9d5dc;
+
+        border-radius:
+            18px;
+
+        padding:
+            65px 20px;
+
+        text-align:
+            center;
+
+        color:
+            #64748b;
+
+        box-shadow:
+            0 7px 20px
+            rgba(14, 165, 233, 0.03);
+    }
+
+    .empty-icon {
+        width: 55px;
+        height: 55px;
+
+        margin:
+            0 auto 15px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius:
+            16px;
+
+        background:
+            #eff9ff;
+
+        color:
+            #0284c7;
+
+        font-size:
+            22px;
+    }
+
+    .empty h3 {
+        color:
+            #183f43;
+
+        margin:
+            0 0 7px;
+
+        font-size:
+            18px;
+    }
+
+    .empty p {
+        margin:
+            0;
+
+        font-size:
+            15px;
+    }
+
+
+    /* =====================================================
+       SEM RESULTADO
+    ===================================================== */
+
+    .no-results {
+        display:
+            none;
+
+        background:
+            white;
+
+        border:
+            1px dashed #b9d5dc;
+
+        border-radius:
+            17px;
+
+        padding:
+            45px 20px;
+
+        text-align:
+            center;
+
+        color:
+            #64748b;
+
+        margin-top:
+            12px;
+
+        animation:
+            pageEnter 0.3s ease;
+    }
+
+    .no-results-icon {
+        font-size:
+            25px;
+
+        margin-bottom:
+            8px;
+    }
+
+    .no-results h3 {
+        color:
+            #183f43;
+
+        margin:
+            0 0 6px;
+
+        font-size:
+            17px;
+    }
+
+    .no-results p {
+        margin:
+            0;
+
+        font-size:
+            14px;
+    }
+
+
+    /* =====================================================
+       RESPONSIVO
+    ===================================================== */
+
+    @media (max-width: 950px) {
+
+        .summary {
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+    }
+
+
+    @media (max-width: 800px) {
+
+        .filters {
+            grid-template-columns:
+                1fr;
+        }
+
+        .interview {
+            flex-direction:
+                column;
+
+            align-items:
+                flex-start;
+
+            gap:
+                15px;
+        }
+
+        .interview-actions {
+            width:
+                100%;
+
+            margin-left:
+                0;
+
+            justify-content:
+                space-between;
+        }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+        .interviews-page {
+            padding-bottom:
+                25px;
+        }
+
+        .topbar {
+            margin-bottom:
+                22px;
+        }
+
+        .topbar h1 {
+            font-size:
+                24px;
+        }
+
+        .heading-icon {
+            width:
+                42px;
+
+            height:
+                42px;
+        }
+
+        .summary {
+            gap:
+                10px;
+        }
+
+        .summary-card {
+            padding:
+                15px;
+        }
+
+        .summary-label {
+            font-size:
+                13px;
+        }
+
+        .summary-number {
+            font-size:
+                30px;
+        }
+
+        .actions {
+            align-items:
+                flex-start;
+
+            gap:
+                13px;
+        }
+
+        .actions-title h2 {
+            font-size:
+                19px;
+        }
+
+        .new-button {
+            padding:
+                10px 13px;
+
+            font-size:
+                15px;
+        }
+
+        .job {
+            font-size:
+                17px;
+        }
+
+        .details {
+            font-size:
+                13px;
+        }
+
+    }
+
+
+    @media (max-width: 520px) {
+
+        .summary {
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                10px;
+        }
+
+        .summary-card {
+            padding:
+                14px;
+        }
+
+        .summary-label {
+            font-size:
+                12px;
+        }
+
+        .summary-number {
+            font-size:
+                28px;
+        }
+
+        .summary-icon {
+            width:
+                34px;
+
+            height:
+                34px;
+
+            font-size:
+                15px;
+        }
+
+        .filters {
+            grid-template-columns:
+                1fr;
+        }
+
+        .filters input,
+        .filters select {
+            height:
+                46px;
+
+            font-size:
+                15px;
+        }
+
+        .filters input::placeholder {
+            font-size:
+                14px;
+        }
+
+        .actions {
+            flex-direction:
+                column;
+        }
+
+        .new-button {
+            width:
+                100%;
+
+            justify-content:
+                center;
+        }
+
+        .page-heading {
+            gap:
+                10px;
+        }
+
+        .profile {
+            width:
+                38px;
+
+            height:
+                38px;
+        }
+
+        .company {
+            font-size:
+                13px;
+        }
+
+        .job {
+            font-size:
+                17px;
+        }
+
+        .details {
+            font-size:
+                13px;
+        }
+
+        .type {
+            font-size:
+                13px;
+        }
+
+        .details-button {
+            font-size:
+                13px;
+        }
+
+        .interview-actions {
+            flex-wrap:
+                wrap;
+        }
+
+    }
+
+</style>
+
+
+<div class="interviews-page">
+
+
+    <!-- =================================================
+         TOPO
+    ================================================= -->
+
+    <div class="topbar">
+
+        <div class="page-heading">
+
+            <div class="heading-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <h1>
+                    Entrevistas
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile">
+            {{ session["usuario_nome"][0] }}
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RESUMO
+    ================================================= -->
+
+    <div class="summary">
+
+
+        <div class="summary-card">
+
+            <div class="summary-top">
+
+                <span class="summary-label">
+                    Total
+                </span>
+
+                <div class="summary-icon">
+                    📅
+                </div>
+
+            </div>
+
+            <div
+                class="summary-number"
+                id="totalInterviews"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-top">
+
+                <span class="summary-label">
+                    Online
+                </span>
+
+                <div class="summary-icon">
+                    💻
+                </div>
+
+            </div>
+
+            <div
+                class="summary-number"
+                id="onlineInterviews"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-top">
+
+                <span class="summary-label">
+                    Presenciais
+                </span>
+
+                <div class="summary-icon">
+                    📍
+                </div>
+
+            </div>
+
+            <div
+                class="summary-number"
+                id="presencialInterviews"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-top">
+
+                <span class="summary-label">
+                    Telefone
+                </span>
+
+                <div class="summary-icon">
+                    📞
+                </div>
+
+            </div>
+
+            <div
+                class="summary-number"
+                id="telefoneInterviews"
+            >
+                0
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         AÇÕES
+    ================================================= -->
+
+    <div class="actions">
+
+        <div class="actions-title">
+
+            <h2>
+                Minhas entrevistas
+            </h2>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('entrevistas.nova') }}"
+            class="new-button"
+        >
+            <span>+</span>
+            Nova entrevista
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         FILTROS
+    ================================================= -->
+
+    <div class="filters">
+
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔎
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar por cargo ou empresa..."
+            >
+
+        </div>
+
+
+        <select id="typeFilter">
+
+            <option value="">
+                Todos os tipos
+            </option>
+
+            <option value="online">
+                Online
+            </option>
+
+            <option value="presencial">
+                Presencial
+            </option>
+
+            <option value="telefone">
+                Telefone
+            </option>
+
+        </select>
+
+
+    </div>
+
+
+    <!-- =================================================
+         LISTA
+    ================================================= -->
+
+    <section
+        class="interviews"
+        id="interviewsList"
+    >
+
+
+        {% if entrevistas %}
+
+
+            {% for entrevista in entrevistas %}
+
+
+                <div
+                    class="interview"
+
+                    data-search="
+                        {{ entrevista[5] }}
+                        {{ entrevista[6] or '' }}
+                    "
+
+                    data-type="
+                        {{ entrevista[2] or '' }}
+                    "
+                >
+
+
+                    <div class="interview-info">
+
+
+                        <div class="company">
+
+                            <span class="company-dot"></span>
+
+                            {{ entrevista[6] or "Empresa não informada" }}
+
+                        </div>
+
+
+                        <div class="job">
+                            {{ entrevista[5] }}
+                        </div>
+
+
+                        <div class="details">
+
+
+                            <span class="detail-item">
+
+                                📅
+
+                                {{ entrevista[1].strftime(
+                                    '%d/%m/%Y às %H:%M'
+                                ) }}
+
+                            </span>
+
+
+                            {% if entrevista[2] %}
+
+                                <span class="detail-separator">
+                                    •
+                                </span>
+
+                                <span class="detail-item">
+
+                                    🎥
+
+                                    {{ entrevista[2]|capitalize }}
+
+                                </span>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- =================================================
+                         AÇÕES
+                    ================================================= -->
+
+                    <div class="interview-actions">
+
+
+                        {% if entrevista[2] %}
+
+                            <span class="type">
+
+                                {{ entrevista[2]|capitalize }}
+
+                            </span>
+
+                        {% endif %}
+
+
+                        <a
+                            href="{{ url_for(
+                                'entrevistas.detalhes',
+                                id=entrevista[0]
+                            ) }}"
+                            class="details-button"
+                        >
+
+                            Ver detalhes
+
+                            <span class="details-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Nenhuma entrevista cadastrada
+                </h3>
+
+                <p>
+                    Comece adicionando sua primeira entrevista.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+    <!-- =================================================
+         NENHUM RESULTADO
+    ================================================= -->
+
+    {% if entrevistas %}
+
+        <div
+            class="no-results"
+            id="noResults"
+        >
+
+            <div class="no-results-icon">
+                🔎
+            </div>
+
+            <h3>
+                Nenhuma entrevista encontrada
+            </h3>
+
+            <p>
+                Tente alterar os filtros da busca.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+</div>
+
+
+<script>
+
+    /* =====================================================
+       ELEMENTOS
+    ===================================================== */
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const typeFilter =
+        document.getElementById("typeFilter");
+
+    const interviews =
+        document.querySelectorAll(".interview");
+
+    const noResults =
+        document.getElementById("noResults");
+
+
+    /* =====================================================
+       CONTADORES
+    ===================================================== */
+
+    const totalInterviews =
+        document.getElementById(
+            "totalInterviews"
+        );
+
+    const onlineInterviews =
+        document.getElementById(
+            "onlineInterviews"
+        );
+
+    const presencialInterviews =
+        document.getElementById(
+            "presencialInterviews"
+        );
+
+    const telefoneInterviews =
+        document.getElementById(
+            "telefoneInterviews"
+        );
+
+
+    /* =====================================================
+       ANIMAÇÃO DOS NÚMEROS
+    ===================================================== */
+
+    function animarNumero(
+        elemento,
+        valor
+    ) {
+
+        let atual = 0;
+
+        const incremento =
+            Math.max(
+                1,
+                Math.ceil(valor / 15)
+            );
+
+        const intervalo =
+            setInterval(function() {
+
+                atual += incremento;
+
+                if (atual >= valor) {
+
+                    atual = valor;
+
+                    clearInterval(
+                        intervalo
+                    );
+
+                }
+
+                elemento.textContent =
+                    atual;
+
+            }, 30);
+
+    }
+
+
+    /* =====================================================
+       CALCULAR RESUMO
+    ===================================================== */
+
+    function atualizarResumo() {
+
+        let online = 0;
+
+        let presencial = 0;
+
+        let telefone = 0;
+
+
+        interviews.forEach(
+            function(interview) {
+
+                const tipo =
+                    interview.dataset.type
+                    .toLowerCase()
+                    .trim();
+
+
+                if (tipo === "online") {
+
+                    online++;
+
+                }
+
+
+                if (tipo === "presencial") {
+
+                    presencial++;
+
+                }
+
+
+                if (tipo === "telefone") {
+
+                    telefone++;
+
+                }
+
+            }
+        );
+
+
+        animarNumero(
+            totalInterviews,
+            interviews.length
+        );
+
+
+        animarNumero(
+            onlineInterviews,
+            online
+        );
+
+
+        animarNumero(
+            presencialInterviews,
+            presencial
+        );
+
+
+        animarNumero(
+            telefoneInterviews,
+            telefone
+        );
+
+    }
+
+
+    /* =====================================================
+       FILTROS EM TEMPO REAL
+    ===================================================== */
+
+    function filtrarEntrevistas() {
+
+        const busca =
+            searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+        const tipo =
+            typeFilter.value
+            .toLowerCase()
+            .trim();
+
+
+        let encontradas = 0;
+
+
+        interviews.forEach(
+            function(interview) {
+
+                const textoBusca =
+                    interview.dataset.search
+                    .toLowerCase()
+                    .trim();
+
+
+                const tipoEntrevista =
+                    interview.dataset.type
+                    .toLowerCase()
+                    .trim();
+
+
+                const correspondeBusca =
+                    textoBusca.includes(
+                        busca
+                    );
+
+
+                const correspondeTipo =
+                    tipo === "" ||
+                    tipoEntrevista === tipo;
+
+
+                if (
+                    correspondeBusca &&
+                    correspondeTipo
+                ) {
+
+                    interview.style.display =
+                        "flex";
+
+                    encontradas++;
+
+                } else {
+
+                    interview.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        if (noResults) {
+
+            noResults.style.display =
+                encontradas === 0
+                ? "block"
+                : "none";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       EVENTOS
+    ===================================================== */
+
+    searchInput.addEventListener(
+        "input",
+        filtrarEntrevistas
+    );
+
+
+    typeFilter.addEventListener(
+        "change",
+        filtrarEntrevistas
+    );
+
+
+    /* =====================================================
+       INICIALIZAÇÃO
+    ===================================================== */
+
+    atualizarResumo();
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,969 @@
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nova entrevista | ProCareer</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f8fcfd;
+        color: #12383d;
+        min-height: 100vh;
+    }
+
+    /* =========================
+       PÁGINA
+    ========================= */
+
+    .page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 35px 30px 50px;
+    }
+
+    /* =========================
+       TOPO
+    ========================= */
+
+    .page-topbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+
+    .page-heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .heading-icon {
+        width: 48px;
+        height: 48px;
+
+        border-radius: 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 23px;
+
+        background: linear-gradient(
+            135deg,
+            #e0f7ff,
+            #d8f3ff
+        );
+
+        box-shadow:
+            0 8px 18px rgba(14, 165, 233, .16),
+            inset 0 1px 0 rgba(255,255,255,.9);
+    }
+
+    .page-heading h1 {
+        margin: 0;
+
+        font-size: 30px;
+        color: #12383d;
+        letter-spacing: -.6px;
+        font-weight: 900;
+
+        text-shadow:
+            0 3px 5px rgba(14, 165, 233, .35),
+            0 6px 12px rgba(14, 165, 233, .28);
+    }
+
+    /* =========================
+       FORMULÁRIO
+    ========================= */
+
+    .form-wrapper {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .form-card {
+        position: relative;
+
+        background: rgba(255,255,255,.98);
+
+        border: 1px solid #dceff5;
+        border-radius: 22px;
+
+        padding: 32px;
+
+        box-shadow:
+            0 15px 40px rgba(15, 72, 84, .09),
+            0 4px 12px rgba(14, 165, 233, .05);
+
+        overflow: hidden;
+    }
+
+    .form-card::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        right: 0;
+
+        height: 4px;
+
+        background: linear-gradient(
+            90deg,
+            #0ea5e9,
+            #38bdf8,
+            #0ea5e9
+        );
+    }
+
+    .form-header {
+        margin-bottom: 28px;
+    }
+
+    .form-header h2 {
+        margin: 0;
+
+        font-size: 21px;
+        font-weight: 900;
+
+        color: #12383d;
+    }
+
+    /* =========================
+       SEÇÕES
+    ========================= */
+
+    .form-section {
+        margin-bottom: 27px;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        margin-bottom: 18px;
+
+        font-size: 20px;
+        font-weight: 900;
+
+        color: #164e59;
+    }
+
+    .section-dot {
+        width: 8px;
+        height: 8px;
+
+        flex-shrink: 0;
+
+        border-radius: 50%;
+
+        background: #0ea5e9;
+
+        box-shadow:
+            0 0 0 5px rgba(14,165,233,.10);
+    }
+
+    /* =========================
+       GRID
+    ========================= */
+
+    .form-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group.full {
+        grid-column: 1 / -1;
+    }
+
+    /* =========================
+       LABEL
+    ========================= */
+
+    .form-group label {
+        margin-bottom: 8px;
+
+        font-size: 16px;
+        font-weight: 800;
+
+        color: #28545c;
+    }
+
+    .required {
+        color: #0ea5e9;
+        font-size: 17px;
+    }
+
+    /* =========================
+       CAMPOS
+    ========================= */
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+
+        width: 100%;
+
+        border: 1px solid #cfe5eb;
+        border-radius: 12px;
+
+        padding: 13px 14px;
+
+        font-family: inherit;
+        font-size: 16px;
+
+        color: #173f46;
+        background: #fbfeff;
+
+        outline: none;
+
+        transition:
+            border-color .2s ease,
+            box-shadow .2s ease,
+            background .2s ease;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 52px;
+    }
+
+    .form-group textarea {
+        min-height: 125px;
+
+        resize: vertical;
+
+        line-height: 1.5;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+
+        border-color: #38bdf8;
+
+        background: #ffffff;
+
+        box-shadow:
+            0 0 0 4px rgba(14,165,233,.10);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+        color: #9ab3b9;
+        font-size: 15px;
+    }
+
+    /* =========================
+       CONTADOR
+    ========================= */
+
+    .textarea-footer {
+        display: flex;
+        justify-content: flex-end;
+
+        margin-top: 5px;
+
+        font-size: 13px;
+        color: #8ba4aa;
+    }
+
+    /* =========================
+       AÇÕES
+    ========================= */
+
+    .form-actions {
+
+        display: flex;
+
+        justify-content: flex-end;
+        align-items: center;
+
+        gap: 12px;
+
+        margin-top: 30px;
+        padding-top: 24px;
+
+        border-top: 1px solid #e4f0f3;
+    }
+
+    .btn {
+
+        min-height: 48px;
+
+        padding: 0 22px;
+
+        border-radius: 12px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        text-decoration: none;
+
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 800;
+
+        cursor: pointer;
+
+        transition:
+            transform .2s ease,
+            box-shadow .2s ease,
+            background .2s ease;
+    }
+
+    .btn-cancel {
+
+        color: #527078;
+
+        background: #f3f8fa;
+
+        border: 1px solid #d9e8ec;
+    }
+
+    .btn-cancel:hover {
+
+        background: #eaf3f5;
+
+        transform: translateY(-1px);
+    }
+
+    .btn-save {
+
+        border: none;
+
+        color: white;
+
+        background: linear-gradient(
+            135deg,
+            #0ea5e9,
+            #0284c7
+        );
+
+        box-shadow:
+            0 8px 18px rgba(14,165,233,.22);
+    }
+
+    .btn-save:hover {
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 12px 24px rgba(14,165,233,.28);
+    }
+
+    .btn-save:disabled {
+
+        opacity: .7;
+
+        cursor: wait;
+
+        transform: none;
+    }
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    @media (max-width: 900px) {
+
+        .page {
+            padding: 28px 24px 40px;
+        }
+
+        .form-card {
+            padding: 27px;
+        }
+    }
+
+    @media (max-width: 650px) {
+
+        .page {
+            padding: 25px 16px 35px;
+        }
+
+        .page-heading h1 {
+            font-size: 27px;
+        }
+
+        .section-title {
+            font-size: 18px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group.full {
+            grid-column: auto;
+        }
+
+        .form-card {
+            padding: 22px;
+            border-radius: 18px;
+        }
+
+        .form-actions {
+
+            flex-direction: column-reverse;
+
+            align-items: stretch;
+        }
+
+        .btn {
+            width: 100%;
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width: 430px) {
+
+        .page-heading h1 {
+            font-size: 24px;
+        }
+
+        .form-group label {
+            font-size: 15px;
+        }
+
+        .required {
+            font-size: 16px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            font-size: 16px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            font-size: 14px;
+        }
+
+        .textarea-footer {
+            font-size: 12px;
+        }
+
+        .btn {
+            font-size: 15px;
+        }
+    }
+
+</style>
+
+
+<!-- =========================
+     TOPO
+========================= -->
+
+<div class="page-topbar">
+
+    <div class="page-heading">
+
+        <div class="heading-icon">
+            🎯
+        </div>
+
+        <h1>
+            Nova entrevista
+        </h1>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FORMULÁRIO
+========================= -->
+
+<div class="form-wrapper">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <h2>
+                Informações da entrevista
+            </h2>
+
+        </div>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('entrevistas.nova') }}"
+            id="entrevistaForm"
+        >
+
+
+            <!-- DADOS DA ENTREVISTA -->
+
+            <div class="form-section">
+
+                <div class="section-title">
+
+                    <span class="section-dot"></span>
+
+                    Dados da entrevista
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- CANDIDATURA -->
+
+                    <div class="form-group full">
+
+                        <label for="candidatura_id">
+
+                            Candidatura
+
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <select
+                            id="candidatura_id"
+                            name="candidatura_id"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione uma candidatura
+                            </option>
+
+
+                            {% for candidatura in candidaturas %}
+
+                            <option value="{{ candidatura[0] }}">
+
+                                {{ candidatura[1] }}
+
+                                {% if candidatura[2] %}
+                                    — {{ candidatura[2] }}
+                                {% endif %}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- DATA -->
+
+                    <div class="form-group">
+
+                        <label for="data">
+
+                            Data
+
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="data"
+                            name="data"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- HORÁRIO -->
+
+                    <div class="form-group">
+
+                        <label for="horario">
+
+                            Horário
+
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <input
+                            type="time"
+                            id="horario"
+                            name="horario"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- TIPO -->
+
+                    <div class="form-group full">
+
+                        <label for="tipo">
+
+                            Tipo de entrevista
+
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <select
+                            id="tipo"
+                            name="tipo"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione o tipo
+                            </option>
+
+                            <option value="online">
+                                Online
+                            </option>
+
+                            <option value="presencial">
+                                Presencial
+                            </option>
+
+                            <option value="telefone">
+                                Telefone
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OBSERVAÇÕES -->
+
+            <div class="form-section">
+
+                <div class="section-title">
+
+                    <span class="section-dot"></span>
+
+                    Observações
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+
+                        <label for="observacoes">
+                            Observações
+                        </label>
+
+
+                        <textarea
+                            id="observacoes"
+                            name="observacoes"
+                            maxlength="1000"
+                            placeholder="Digite suas observações..."
+                        ></textarea>
+
+
+                        <div class="textarea-footer">
+
+                            <span id="contador">
+                                0 / 1000
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTÕES -->
+
+            <div class="form-actions">
+
+                <a
+                    href="{{ url_for('entrevistas.listar') }}"
+                    class="btn btn-cancel"
+                >
+                    Cancelar
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-save"
+                    id="btnSalvar"
+                >
+
+                    ✓ Salvar entrevista
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const formulario =
+        document.getElementById("entrevistaForm");
+
+    const campoData =
+        document.getElementById("data");
+
+    const btnSalvar =
+        document.getElementById("btnSalvar");
+
+    const observacoes =
+        document.getElementById("observacoes");
+
+    const contador =
+        document.getElementById("contador");
+
+
+    /* =========================
+       CONTADOR
+    ========================= */
+
+    observacoes.addEventListener("input", function () {
+
+        contador.textContent =
+            `${this.value.length} / 1000`;
+
+    });
+
+
+    /* =========================
+       DATA MÍNIMA
+    ========================= */
+
+    const hoje = new Date();
+
+    const ano = hoje.getFullYear();
+
+    const mes = String(
+        hoje.getMonth() + 1
+    ).padStart(2, "0");
+
+    const dia = String(
+        hoje.getDate()
+    ).padStart(2, "0");
+
+    campoData.min =
+        `${ano}-${mes}-${dia}`;
+
+
+    /* =========================
+       LIMPAR AVISO NATIVO
+    ========================= */
+
+    campoData.addEventListener(
+        "input",
+        function () {
+
+            campoData.setCustomValidity("");
+
+        }
+    );
+
+
+    campoData.addEventListener(
+        "change",
+        function () {
+
+            campoData.setCustomValidity("");
+
+        }
+    );
+
+
+    /* =========================
+       VALIDAR DATA
+    ========================= */
+
+    formulario.addEventListener(
+        "submit",
+        function (event) {
+
+            const valor =
+                campoData.value;
+
+
+            /* Campo vazio */
+
+            if (!valor) {
+
+                campoData.setCustomValidity(
+                    "Data inválida"
+                );
+
+                event.preventDefault();
+
+                campoData.reportValidity();
+
+                return;
+
+            }
+
+
+            /*
+             * O valor precisa estar
+             * no formato YYYY-MM-DD.
+             */
+
+            const partes =
+                valor.split("-");
+
+
+            if (
+                partes.length !== 3 ||
+                partes[0].length !== 4
+            ) {
+
+                campoData.setCustomValidity(
+                    "Data inválida"
+                );
+
+                event.preventDefault();
+
+                campoData.reportValidity();
+
+                return;
+
+            }
+
+
+            const anoInformado =
+                Number(partes[0]);
+
+            const mesInformado =
+                Number(partes[1]);
+
+            const diaInformado =
+                Number(partes[2]);
+
+
+            /*
+             * Verifica se a data realmente existe.
+             */
+
+            const dataVerificada =
+                new Date(
+                    anoInformado,
+                    mesInformado - 1,
+                    diaInformado
+                );
+
+
+            if (
+                dataVerificada.getFullYear() !== anoInformado ||
+                dataVerificada.getMonth() !== mesInformado - 1 ||
+                dataVerificada.getDate() !== diaInformado
+            ) {
+
+                campoData.setCustomValidity(
+                    "Data inválida"
+                );
+
+                event.preventDefault();
+
+                campoData.reportValidity();
+
+                return;
+
+            }
+
+
+            /*
+             * Não permite data passada.
+             */
+
+            const hojeSemHora =
+                new Date();
+
+            hojeSemHora.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            if (
+                dataVerificada < hojeSemHora
+            ) {
+
+                campoData.setCustomValidity(
+                    "Data inválida"
+                );
+
+                event.preventDefault();
+
+                campoData.reportValidity();
+
+                return;
+
+            }
+
+
+            /*
+             * Data válida.
+             */
+
+            campoData.setCustomValidity("");
+
+            btnSalvar.disabled = true;
+
+            btnSalvar.textContent =
+                "Salvando...";
+
+        }
+    );
+
+</script>

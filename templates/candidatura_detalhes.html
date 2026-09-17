@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detalhes da candidatura | ProCareer</title>
+
+    <style>
+
+        /* =====================================================
+           BASE
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: Inter, Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 7% 8%,
+                    rgba(45, 212, 191, 0.14),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 93% 15%,
+                    rgba(14, 165, 233, 0.08),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f3faf9,
+                    #f7fbfc
+                );
+
+            color: #183f43;
+
+            min-height: 100vh;
+
+            padding-bottom: 60px;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+
+            height: 68px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 42px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #083b42,
+                    #0b4f55
+                );
+
+            color: white;
+
+            box-shadow:
+                0 8px 25px
+                rgba(
+                    8,
+                    59,
+                    66,
+                    0.13
+                );
+
+        }
+
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+
+        }
+
+
+        .logo span {
+
+            color: #5eead4;
+
+        }
+
+
+        .profile {
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #14b8a6,
+                    #0f766e
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 5px 15px
+                rgba(
+                    20,
+                    184,
+                    166,
+                    0.25
+                );
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+
+        }
+
+
+        .profile:hover {
+
+            transform:
+                translateY(-2px)
+                scale(1.05);
+
+            box-shadow:
+                0 8px 20px
+                rgba(
+                    20,
+                    184,
+                    166,
+                    0.32
+                );
+
+        }
+
+
+        /* =====================================================
+           CONTEÚDO
+        ===================================================== */
+
+        .content {
+
+            max-width: 1000px;
+
+            margin: 35px auto;
+
+            padding: 0 22px;
+
+            animation:
+                pageEnter 0.55s ease;
+
+        }
+
+
+        @keyframes pageEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(14px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           BOTÃO VOLTAR
+        ===================================================== */
+
+        .back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                11px 17px;
+
+            margin-bottom: 23px;
+
+            border-radius: 11px;
+
+            color: #0f766e;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.80
+                );
+
+            border:
+                1px solid #cfe4e1;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 750;
+
+            box-shadow:
+                0 4px 12px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.05
+                );
+
+            transition:
+                transform 0.22s ease,
+                background 0.22s ease,
+                border-color 0.22s ease,
+                box-shadow 0.22s ease;
+
+        }
+
+
+        .back-icon {
+
+            font-size: 20px;
+
+            transition:
+                transform 0.22s ease;
+
+        }
+
+
+        .back:hover {
+
+            transform:
+                translateY(-2px);
+
+            background: #ffffff;
+
+            border-color:
+                #9ed4cc;
+
+            box-shadow:
+                0 8px 18px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.10
+                );
+
+        }
+
+
+        .back:hover .back-icon {
+
+            transform:
+                translateX(-3px);
+
+        }
+
+
+        /* =====================================================
+           TÍTULO
+        ===================================================== */
+
+        .title-area {
+
+            position: relative;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.96
+                );
+
+            border:
+                1px solid #dcebea;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            margin-bottom: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 18px 45px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.07
+                );
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .title-area::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 5px;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #14b8a6,
+                    #5eead4
+                );
+
+        }
+
+
+        .title-area:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 22px 50px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.10
+                );
+
+        }
+
+
+        .title-content {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 17px;
+
+            min-width: 0;
+
+        }
+
+
+        .title-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ccfbf1,
+                    #e1f8f5
+                );
+
+            color: #0f766e;
+
+            font-size: 25px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.10
+                );
+
+            transition:
+                transform 0.3s ease;
+
+        }
+
+
+        .title-area:hover .title-icon {
+
+            transform:
+                translateY(-3px)
+                rotate(-4deg);
+
+        }
+
+
+        .company {
+
+            color: #0f9f99;
+
+            font-size: 15px;
+
+            font-weight: 750;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .title-area h1 {
+
+            font-size: 29px;
+
+            color: #12383d;
+
+            line-height: 1.2;
+
+            letter-spacing: -0.6px;
+
+            word-break: break-word;
+
+        }
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status {
+
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                10px 15px;
+
+            border-radius: 30px;
+
+            background: #e6fffa;
+
+            color: #0f766e;
+
+            border:
+                1px solid #bce9e2;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+            box-shadow:
+                0 5px 14px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.07
+                );
+
+        }
+
+
+        .status::before {
+
+            content: "";
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: currentColor;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.08
+                );
+
+        }
+
+
+        .status.aprovado {
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            border-color: #bbf7d0;
+
+        }
+
+
+        .status.rejeitado {
+
+            background: #fee2e2;
+
+            color: #dc2626;
+
+            border-color: #fecaca;
+
+        }
+
+
+        .status.entrevista {
+
+            background: #e0f2fe;
+
+            color: #0369a1;
+
+            border-color: #bae6fd;
+
+        }
+
+
+        .status.teste {
+
+            background: #fef3c7;
+
+            color: #b45309;
+
+            border-color: #fde68a;
+
+        }
+
+
+        .status.candidatado {
+
+            background: #e6fffa;
+
+            color: #0f766e;
+
+            border-color: #bce9e2;
+
+        }
+
+
+        .status.interessado {
+
+            background: #f0fdfa;
+
+            color: #0f766e;
+
+            border-color: #ccfbf1;
+
+        }
+
+
+        /* =====================================================
+           GRID
+        ===================================================== */
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 19px;
+
+        }
+
+
+        /* =====================================================
+           CARDS
+        ===================================================== */
+
+        .card {
+
+            position: relative;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.96
+                );
+
+            border:
+                1px solid #dcebea;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 12px 30px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.05
+                );
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+
+            animation:
+                cardEnter 0.5s ease both;
+
+        }
+
+
+        @keyframes cardEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(10px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 3px;
+
+            height: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #14b8a6,
+                    #5eead4
+                );
+
+            border-radius:
+                0 0 5px 0;
+
+            transition:
+                height 0.3s ease;
+
+        }
+
+
+        .card:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                #c7e5e1;
+
+            box-shadow:
+                0 18px 38px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.09
+                );
+
+        }
+
+
+        .card:hover::before {
+
+            height: 100%;
+
+        }
+
+
+        .card.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        /* =====================================================
+           TÍTULOS DOS CARDS
+        ===================================================== */
+
+        .card h2 {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 20px;
+
+            color: #23494d;
+
+            margin-bottom: 21px;
+
+            font-weight: 800;
+
+        }
+
+
+        .card h2::before {
+
+            content: "";
+
+            width: 9px;
+
+            height: 9px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background:
+                #14b8a6;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(
+                    20,
+                    184,
+                    166,
+                    0.09
+                );
+
+        }
+
+
+        /* =====================================================
+           INFORMAÇÕES
+        ===================================================== */
+
+        .info {
+
+            margin-bottom: 17px;
+
+            padding-bottom: 15px;
+
+            border-bottom:
+                1px solid #edf3f2;
+
+        }
+
+
+        .info:last-child {
+
+            margin-bottom: 0;
+
+            padding-bottom: 0;
+
+            border-bottom: none;
+
+        }
+
+
+        .label {
+
+            display: block;
+
+            color: #7b9295;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            margin-bottom: 6px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.65px;
+
+        }
+
+
+        .value {
+
+            display: block;
+
+            font-size: 16px;
+
+            color: #29484c;
+
+            font-weight: 600;
+
+            word-break: break-word;
+
+        }
+
+
+        .empty-value {
+
+            color: #9aabad;
+
+            font-style: italic;
+
+            font-weight: 500;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =====================================================
+           DESCRIÇÃO / OBSERVAÇÕES
+        ===================================================== */
+
+        .description {
+
+            padding: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fdfc,
+                    #f4faf9
+                );
+
+            border:
+                1px solid #e2efed;
+
+            border-radius: 13px;
+
+            color: #435d61;
+
+            font-size: 16px;
+
+            line-height: 1.75;
+
+            white-space: pre-line;
+
+            word-break: break-word;
+
+        }
+
+
+        /* =====================================================
+           LINKS
+        ===================================================== */
+
+        .link-box {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 15px 17px;
+
+            background:
+                #f7fcfb;
+
+            border:
+                1px solid #dcebea;
+
+            border-radius: 12px;
+
+            transition:
+                background 0.22s ease,
+                border-color 0.22s ease,
+                transform 0.22s ease;
+
+        }
+
+
+        .link-box:hover {
+
+            background:
+                #ffffff;
+
+            border-color:
+                #a8d8d2;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .link-info {
+
+            min-width: 0;
+
+        }
+
+
+        .link-label {
+
+            display: block;
+
+            color: #789093;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .link-url {
+
+            color: #35545a;
+
+            font-size: 15px;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            white-space: nowrap;
+
+            display: block;
+
+        }
+
+
+        .link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            flex-shrink: 0;
+
+            padding:
+                10px 14px;
+
+            border-radius: 9px;
+
+            background:
+                #e6fffa;
+
+            color: #0f766e;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            border:
+                1px solid #bce9e2;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+
+        }
+
+
+        .link:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                #ccfbf1;
+
+        }
+
+
+        /* =====================================================
+           AÇÕES
+        ===================================================== */
+
+        .actions {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+            padding-top: 22px;
+
+            border-top:
+                1px solid #dcebea;
+
+        }
+
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            min-height: 48px;
+
+            padding:
+                0 18px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            border: none;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            transition:
+                transform 0.22s ease,
+                box-shadow 0.22s ease,
+                background 0.22s ease,
+                border-color 0.22s ease;
+
+        }
+
+
+        .button:hover {
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .secondary {
+
+            background:
+                #ffffff;
+
+            color: #526a6d;
+
+            border:
+                1px solid #d3e3e2;
+
+        }
+
+
+        .secondary:hover {
+
+            background:
+                #f5faf9;
+
+            border-color:
+                #b7d6d2;
+
+            box-shadow:
+                0 7px 16px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.07
+                );
+
+        }
+
+
+        .primary {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f766e,
+                    #14b8a6
+                );
+
+            color: white;
+
+            box-shadow:
+                0 8px 19px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.19
+                );
+
+        }
+
+
+        .primary:hover {
+
+            box-shadow:
+                0 12px 25px
+                rgba(
+                    15,
+                    118,
+                    110,
+                    0.28
+                );
+
+        }
+
+
+        .danger {
+
+            background:
+                #fff;
+
+            color: #dc2626;
+
+            border:
+                1px solid #fecaca;
+
+        }
+
+
+        .danger:hover {
+
+            background:
+                #fef2f2;
+
+            border-color:
+                #fca5a5;
+
+            box-shadow:
+                0 7px 17px
+                rgba(
+                    220,
+                    38,
+                    38,
+                    0.10
+                );
+
+        }
+
+
+        .button-icon {
+
+            font-size: 17px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVO
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .header {
+
+                height: 62px;
+
+                padding:
+                    0 20px;
+
+            }
+
+
+            .content {
+
+                margin:
+                    25px auto;
+
+                padding:
+                    0 15px;
+
+            }
+
+
+            .title-area {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                padding:
+                    24px 20px;
+
+            }
+
+
+            .title-content {
+
+                width: 100%;
+
+            }
+
+
+            .title-area h1 {
+
+                font-size: 25px;
+
+            }
+
+
+            .status {
+
+                margin-left: 0;
+
+                font-size: 15px;
+
+            }
+
+
+            .grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 16px;
+
+            }
+
+
+            .card.full {
+
+                grid-column:
+                    auto;
+
+            }
+
+
+            .card {
+
+                padding:
+                    21px 18px;
+
+            }
+
+
+            .link-box {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .link {
+
+                width: 100%;
+
+            }
+
+
+            .actions {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+            }
+
+
+            .button {
+
+                width: 100%;
+
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .back {
+
+                font-size:
+                    14px;
+
+                padding:
+                    10px 13px;
+
+            }
+
+
+            .title-content {
+
+                gap: 12px;
+
+            }
+
+
+            .title-icon {
+
+                width: 50px;
+
+                height: 50px;
+
+                font-size: 22px;
+
+                border-radius: 15px;
+
+            }
+
+
+            .title-area h1 {
+
+                font-size: 24px;
+
+            }
+
+
+            .company {
+
+                font-size: 14px;
+
+            }
+
+
+            .card h2 {
+
+                font-size: 18px;
+
+            }
+
+
+            .label {
+
+                font-size: 12px;
+
+            }
+
+
+            .value {
+
+                font-size: 15px;
+
+            }
+
+
+            .empty-value {
+
+                font-size: 14px;
+
+            }
+
+
+            .description {
+
+                font-size: 15px;
+
+                padding: 15px;
+
+            }
+
+
+            .link-label {
+
+                font-size: 12px;
+
+            }
+
+
+            .link-url {
+
+                font-size: 14px;
+
+            }
+
+
+            .link {
+
+                font-size: 14px;
+
+            }
+
+
+            .button {
+
+                font-size: 15px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+        Pro<span>Career</span>
+    </div>
+
+
+    <div class="profile">
+        {{ session["usuario_nome"][0] }}
+    </div>
+
+</header>
+
+
+
+<main class="content">
+
+
+    <!-- VOLTAR -->
+
+    <a
+        href="{{ url_for('candidaturas.listar') }}"
+        class="back"
+    >
+
+        <span class="back-icon">
+            ←
+        </span>
+
+        Voltar para candidaturas
+
+    </a>
+
+
+
+    <!-- =====================================================
+         CABEÇALHO DA CANDIDATURA
+    ===================================================== -->
+
+    <section class="title-area">
+
+
+        <div class="title-content">
+
+
+            <div class="title-icon">
+                💼
+            </div>
+
+
+            <div>
+
+                <div class="company">
+                    {{ candidatura[2] or "Empresa não informada" }}
+                </div>
+
+
+                <h1>
+                    {{ candidatura[1] }}
+                </h1>
+
+            </div>
+
+
+        </div>
+
+
+
+        <span class="status {{ candidatura[4] }}">
+
+            {{ candidatura[4]|capitalize }}
+
+        </span>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INFORMAÇÕES
+    ===================================================== -->
+
+    <div class="grid">
+
+
+        <!-- OPORTUNIDADE -->
+
+        <div class="card">
+
+            <h2>
+                Informações da oportunidade
+            </h2>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Empresa
+                </span>
+
+                <span class="value">
+                    {{ candidatura[2] or "Não informado" }}
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Modalidade
+                </span>
+
+                <span class="value">
+                    {{ candidatura[5] or "Não informado" }}
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Localização
+                </span>
+
+                <span class="value">
+                    {{ candidatura[6] or "Não informado" }}
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Salário
+                </span>
+
+                <span class="value">
+                    {{ candidatura[7] or "Não informado" }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROCESSO -->
+
+        <div class="card">
+
+            <h2>
+                Processo seletivo
+            </h2>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Status
+                </span>
+
+                <span class="value">
+                    {{ candidatura[4]|capitalize }}
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Data da candidatura
+                </span>
+
+                <span class="value">
+
+                    {% if candidatura[11] %}
+
+                        {{ candidatura[11].strftime('%d/%m/%Y') }}
+
+                    {% else %}
+
+                        <span class="empty-value">
+                            Não informada
+                        </span>
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Cadastro realizado em
+                </span>
+
+                <span class="value">
+
+                    {{ candidatura[12].strftime('%d/%m/%Y às %H:%M') }}
+
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <span class="label">
+                    Site da empresa
+                </span>
+
+                <span class="value">
+
+                    {% if candidatura[3] %}
+
+                        <a
+                            href="{{ candidatura[3] }}"
+                            target="_blank"
+                            class="link"
+                        >
+                            Acessar site →
+                        </a>
+
+                    {% else %}
+
+                        <span class="empty-value">
+                            Não informado
+                        </span>
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LINK DA VAGA -->
+
+        <div class="card full">
+
+            <h2>
+                Link da vaga
+            </h2>
+
+
+            {% if candidatura[8] %}
+
+                <div class="link-box">
+
+                    <div class="link-info">
+
+                        <span class="link-label">
+                            Anúncio da oportunidade
+                        </span>
+
+                        <span class="link-url">
+                            {{ candidatura[8] }}
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="{{ candidatura[8] }}"
+                        target="_blank"
+                        class="link"
+                    >
+                        Abrir vaga →
+                    </a>
+
+                </div>
+
+            {% else %}
+
+                <span class="empty-value">
+                    Nenhum link foi informado.
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- DESCRIÇÃO -->
+
+        <div class="card full">
+
+            <h2>
+                Descrição da vaga
+            </h2>
+
+
+            {% if candidatura[9] %}
+
+                <div class="description">
+                    {{ candidatura[9] }}
+                </div>
+
+            {% else %}
+
+                <span class="empty-value">
+                    Nenhuma descrição foi adicionada.
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- OBSERVAÇÕES -->
+
+        <div class="card full">
+
+            <h2>
+                Minhas observações
+            </h2>
+
+
+            {% if candidatura[10] %}
+
+                <div class="description">
+                    {{ candidatura[10] }}
+                </div>
+
+            {% else %}
+
+                <span class="empty-value">
+                    Nenhuma observação foi adicionada.
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         AÇÕES
+    ===================================================== -->
+
+    <div class="actions">
+
+
+        <a
+            href="{{ url_for('candidaturas.listar') }}"
+            class="button secondary"
+        >
+
+            <span class="button-icon">
+                ←
+            </span>
+
+            Voltar
+
+        </a>
+
+
+
+        <a
+            href="{{ url_for('candidaturas.editar', id=candidatura[0]) }}"
+            class="button primary"
+        >
+
+            <span class="button-icon">
+                ✎
+            </span>
+
+            Editar candidatura
+
+        </a>
+
+
+
+        <form
+            method="POST"
+            action="{{ url_for('candidaturas.excluir', id=candidatura[0]) }}"
+            onsubmit="return confirmarExclusao();"
+        >
+
+            <button
+                type="submit"
+                class="button danger"
+            >
+
+                <span class="button-icon">
+                    🗑
+                </span>
+
+                Excluir candidatura
+
+            </button>
+
+        </form>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+    function confirmarExclusao() {
+
+        return confirm(
+            "Tem certeza que deseja excluir esta candidatura?\n\nEsta ação não poderá ser desfeita."
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

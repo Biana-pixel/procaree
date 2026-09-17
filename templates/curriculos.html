@@ -1,0 +1,901 @@
+{% extends "base.html" %}
+
+{% block title %}Currículos | ProCareer{% endblock %}
+
+{% block content %}
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+        background: #f4fbfd;
+        color: #0f172a;
+    }
+
+    .page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 18px 38px 50px;
+    }
+
+
+    /* =========================
+       TOPO
+    ========================= */
+
+    .page-topbar {
+        position: relative;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 32px;
+    }
+
+    .page-heading {
+        display: flex;
+        align-items: center;
+
+        gap: 15px;
+    }
+
+    .heading-icon {
+        width: 48px;
+        height: 48px;
+
+        flex-shrink: 0;
+
+        border-radius: 14px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 22px;
+
+        background: linear-gradient(
+            135deg,
+            #dff6ff,
+            #cffafe
+        );
+
+        color: #0284c7;
+
+        box-shadow:
+            0 8px 22px
+            rgba(14, 165, 233, .12);
+
+        transition:
+            transform .25s ease,
+            box-shadow .25s ease;
+    }
+
+    .heading-icon:hover {
+        transform:
+            rotate(-5deg)
+            scale(1.06);
+
+        box-shadow:
+            0 11px 26px
+            rgba(14, 165, 233, .20);
+    }
+
+    .page-heading h1 {
+        margin: 0;
+
+        font-size: 28px;
+
+        color: #12383d;
+
+        letter-spacing: -.5px;
+
+        font-weight: 900;
+
+        text-shadow:
+            0 3px 5px rgba(14, 165, 233, .35),
+            0 6px 12px rgba(14, 165, 233, .28);
+    }
+
+
+    /* =========================
+       PERFIL
+    ========================= */
+
+    .profile {
+        width: 43px;
+        height: 43px;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        background: linear-gradient(
+            135deg,
+            #0284c7,
+            #06b6d4
+        );
+
+        box-shadow:
+            0 7px 18px
+            rgba(14, 165, 233, .20);
+
+        transition:
+            transform .25s ease,
+            box-shadow .25s ease;
+    }
+
+    .profile:hover {
+        transform:
+            translateY(-2px)
+            scale(1.05);
+
+        box-shadow:
+            0 10px 24px
+            rgba(14, 165, 233, .28);
+    }
+
+
+    /* =========================
+       CABEÇALHO DA SEÇÃO
+    ========================= */
+
+    .section-top {
+        max-width: 1100px;
+        margin: 0 auto 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 20px;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+
+        gap: 10px;
+    }
+
+    .section-title h2 {
+        margin: 0;
+
+        font-size: 20px;
+
+        font-weight: 800;
+
+        color: #0f172a;
+    }
+
+    .section-title span {
+        width: 9px;
+        height: 9px;
+
+        border-radius: 50%;
+
+        background: #06b6d4;
+
+        box-shadow:
+            0 0 0 5px
+            rgba(6, 182, 212, .10);
+    }
+
+
+    /* =========================
+       BOTÃO NOVO
+    ========================= */
+
+    .btn-new {
+        border: none;
+        text-decoration: none;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 8px;
+
+        padding: 11px 18px;
+
+        min-height: 48px;
+
+        border-radius: 11px;
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        background: linear-gradient(
+            135deg,
+            #0284c7,
+            #06b6d4
+        );
+
+        box-shadow:
+            0 8px 20px
+            rgba(14, 165, 233, .20);
+
+        transition:
+            transform .2s ease,
+            box-shadow .2s ease;
+    }
+
+    .btn-new:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 12px 25px
+            rgba(14, 165, 233, .28);
+    }
+
+
+    /* =========================
+       GRID
+    ========================= */
+
+    .curriculos-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 20px;
+    }
+
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .curriculo-card {
+        position: relative;
+
+        overflow: hidden;
+
+        background: white;
+
+        border: 1px solid #e2e8f0;
+
+        border-radius: 18px;
+
+        padding: 22px;
+
+        box-shadow:
+            0 8px 25px
+            rgba(15, 23, 42, .05);
+
+        transition:
+            transform .22s ease,
+            box-shadow .22s ease,
+            border-color .22s ease;
+    }
+
+
+    /* LINHA AZUL — APARECE SOMENTE NO HOVER */
+
+    .curriculo-card::before {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        top: 0;
+        bottom: 0;
+
+        width: 4px;
+
+        background: linear-gradient(
+            180deg,
+            #0284c7,
+            #06b6d4
+        );
+
+        opacity: 0;
+
+        transition:
+            opacity .25s ease;
+    }
+
+    .curriculo-card:hover::before {
+        opacity: 1;
+    }
+
+    .curriculo-card::after {
+        content: "";
+
+        position: absolute;
+
+        width: 90px;
+        height: 90px;
+
+        right: -35px;
+        top: -35px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(6, 182, 212, .055);
+
+        pointer-events: none;
+    }
+
+    .curriculo-card:hover {
+        transform: translateY(-4px);
+
+        border-color:
+            rgba(6, 182, 212, .30);
+
+        box-shadow:
+            0 15px 35px
+            rgba(15, 23, 42, .08);
+    }
+
+
+    /* =========================
+       PARTE SUPERIOR DO CARD
+    ========================= */
+
+    .curriculo-header {
+        display: flex;
+        align-items: center;
+
+        gap: 14px;
+
+        margin-bottom: 18px;
+    }
+
+    .pdf-icon {
+        width: 52px;
+        height: 52px;
+
+        flex-shrink: 0;
+
+        border-radius: 14px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 23px;
+
+        background: #e0f7ff;
+
+        color: #0284c7;
+
+        border: 1px solid #bae6fd;
+    }
+
+    .curriculo-info {
+        min-width: 0;
+    }
+
+    .curriculo-info h3 {
+        margin: 0 0 5px;
+
+        font-size: 18px;
+
+        font-weight: 800;
+
+        color: #0f172a;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+    .curriculo-info p {
+        margin: 0;
+
+        font-size: 14px;
+
+        color: #64748b;
+    }
+
+
+    /* =========================
+       DATA
+    ========================= */
+
+    .curriculo-date {
+        display: flex;
+        align-items: center;
+
+        gap: 7px;
+
+        margin-bottom: 17px;
+
+        font-size: 14px;
+
+        color: #64748b;
+    }
+
+    .curriculo-date span {
+        color: #0284c7;
+
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       LINK
+    ========================= */
+
+    .curriculo-link {
+        display: inline-flex;
+        align-items: center;
+
+        gap: 6px;
+
+        margin-bottom: 18px;
+
+        color: #0284c7;
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        text-decoration: none;
+
+        transition:
+            gap .2s ease,
+            color .2s ease;
+    }
+
+    .curriculo-link:hover {
+        gap: 9px;
+
+        color: #0369a1;
+    }
+
+    .sem-link {
+        display: inline-block;
+
+        margin-bottom: 18px;
+
+        font-size: 14px;
+
+        color: #64748b;
+    }
+
+
+    /* =========================
+       BOTÃO DETALHES
+    ========================= */
+
+    .btn-details {
+        width: 100%;
+
+        min-height: 46px;
+
+        padding: 10px 14px;
+
+        border-radius: 10px;
+
+        border: 1px solid #bae6fd;
+
+        background: #f0f9ff;
+
+        color: #0284c7;
+
+        text-decoration: none;
+
+        font-size: 14px;
+
+        font-weight: 800;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transition:
+            background .2s ease,
+            border-color .2s ease,
+            transform .2s ease;
+    }
+
+    .btn-details:hover {
+        background: #e0f2fe;
+
+        border-color: #7dd3fc;
+
+        transform: translateY(-1px);
+    }
+
+
+    /* =========================
+       ESTADO VAZIO
+    ========================= */
+
+    .empty-state {
+        max-width: 1100px;
+
+        margin: 30px auto 0;
+
+        background: white;
+
+        border: 1px solid #e2e8f0;
+
+        border-radius: 18px;
+
+        padding: 55px 25px;
+
+        text-align: center;
+
+        box-shadow:
+            0 8px 25px
+            rgba(15, 23, 42, .04);
+    }
+
+    .empty-icon {
+        width: 65px;
+        height: 65px;
+
+        margin: 0 auto 15px;
+
+        border-radius: 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 28px;
+
+        background: #e0f7ff;
+
+        color: #0284c7;
+    }
+
+    .empty-state h3 {
+        margin: 0 0 7px;
+
+        font-size: 18px;
+
+        font-weight: 800;
+
+        color: #0f172a;
+    }
+
+    .empty-state p {
+        margin: 0 auto 20px;
+
+        max-width: 500px;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+
+        color: #64748b;
+    }
+
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    @media (max-width: 900px) {
+
+        .page {
+            padding: 18px 22px 40px;
+        }
+
+        .curriculos-grid {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+        .page {
+            padding: 18px 16px 35px;
+        }
+
+        .page-topbar {
+            margin-bottom: 25px;
+        }
+
+        .heading-icon {
+            width: 42px;
+            height: 42px;
+
+            font-size: 20px;
+        }
+
+        .page-heading h1 {
+            font-size: 24px;
+        }
+
+        .profile {
+            width: 38px;
+            height: 38px;
+
+            font-size: 14px;
+        }
+
+        .section-top {
+            align-items: flex-start;
+
+            flex-direction: column;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+        }
+
+        .btn-new {
+            width: 100%;
+
+            font-size: 15px;
+
+            min-height: 48px;
+        }
+
+        .curriculo-card {
+            padding: 20px;
+        }
+
+        .curriculo-info h3 {
+            font-size: 17px;
+        }
+
+        .curriculo-info p {
+            font-size: 14px;
+        }
+
+        .curriculo-date {
+            font-size: 14px;
+        }
+
+        .curriculo-link {
+            font-size: 15px;
+        }
+
+        .sem-link {
+            font-size: 14px;
+        }
+
+        .btn-details {
+            min-height: 48px;
+
+            font-size: 15px;
+        }
+
+    }
+
+
+    @media (max-width: 450px) {
+
+        .page-heading h1 {
+            font-size: 24px;
+        }
+
+        .curriculo-card {
+            padding: 18px;
+        }
+
+        .curriculo-header {
+            gap: 12px;
+        }
+
+        .pdf-icon {
+            width: 48px;
+            height: 48px;
+
+            font-size: 21px;
+        }
+
+        .curriculo-info h3 {
+            font-size: 17px;
+        }
+
+        .curriculo-info p {
+            font-size: 13px;
+        }
+
+        .curriculo-date {
+            font-size: 14px;
+        }
+
+        .curriculo-link {
+            font-size: 15px;
+        }
+
+        .empty-state {
+            padding: 50px 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+        }
+
+    }
+
+</style>
+
+
+<div class="page">
+
+    <!-- =========================
+         TOPO
+    ========================= -->
+
+    <div class="page-topbar">
+
+        <div class="page-heading">
+
+            <div class="heading-icon">
+                📄
+            </div>
+
+            <h1>
+                Currículos
+            </h1>
+
+        </div>
+
+
+        <div class="profile">
+            {{ session["usuario_nome"][0] }}
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
+
+    <div class="section-top">
+
+        <div class="section-title">
+
+            <span></span>
+
+            <h2>
+                Meus currículos
+            </h2>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('curriculos.novo') }}"
+            class="btn-new"
+        >
+            + Novo currículo
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         CURRÍCULOS
+    ========================= -->
+
+    {% if curriculos %}
+
+        <div class="curriculos-grid">
+
+            {% for curriculo in curriculos %}
+
+                <div class="curriculo-card">
+
+                    <div class="curriculo-header">
+
+                        <div class="pdf-icon">
+                            📄
+                        </div>
+
+                        <div class="curriculo-info">
+
+                            <h3>
+                                {{ curriculo[1] }}
+                            </h3>
+
+                            <p>
+                                Currículo profissional
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="curriculo-date">
+
+                        <span>●</span>
+
+                        Criado em
+                        {{ curriculo[3].strftime('%d/%m/%Y') }}
+
+                    </div>
+
+
+                    {% if curriculo[2] %}
+
+                        <a
+                            href="{{ curriculo[2] }}"
+                            target="_blank"
+                            class="curriculo-link"
+                        >
+                            Visualizar currículo →
+                        </a>
+
+                    {% else %}
+
+                        <span class="sem-link">
+                            Sem arquivo ou link
+                        </span>
+
+                    {% endif %}
+
+
+                    <a
+                        href="{{ url_for('curriculos.detalhes', id=curriculo[0]) }}"
+                        class="btn-details"
+                    >
+                        Ver detalhes
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                📄
+            </div>
+
+            <h3>
+                Nenhum currículo cadastrado
+            </h3>
+
+            <p>
+                Cadastre seu primeiro currículo para organizar suas versões
+                e facilitar o envio para novas oportunidades.
+            </p>
+
+            <a
+                href="{{ url_for('curriculos.novo') }}"
+                class="btn-new"
+            >
+                + Criar primeiro currículo
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

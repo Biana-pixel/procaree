@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Editar candidatura | ProCareer</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: Inter, Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 8% 8%,
+                    rgba(45, 212, 191, 0.14),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 92% 15%,
+                    rgba(14, 165, 233, 0.08),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f3faf9,
+                    #f7fbfc
+                );
+
+            color: #183f43;
+
+            min-height: 100vh;
+
+            padding-bottom: 55px;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+
+            height: 68px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 42px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #083b42,
+                    #0b4f55
+                );
+
+            color: white;
+
+            box-shadow:
+                0 8px 25px
+                rgba(
+                    8,
+                    59,
+                    66,
+                    0.13
+                );
+
+        }
+
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+
+        }
+
+
+        .logo span {
+
+            color: #5eead4;
+
+        }
+
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
+        .container {
+
+            max-width: 920px;
+
+            margin: 35px auto;
+
+            padding: 0 22px;
+
+            animation:
+                pageEnter 0.55s ease;
+
+        }
+
+
+        @keyframes pageEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(13px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           VOLTAR
+        ===================================================== */
+
+        .back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                11px 17px;
+
+            border-radius: 11px;
+
+            color: #087f8c;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.92
+                );
+
+            border:
+                1px solid #d5e8e9;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 750;
+
+            margin-bottom: 27px;
+
+            box-shadow:
+                0 5px 16px
+                rgba(
+                    8,
+                    127,
+                    140,
+                    0.05
+                );
+
+            transition:
+                transform 0.22s ease,
+                background 0.22s ease,
+                border-color 0.22s ease,
+                box-shadow 0.22s ease;
+
+        }
+
+
+        .back-icon {
+
+            font-size: 20px;
+
+            transition:
+                transform 0.22s ease;
+
+        }
+
+
+        .back:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                #ffffff;
+
+            border-color:
+                #9ed9df;
+
+            box-shadow:
+                0 9px 22px
+                rgba(
+                    8,
+                    127,
+                    140,
+                    0.10
+                );
+
+        }
+
+
+        .back:hover .back-icon {
+
+            transform:
+                translateX(-3px);
+
+        }
+
+
+        /* =====================================================
+           TÍTULO
+        ===================================================== */
+
+        .title {
+
+            text-align: center;
+
+            margin-bottom: 31px;
+
+        }
+
+
+        .title-icon {
+
+            width: 64px;
+
+            height: 64px;
+
+            margin:
+                0 auto 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dffaff,
+                    #dff8f4
+                );
+
+            border:
+                1px solid #c9e9eb;
+
+            color: #087f8c;
+
+            font-size: 27px;
+
+            box-shadow:
+                0 12px 27px
+                rgba(
+                    8,
+                    127,
+                    140,
+                    0.10
+                );
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .title-icon:hover {
+
+            transform:
+                translateY(-4px)
+                rotate(-5deg)
+                scale(1.04);
+
+            box-shadow:
+                0 15px 30px
+                rgba(
+                    8,
+                    127,
+                    140,
+                    0.16
+                );
+
+        }
+
+
+        .title h1 {
+
+            font-size: 31px;
+
+            color: #12383d;
+
+            font-weight: 900;
+
+            letter-spacing: -0.8px;
+
+            text-shadow:
+
+                0 3px 5px
+                rgba(
+                    14,
+                    165,
+                    233,
+                    0.20
+                ),
+
+                0 6px 12px
+                rgba(
+                    14,
+                    165,
+                    233,
+                    0.14
+                );
+
+        }
+
+
+        /* =====================================================
+           CARD
+        ===================================================== */
+
+        .form-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.97
+                );
+
+            border:
+                1px solid #dcebec;
+
+            border-radius: 23px;
+
+            padding: 34px;
+
+            box-shadow:
+                0 18px 48px
+                rgba(
+                    8,
+                    91,
+                    103,
+                    0.065
+                );
+
+            transition:
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .form-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #06b6d4,
+                    #14b8a6,
+                    #38bdf8
+                );
+
+        }
+
+
+        .form-card:hover {
+
+            box-shadow:
+                0 23px 55px
+                rgba(
+                    8,
+                    91,
+                    103,
+                    0.09
+                );
+
+        }
+
+
+        /* =====================================================
+           SEÇÕES
+        ===================================================== */
+
+        .section {
+
+            margin-bottom: 32px;
+
+        }
+
+
+        .section:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            padding-bottom: 13px;
+
+            border-bottom:
+                1px solid #edf3f3;
+
+        }
+
+
+        .section-heading::before {
+
+            content: "";
+
+            width: 10px;
+
+            height: 10px;
+
+            min-width: 10px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #06b6d4,
+                    #14b8a6
+                );
+
+            box-shadow:
+                0 0 0 4px
+                rgba(
+                    14,
+                    165,
+                    233,
+                    0.07
+                );
+
+        }
+
+
+        .section-heading h2 {
+
+            color: #23494d;
+
+            font-size: 20px;
+
+            font-weight: 850;
+
+            letter-spacing: -0.2px;
+
+        }
+
+
+        /* =====================================================
+           GRID
+        ===================================================== */
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+
+        }
+
+
+        .field {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+
+        }
+
+
+        .field.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        /* =====================================================
+           LABEL
+        ===================================================== */
+
+        label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            color: #38565b;
+
+            font-size: 16px;
+
+            font-weight: 750;
+
+        }
+
+
+        .required {
+
+            color: #0891b2;
+
+            font-size: 17px;
+
+        }
+
+
+        /* =====================================================
+           INPUTS
+        ===================================================== */
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            border:
+                1px solid #d4e3e5;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 16px;
+
+            color: #334155;
+
+            background:
+                #fbfefe;
+
+            transition:
+                border-color 0.22s ease,
+                box-shadow 0.22s ease,
+                background 0.22s ease,
+                transform 0.22s ease;
+
+        }
+
+
+        input,
+        select {
+
+            height: 52px;
+
+            padding:
+                0 15px;
+
+        }
+
+
+        textarea {
+
+            min-height: 130px;
+
+            padding:
+                14px 15px;
+
+            resize: vertical;
+
+            line-height: 1.65;
+
+        }
+
+
+        input:hover,
+        select:hover,
+        textarea:hover {
+
+            border-color:
+                #abd6dc;
+
+            background:
+                #ffffff;
+
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color:
+                #06a6bc;
+
+            background:
+                #ffffff;
+
+            box-shadow:
+
+                0 0 0 3px
+                rgba(
+                    6,
+                    166,
+                    188,
+                    0.09
+                ),
+
+                0 6px 16px
+                rgba(
+                    8,
+                    127,
+                    140,
+                    0.05
+                );
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        input::placeholder,
+        textarea::placeholder {
+
+            color:
+                #9aa9ad;
+
+            font-size:
+                15px;
+
+        }
+
+
+        select {
+
+            cursor:
+                pointer;
+
+        }
+
+
+        /* =====================================================
+           TEXTAREA
+        ===================================================== */
+
+        .textarea-wrapper {
+
+            position:
+                relative;
+
+        }
+
+
+        .textarea-wrapper textarea {
+
+            padding-bottom:
+                34px;
+
+        }
+
+
+        .counter {
+
+            position:
+                absolute;
+
+            right:
+                14px;
+
+            bottom:
+                10px;
+
+            color:
+                #8d9da1;
+
+            font-size:
+                13px;
+
+            pointer-events:
+                none;
+
+            transition:
+                color 0.2s ease;
+
+        }
+
+
+        .textarea-wrapper:focus-within
+        .counter {
+
+            color:
+                #0891a2;
+
+        }
+
+
+        /* =====================================================
+           BOTÕES
+        ===================================================== */
+
+        .buttons {
+
+            display: flex;
+
+            justify-content:
+                flex-end;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            margin-top:
+                31px;
+
+            padding-top:
+                24px;
+
+            border-top:
+                1px solid #edf3f3;
+
+        }
+
+
+        .cancel {
+
+            display: inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            height:
+                48px;
+
+            padding:
+                0 21px;
+
+            border-radius:
+                11px;
+
+            color:
+                #64777b;
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid #d7e3e4;
+
+            text-decoration:
+                none;
+
+            font-size:
+                15px;
+
+            font-weight:
+                750;
+
+            transition:
+                transform 0.22s ease,
+                background 0.22s ease,
+                border-color 0.22s ease,
+                box-shadow 0.22s ease;
+
+        }
+
+
+        .cancel:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                #f7fbfb;
+
+            border-color:
+                #b9d5d8;
+
+            box-shadow:
+                0 7px 16px
+                rgba(
+                    8,
+                    91,
+                    103,
+                    0.06
+                );
+
+        }
+
+
+        /* =====================================================
+           SALVAR
+        ===================================================== */
+
+        .save {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                8px;
+
+            height:
+                48px;
+
+            padding:
+                0 23px;
+
+            border:
+                none;
+
+            border-radius:
+                11px;
+
+            color:
+                white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087f8c,
+                    #0d9488,
+                    #14b8a6
+                );
+
+            font-family:
+                inherit;
+
+            font-size:
+                15px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 9px 22px
+                rgba(
+                    8,
+                    127,
+                    140,
+                    0.20
+                );
+
+            transition:
+                transform 0.22s ease,
+                box-shadow 0.22s ease,
+                opacity 0.22s ease;
+
+        }
+
+
+        .save:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 14px 29px
+                rgba(
+                    8,
+                    127,
+                    140,
+                    0.27
+                );
+
+        }
+
+
+        .save-icon {
+
+            font-size:
+                18px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVO
+        ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .container {
+
+                margin:
+                    28px auto;
+
+                padding:
+                    0 20px;
+
+            }
+
+
+            .form-card {
+
+                padding:
+                    27px;
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .container {
+
+                margin:
+                    25px auto;
+
+                padding:
+                    0 15px;
+
+            }
+
+
+            .back {
+
+                font-size:
+                    15px;
+
+                padding:
+                    10px 14px;
+
+            }
+
+
+            .back-icon {
+
+                font-size:
+                    20px;
+
+            }
+
+
+            .title {
+
+                margin-bottom:
+                    25px;
+
+            }
+
+
+            .title h1 {
+
+                font-size:
+                    27px;
+
+            }
+
+
+            .title-icon {
+
+                width:
+                    57px;
+
+                height:
+                    57px;
+
+                font-size:
+                    23px;
+
+            }
+
+
+            .form-card {
+
+                padding:
+                    23px 18px;
+
+                border-radius:
+                    19px;
+
+            }
+
+
+            .grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    18px;
+
+            }
+
+
+            .field.full {
+
+                grid-column:
+                    auto;
+
+            }
+
+
+            .section-heading h2 {
+
+                font-size:
+                    18px;
+
+            }
+
+
+            .buttons {
+
+                flex-direction:
+                    column-reverse;
+
+            }
+
+
+            .cancel,
+            .save {
+
+                width:
+                    100%;
+
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .container {
+
+                padding:
+                    0 14px;
+
+            }
+
+
+            .back {
+
+                font-size:
+                    14px;
+
+                padding:
+                    10px 13px;
+
+            }
+
+
+            .back-icon {
+
+                font-size:
+                    20px;
+
+            }
+
+
+            .title h1 {
+
+                font-size:
+                    24px;
+
+            }
+
+
+            .title-icon {
+
+                width:
+                    53px;
+
+                height:
+                    53px;
+
+                font-size:
+                    22px;
+
+            }
+
+
+            .form-card {
+
+                padding:
+                    20px 15px;
+
+            }
+
+
+            label {
+
+                font-size:
+                    15px;
+
+            }
+
+
+            input,
+            select,
+            textarea {
+
+                font-size:
+                    16px;
+
+            }
+
+
+            input::placeholder,
+            textarea::placeholder {
+
+                font-size:
+                    14px;
+
+            }
+
+
+            .counter {
+
+                font-size:
+                    12px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+
+        Pro<span>Career</span>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+    <!-- VOLTAR -->
+
+    <a
+        href="{{ url_for('candidaturas.detalhes', id=candidatura[0]) }}"
+        class="back"
+    >
+
+        <span class="back-icon">
+            ←
+        </span>
+
+        Voltar para detalhes
+
+    </a>
+
+
+
+    <!-- TÍTULO -->
+
+    <div class="title">
+
+        <div class="title-icon">
+            ✎
+        </div>
+
+        <h1>
+            Editar candidatura
+        </h1>
+
+    </div>
+
+
+
+    <!-- FORMULÁRIO -->
+
+    <div class="form-card">
+
+
+        <form
+            method="POST"
+            action="{{ url_for('candidaturas.editar', id=candidatura[0]) }}"
+            autocomplete="off"
+        >
+
+
+            <!-- INFORMAÇÕES -->
+
+            <section class="section">
+
+
+                <div class="section-heading">
+
+                    <h2>
+                        Informações da oportunidade
+                    </h2>
+
+                </div>
+
+
+
+                <div class="grid">
+
+
+                    <div class="field full">
+
+                        <label for="cargo">
+
+                            Cargo
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="cargo"
+                            name="cargo"
+                            value="{{ candidatura[1] }}"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label for="empresa">
+                            Empresa
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="empresa"
+                            name="empresa"
+                            value="{{ candidatura[2] or '' }}"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label for="status">
+                            Status
+                        </label>
+
+
+                        <select
+                            id="status"
+                            name="status"
+                        >
+
+                            <option
+                                value="interessado"
+                                {% if candidatura[3] == "interessado" %}selected{% endif %}
+                            >
+                                Interessado
+                            </option>
+
+
+                            <option
+                                value="candidatado"
+                                {% if candidatura[3] == "candidatado" %}selected{% endif %}
+                            >
+                                Candidatado
+                            </option>
+
+
+                            <option
+                                value="entrevista"
+                                {% if candidatura[3] == "entrevista" %}selected{% endif %}
+                            >
+                                Entrevista
+                            </option>
+
+
+                            <option
+                                value="teste"
+                                {% if candidatura[3] == "teste" %}selected{% endif %}
+                            >
+                                Teste
+                            </option>
+
+
+                            <option
+                                value="aprovado"
+                                {% if candidatura[3] == "aprovado" %}selected{% endif %}
+                            >
+                                Aprovado
+                            </option>
+
+
+                            <option
+                                value="rejeitado"
+                                {% if candidatura[3] == "rejeitado" %}selected{% endif %}
+                            >
+                                Rejeitado
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label for="modalidade">
+                            Modalidade
+                        </label>
+
+
+                        <select
+                            id="modalidade"
+                            name="modalidade"
+                        >
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+
+                            <option
+                                value="remoto"
+                                {% if candidatura[4] == "remoto" %}selected{% endif %}
+                            >
+                                Remoto
+                            </option>
+
+
+                            <option
+                                value="híbrido"
+                                {% if candidatura[4] == "híbrido" %}selected{% endif %}
+                            >
+                                Híbrido
+                            </option>
+
+
+                            <option
+                                value="presencial"
+                                {% if candidatura[4] == "presencial" %}selected{% endif %}
+                            >
+                                Presencial
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label for="localizacao">
+                            Localização
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="localizacao"
+                            name="localizacao"
+                            value="{{ candidatura[5] or '' }}"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label for="salario">
+                            Salário
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="salario"
+                            name="salario"
+                            value="{{ candidatura[6] or '' }}"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- REFERÊNCIA -->
+
+            <section class="section">
+
+
+                <div class="section-heading">
+
+                    <h2>
+                        Referência da vaga
+                    </h2>
+
+                </div>
+
+
+
+                <div class="grid">
+
+
+                    <div class="field full">
+
+                        <label for="link_vaga">
+                            Link da vaga
+                        </label>
+
+
+                        <input
+                            type="url"
+                            id="link_vaga"
+                            name="link_vaga"
+                            value="{{ candidatura[7] or '' }}"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- DETALHES -->
+
+            <section class="section">
+
+
+                <div class="section-heading">
+
+                    <h2>
+                        Detalhes
+                    </h2>
+
+                </div>
+
+
+
+                <div class="grid">
+
+
+                    <div class="field full">
+
+                        <label for="descricao">
+                            Descrição da vaga
+                        </label>
+
+
+                        <div class="textarea-wrapper">
+
+
+                            <textarea
+                                id="descricao"
+                                name="descricao"
+                                autocomplete="off"
+                            >{{ candidatura[8] or '' }}</textarea>
+
+
+                            <span
+                                class="counter"
+                                id="descricaoCounter"
+                            >
+                                0 caracteres
+                            </span>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="field full">
+
+                        <label for="observacoes">
+                            Observações
+                        </label>
+
+
+                        <div class="textarea-wrapper">
+
+
+                            <textarea
+                                id="observacoes"
+                                name="observacoes"
+                                autocomplete="off"
+                            >{{ candidatura[9] or '' }}</textarea>
+
+
+                            <span
+                                class="counter"
+                                id="observacoesCounter"
+                            >
+                                0 caracteres
+                            </span>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- BOTÕES -->
+
+            <div class="buttons">
+
+
+                <a
+                    href="{{ url_for('candidaturas.detalhes', id=candidatura[0]) }}"
+                    class="cancel"
+                >
+
+                    ← Cancelar
+
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="save"
+                >
+
+                    <span class="save-icon">
+                        ✓
+                    </span>
+
+                    Salvar alterações
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+    const descricao =
+        document.getElementById(
+            "descricao"
+        );
+
+
+    const observacoes =
+        document.getElementById(
+            "observacoes"
+        );
+
+
+    const descricaoCounter =
+        document.getElementById(
+            "descricaoCounter"
+        );
+
+
+    const observacoesCounter =
+        document.getElementById(
+            "observacoesCounter"
+        );
+
+
+    function atualizarContador(
+        campo,
+        contador
+    ) {
+
+        const quantidade =
+            campo.value.length;
+
+
+        contador.textContent =
+            quantidade +
+            (
+                quantidade === 1
+                    ? " caractere"
+                    : " caracteres"
+            );
+
+    }
+
+
+    atualizarContador(
+        descricao,
+        descricaoCounter
+    );
+
+
+    atualizarContador(
+        observacoes,
+        observacoesCounter
+    );
+
+
+    descricao.addEventListener(
+        "input",
+        function() {
+
+            atualizarContador(
+                descricao,
+                descricaoCounter
+            );
+
+        }
+    );
+
+
+    observacoes.addEventListener(
+        "input",
+        function() {
+
+            atualizarContador(
+                observacoes,
+                observacoesCounter
+            );
+
+        }
+    );
+
+
+    const form =
+        document.querySelector(
+            "form"
+        );
+
+
+    const saveButton =
+        document.querySelector(
+            ".save"
+        );
+
+
+    form.addEventListener(
+        "submit",
+        function() {
+
+            saveButton.innerHTML =
+                '<span class="save-icon">✓</span> Salvando...';
+
+            saveButton.style.opacity =
+                "0.82";
+
+            saveButton.style.pointerEvents =
+                "none";
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

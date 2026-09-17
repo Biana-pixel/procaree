@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editar entrevista | ProCareer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fcfd;
+            color: #12383d;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           PÁGINA
+        ========================= */
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            padding: 35px 30px 50px;
+            animation: pageEnter .5s ease;
+        }
+
+        @keyframes pageEnter {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        /* =========================
+           TOPO
+        ========================= */
+
+        .page-topbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .page-heading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .heading-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e0f7ff,
+                    #d8f3ff
+                );
+
+            color: #0284c7;
+
+            font-size: 23px;
+
+            box-shadow:
+                0 8px 18px rgba(14,165,233,.16),
+                inset 0 1px 0 rgba(255,255,255,.9);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .heading-icon:hover {
+            transform:
+                translateY(-3px)
+                scale(1.05);
+
+            box-shadow:
+                0 12px 25px
+                rgba(14,165,233,.22);
+        }
+
+        .page-heading h1 {
+            margin: 0;
+
+            font-size: 30px;
+
+            color: #12383d;
+
+            letter-spacing: -.6px;
+
+            font-weight: 900;
+
+            text-shadow:
+                0 3px 5px rgba(14,165,233,.35),
+                0 6px 12px rgba(14,165,233,.28);
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            position: relative;
+
+            background: white;
+
+            border:
+                1px solid #dceff5;
+
+            border-radius: 22px;
+
+            padding: 32px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(15,72,84,.09),
+
+                0 4px 12px
+                rgba(14,165,233,.05);
+
+            overflow: hidden;
+        }
+
+        /* =========================
+           LINHA AZUL
+        ========================= */
+
+        .form-container::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0ea5e9,
+                    #38bdf8,
+                    #0ea5e9
+                );
+        }
+
+        /* =========================
+           DECORAÇÃO
+        ========================= */
+
+        .form-container::after {
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            right: -45px;
+            top: -45px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(14,165,233,.07);
+
+            pointer-events: none;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        .form-header {
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+            align-items: center;
+
+            gap: 14px;
+
+            margin-bottom: 28px;
+            padding-bottom: 22px;
+
+            border-bottom:
+                1px solid #edf2f3;
+        }
+
+        .form-header-icon {
+            width: 44px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e0f2fe,
+                    #ecfeff
+                );
+
+            color: #0284c7;
+
+            font-size: 19px;
+        }
+
+        .form-header h2 {
+            margin: 0;
+
+            font-size: 21px;
+
+            color: #183f43;
+
+            font-weight: 900;
+        }
+
+        /* =========================
+           GRID
+        ========================= */
+
+        .form-grid {
+            position: relative;
+            z-index: 1;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        /* =========================
+           LABELS
+        ========================= */
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+
+            gap: 5px;
+
+            margin-bottom: 9px;
+
+            color: #334155;
+
+            font-size: 16px;
+
+            font-weight: 800;
+        }
+
+        .required {
+            color: #0284c7;
+            font-size: 17px;
+        }
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
+        .field-wrapper {
+            position: relative;
+        }
+
+        .field-icon {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color: #94a3b8;
+
+            font-size: 15px;
+
+            pointer-events: none;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            border:
+                1px solid #dce7ea;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            font-size: 16px;
+
+            font-family: inherit;
+
+            color: #334155;
+
+            background: #fbfefe;
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        .form-group input,
+        .form-group select {
+
+            height: 52px;
+
+            padding:
+                0 14px;
+        }
+
+        .field-wrapper.has-icon input,
+        .field-wrapper.has-icon select {
+            padding-left: 40px;
+        }
+
+        .form-group textarea {
+
+            min-height: 140px;
+
+            padding: 14px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+        }
+
+        .form-group input:hover,
+        .form-group select:hover,
+        .form-group textarea:hover {
+
+            border-color:
+                #9ed8e7;
+
+            background:
+                white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color:
+                #0ea5e9;
+
+            background:
+                white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(14,165,233,.10);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #9ab3b9;
+            font-size: 15px;
+        }
+
+        /* =========================
+           ERRO
+        ========================= */
+
+        .date-error {
+
+            display: none;
+
+            margin-top: 7px;
+
+            padding: 8px 10px;
+
+            border-radius: 8px;
+
+            background: #fef2f2;
+
+            border:
+                1px solid #fecaca;
+
+            color: #dc2626;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        /* =========================
+           BOTÕES
+        ========================= */
+
+        .form-actions {
+
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+
+            justify-content: flex-end;
+            align-items: center;
+
+            gap: 11px;
+
+            margin-top: 30px;
+            padding-top: 23px;
+
+            border-top:
+                1px solid #edf2f3;
+        }
+
+        .cancel-button {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-decoration: none;
+
+            color: #475569;
+
+            border:
+                1px solid #d8e2e5;
+
+            background: white;
+
+            padding:
+                0 18px;
+
+            min-height:
+                48px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            transition: .2s ease;
+        }
+
+        .cancel-button:hover {
+
+            background:
+                #f8fafc;
+
+            border-color:
+                #cbd5e1;
+
+            transform:
+                translateY(-1px);
+        }
+
+        .save-button {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 7px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0284c7,
+                    #06b6d4
+                );
+
+            color: white;
+
+            border: none;
+
+            padding:
+                0 20px;
+
+            min-height:
+                48px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 18px
+                rgba(14,165,233,.18);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .save-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 24px
+                rgba(14,165,233,.28);
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding:
+                    25px 16px 35px;
+            }
+
+            .heading-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+
+            .page-heading h1 {
+                font-size: 27px;
+            }
+
+            .form-container {
+                padding: 22px;
+                border-radius: 18px;
+            }
+
+            .form-header h2 {
+                font-size: 19px;
+            }
+
+            .form-actions {
+
+                flex-direction:
+                    column-reverse;
+
+                align-items:
+                    stretch;
+            }
+
+            .cancel-button,
+            .save-button {
+                width: 100%;
+            }
+
+        }
+
+        @media (max-width: 430px) {
+
+            .form-container {
+                padding: 18px;
+            }
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+
+            .form-grid {
+                gap: 17px;
+            }
+
+            .form-group label {
+                font-size: 15px;
+            }
+
+            .required {
+                font-size: 16px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 16px;
+            }
+
+            .form-group input::placeholder,
+            .form-group textarea::placeholder {
+                font-size: 14px;
+            }
+
+            .date-error {
+                font-size: 12px;
+            }
+
+            .cancel-button,
+            .save-button {
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- =========================
+         TOPO
+    ========================= -->
+
+    <div class="page-topbar">
+
+        <div class="page-heading">
+
+            <div class="heading-icon">
+                🎯
+            </div>
+
+            <h1>
+                Editar entrevista
+            </h1>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FORMULÁRIO
+    ========================= -->
+
+    <div class="form-wrapper">
+
+        <div class="form-container">
+
+
+            <div class="form-header">
+
+                <div class="form-header-icon">
+                    ✏️
+                </div>
+
+                <h2>
+                    Informações da entrevista
+                </h2>
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('entrevistas.editar', id=entrevista[0]) }}"
+                id="entrevistaForm"
+            >
+
+
+                <div class="form-grid">
+
+
+                    <!-- CANDIDATURA -->
+
+                    <div class="form-group full">
+
+                        <label for="candidatura_id">
+
+                            Candidatura
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <div class="field-wrapper">
+
+                            <select
+                                id="candidatura_id"
+                                name="candidatura_id"
+                                required
+                            >
+
+                                <option value="">
+                                    Selecione uma candidatura
+                                </option>
+
+
+                                {% for candidatura in candidaturas %}
+
+                                    <option
+                                        value="{{ candidatura[0] }}"
+
+                                        {% if candidatura[0] == entrevista[4] %}
+                                            selected
+                                        {% endif %}
+                                    >
+
+                                        {{ candidatura[1] }}
+
+                                        {% if candidatura[2] %}
+                                            — {{ candidatura[2] }}
+                                        {% endif %}
+
+                                    </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DATA -->
+
+                    <div class="form-group">
+
+                        <label for="data">
+
+                            Data
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <div class="field-wrapper has-icon">
+
+                            <span class="field-icon">
+                                📅
+                            </span>
+
+
+                            <input
+                                type="date"
+                                id="data"
+                                name="data"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div
+                            class="date-error"
+                            id="dateError"
+                        >
+                            Informe uma data válida com ano de 4 dígitos.
+                        </div>
+
+                    </div>
+
+
+                    <!-- HORÁRIO -->
+
+                    <div class="form-group">
+
+                        <label for="horario">
+
+                            Horário
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <div class="field-wrapper has-icon">
+
+                            <span class="field-icon">
+                                🕐
+                            </span>
+
+
+                            <input
+                                type="time"
+                                id="horario"
+                                name="horario"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TIPO -->
+
+                    <div class="form-group full">
+
+                        <label for="tipo">
+
+                            Tipo de entrevista
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <div class="field-wrapper has-icon">
+
+                            <span class="field-icon">
+                                💻
+                            </span>
+
+
+                            <select
+                                id="tipo"
+                                name="tipo"
+                                required
+                            >
+
+                                <option value="">
+                                    Selecione o tipo
+                                </option>
+
+
+                                <option
+                                    value="online"
+
+                                    {% if entrevista[2] == "online" %}
+                                        selected
+                                    {% endif %}
+                                >
+                                    Online
+                                </option>
+
+
+                                <option
+                                    value="presencial"
+
+                                    {% if entrevista[2] == "presencial" %}
+                                        selected
+                                    {% endif %}
+                                >
+                                    Presencial
+                                </option>
+
+
+                                <option
+                                    value="telefone"
+
+                                    {% if entrevista[2] == "telefone" %}
+                                        selected
+                                    {% endif %}
+                                >
+                                    Telefone
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OBSERVAÇÕES -->
+
+                    <div class="form-group full">
+
+                        <label for="observacoes">
+                            Observações
+                        </label>
+
+
+                        <textarea
+                            id="observacoes"
+                            name="observacoes"
+                            placeholder="Digite suas observações..."
+                        >{{ entrevista[3] or "" }}</textarea>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =========================
+                     AÇÕES
+                ========================= -->
+
+                <div class="form-actions">
+
+
+                    <a
+                        href="{{ url_for('entrevistas.detalhes', id=entrevista[0]) }}"
+                        class="cancel-button"
+                    >
+                        Cancelar
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+
+                        ✓
+
+                        Salvar alterações
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* =========================
+       DATA E HORÁRIO
+    ========================= */
+
+    const dataEntrevista =
+        "{{ entrevista[1].strftime('%Y-%m-%d') }}";
+
+
+    const horarioEntrevista =
+        "{{ entrevista[1].strftime('%H:%M') }}";
+
+
+    document.getElementById("data").value =
+        dataEntrevista;
+
+
+    document.getElementById("horario").value =
+        horarioEntrevista;
+
+
+    /* =========================
+       VALIDAÇÃO DA DATA
+    ========================= */
+
+    const formulario =
+        document.getElementById("entrevistaForm");
+
+
+    const campoData =
+        document.getElementById("data");
+
+
+    const mensagemErro =
+        document.getElementById("dateError");
+
+
+    formulario.addEventListener(
+        "submit",
+        function(event) {
+
+            const valor =
+                campoData.value;
+
+            const partes =
+                valor.split("-");
+
+            const ano =
+                partes[0];
+
+
+            if (
+                partes.length !== 3 ||
+                !/^\d{4}$/.test(ano)
+            ) {
+
+                event.preventDefault();
+
+                mensagemErro.style.display =
+                    "block";
+
+                campoData.focus();
+
+                return;
+            }
+
+
+            mensagemErro.style.display =
+                "none";
+
+        }
+    );
+
+
+    campoData.addEventListener(
+        "change",
+        function() {
+
+            const valor =
+                campoData.value;
+
+            const partes =
+                valor.split("-");
+
+            const ano =
+                partes[0];
+
+
+            if (
+                valor &&
+                (
+                    partes.length !== 3 ||
+                    !/^\d{4}$/.test(ano)
+                )
+            ) {
+
+                mensagemErro.style.display =
+                    "block";
+
+            } else {
+
+                mensagemErro.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

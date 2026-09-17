@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detalhes da entrevista | ProCareer</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #f8fcfd;
+
+            color: #12383d;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================================
+           PÁGINA
+        ========================================= */
+
+        .page {
+
+            width: 100%;
+
+            min-height: 100vh;
+
+            padding: 35px 30px 50px;
+
+            animation: pageEnter .5s ease;
+        }
+
+
+        @keyframes pageEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(10px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        /* =========================================
+           TOPO
+        ========================================= */
+
+        .page-topbar {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin-bottom: 32px;
+
+            text-align: center;
+        }
+
+
+        .page-heading {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .heading-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e0f7ff,
+                    #d8f3ff
+                );
+
+            color: #0284c7;
+
+            font-size: 23px;
+
+            box-shadow:
+                0 8px 18px
+                rgba(14,165,233,.16),
+
+                inset 0 1px 0
+                rgba(255,255,255,.9);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+
+        .heading-icon:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.05);
+
+            box-shadow:
+                0 12px 25px
+                rgba(14,165,233,.22);
+        }
+
+
+        .page-heading h1 {
+
+            margin: 0;
+
+            font-size: 30px;
+
+            color: #12383d;
+
+            letter-spacing: -.6px;
+
+            font-weight: 900;
+
+            text-shadow:
+                0 3px 5px
+                rgba(14,165,233,.35),
+
+                0 6px 12px
+                rgba(14,165,233,.28);
+        }
+
+
+        /* =========================================
+           CARD PRINCIPAL
+        ========================================= */
+
+        .details-wrapper {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+        }
+
+
+        .details-container {
+
+            position: relative;
+
+            background: white;
+
+            border:
+                1px solid #dceff5;
+
+            border-radius: 22px;
+
+            padding: 32px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(15,72,84,.09),
+
+                0 4px 12px
+                rgba(14,165,233,.05);
+
+            overflow: hidden;
+        }
+
+
+        /* =========================================
+           LINHA AZUL DECORATIVA
+        ========================================= */
+
+        .details-container::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0ea5e9,
+                    #38bdf8,
+                    #0ea5e9
+                );
+        }
+
+
+        /* =========================================
+           DECORAÇÃO
+        ========================================= */
+
+        .details-container::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+
+            height: 100px;
+
+            right: -45px;
+
+            top: -45px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(14,165,233,.07);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           CABEÇALHO DO CARD
+        ========================================= */
+
+        .details-header {
+
+            position: relative;
+
+            z-index: 1;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding-bottom: 25px;
+
+            margin-bottom: 25px;
+
+            border-bottom:
+                1px solid #edf2f3;
+        }
+
+
+        .interview-title-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            min-width: 0;
+        }
+
+
+        .interview-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e0f2fe,
+                    #ecfeff
+                );
+
+            color: #0284c7;
+
+            font-size: 20px;
+        }
+
+
+        .details-header h2 {
+
+            margin: 0 0 5px;
+
+            font-size: 23px;
+
+            color: #183f43;
+
+            letter-spacing: -.3px;
+
+            font-weight: 900;
+
+            word-break: break-word;
+        }
+
+
+        .company {
+
+            color: #64748b;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================================
+           BADGE
+        ========================================= */
+
+        .type-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                10px 15px;
+
+            border-radius: 20px;
+
+            background:
+                #e0f2fe;
+
+            color:
+                #0369a1;
+
+            font-size:
+                15px;
+
+            font-weight:
+                800;
+
+            white-space:
+                nowrap;
+        }
+
+
+        /* =========================================
+           INFORMAÇÕES
+        ========================================= */
+
+        .info-grid {
+
+            position: relative;
+
+            z-index: 1;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 16px;
+        }
+
+
+        .info-item {
+
+            position: relative;
+
+            background:
+                #f8fcfd;
+
+            border:
+                1px solid #e3eef1;
+
+            border-radius:
+                12px;
+
+            padding:
+                18px;
+
+            transition:
+                transform .22s ease,
+                border-color .22s ease,
+                box-shadow .22s ease;
+        }
+
+
+        .info-item:hover {
+
+            transform:
+                translateY(-2px);
+
+            border-color:
+                #b7dfea;
+
+            box-shadow:
+                0 8px 20px
+                rgba(14,165,233,.07);
+        }
+
+
+        .info-label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            margin-bottom: 8px;
+
+            font-size:
+                13px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .7px;
+
+            color:
+                #64748b;
+
+            font-weight:
+                800;
+        }
+
+
+        .info-label::before {
+
+            content: "";
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background:
+                #0ea5e9;
+        }
+
+
+        .info-value {
+
+            font-size:
+                16px;
+
+            font-weight:
+                800;
+
+            color:
+                #1e293b;
+
+            word-break:
+                break-word;
+        }
+
+
+        /* =========================================
+           OBSERVAÇÕES
+        ========================================= */
+
+        .observacoes {
+
+            position: relative;
+
+            z-index: 1;
+
+            margin-top:
+                18px;
+
+            padding:
+                20px;
+
+            background:
+                #f8fcfd;
+
+            border:
+                1px solid #e3eef1;
+
+            border-radius:
+                12px;
+        }
+
+
+        .observacoes h3 {
+
+            margin:
+                0 0 10px;
+
+            font-size:
+                20px;
+
+            color:
+                #183f43;
+
+            font-weight:
+                900;
+        }
+
+
+        .observacoes p {
+
+            margin: 0;
+
+            color:
+                #64748b;
+
+            font-size:
+                16px;
+
+            line-height:
+                1.7;
+
+            white-space:
+                pre-wrap;
+        }
+
+
+        /* =========================================
+           AÇÕES
+        ========================================= */
+
+        .actions {
+
+            position: relative;
+
+            z-index: 1;
+
+            display: flex;
+
+            justify-content:
+                flex-end;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            margin-top:
+                28px;
+
+            padding-top:
+                22px;
+
+            border-top:
+                1px solid #edf2f3;
+        }
+
+
+        .back-button,
+        .edit-button,
+        .delete-button {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            text-decoration:
+                none;
+
+            padding:
+                0 17px;
+
+            min-height:
+                48px;
+
+            border-radius:
+                10px;
+
+            font-size:
+                15px;
+
+            font-weight:
+                800;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+
+        /* =========================================
+           VOLTAR
+        ========================================= */
+
+        .back-button {
+
+            color:
+                #475569;
+
+            border:
+                1px solid #d8e2e5;
+
+            background:
+                white;
+        }
+
+
+        .back-button:hover {
+
+            background:
+                #f8fafc;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* =========================================
+           EDITAR
+        ========================================= */
+
+        .edit-button {
+
+            color:
+                white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0284c7,
+                    #06b6d4
+                );
+
+            box-shadow:
+                0 7px 16px
+                rgba(14,165,233,.16);
+        }
+
+
+        .edit-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 22px
+                rgba(14,165,233,.25);
+        }
+
+
+        /* =========================================
+           EXCLUIR
+        ========================================= */
+
+        .delete-button {
+
+            color:
+                #dc2626;
+
+            background:
+                #fef2f2;
+
+            border:
+                1px solid #fecaca;
+
+            cursor:
+                pointer;
+
+            font-family:
+                Arial, sans-serif;
+        }
+
+
+        .delete-button:hover {
+
+            background:
+                #fee2e2;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* =========================================
+           RESPONSIVO
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .page {
+
+                padding:
+                    28px 20px 40px;
+            }
+
+
+            .details-container {
+
+                padding:
+                    25px;
+            }
+
+
+            .details-header {
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .details-header h2 {
+
+                font-size:
+                    21px;
+            }
+
+
+            .info-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .page {
+
+                padding:
+                    25px 16px 35px;
+            }
+
+
+            .page-heading h1 {
+
+                font-size:
+                    27px;
+            }
+
+
+            .details-container {
+
+                padding:
+                    21px;
+
+                border-radius:
+                    18px;
+            }
+
+
+            .details-header {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .type-badge {
+
+                align-self:
+                    flex-start;
+
+                font-size:
+                    14px;
+            }
+
+
+            .actions {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+            }
+
+
+            .back-button,
+            .edit-button,
+            .delete-button {
+
+                width:
+                    100%;
+
+                min-height:
+                    48px;
+
+                font-size:
+                    15px;
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .page-heading h1 {
+
+                font-size:
+                    24px;
+            }
+
+
+            .details-container {
+
+                padding:
+                    17px;
+            }
+
+
+            .interview-title-area {
+
+                gap:
+                    11px;
+            }
+
+
+            .interview-icon {
+
+                width:
+                    42px;
+
+                height:
+                    42px;
+
+                font-size:
+                    18px;
+            }
+
+
+            .details-header h2 {
+
+                font-size:
+                    18px;
+            }
+
+
+            .company {
+
+                font-size:
+                    14px;
+            }
+
+
+            .type-badge {
+
+                font-size:
+                    14px;
+
+                padding:
+                    9px 14px;
+            }
+
+
+            .info-item {
+
+                padding:
+                    17px;
+            }
+
+
+            .info-label {
+
+                font-size:
+                    12px;
+            }
+
+
+            .info-value {
+
+                font-size:
+                    15px;
+            }
+
+
+            .observacoes {
+
+                padding:
+                    17px;
+            }
+
+
+            .observacoes h3 {
+
+                font-size:
+                    18px;
+            }
+
+
+            .observacoes p {
+
+                font-size:
+                    15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- =========================================
+         TOPO
+    ========================================= -->
+
+    <div class="page-topbar">
+
+        <div class="page-heading">
+
+            <div class="heading-icon">
+                🎯
+            </div>
+
+            <h1>
+                Detalhes da entrevista
+            </h1>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         CARD
+    ========================================= -->
+
+    <div class="details-wrapper">
+
+        <div class="details-container">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="details-header">
+
+
+                <div class="interview-title-area">
+
+
+                    <div class="interview-icon">
+                        🎤
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            {{ entrevista[5] }}
+                        </h2>
+
+
+                        <div class="company">
+
+                            {% if entrevista[6] %}
+
+                                {{ entrevista[6] }}
+
+                            {% else %}
+
+                                Empresa não informada
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="type-badge">
+
+                    {% if entrevista[2] == "online" %}
+
+                        Online
+
+                    {% elif entrevista[2] == "presencial" %}
+
+                        Presencial
+
+                    {% elif entrevista[2] == "telefone" %}
+
+                        Telefone
+
+                    {% else %}
+
+                        {{ entrevista[2] or "Não informado" }}
+
+                    {% endif %}
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =====================================
+                 INFORMAÇÕES
+            ===================================== -->
+
+            <div class="info-grid">
+
+
+                <div class="info-item">
+
+                    <div class="info-label">
+                        Data
+                    </div>
+
+                    <div class="info-value">
+
+                        {{ entrevista[1].strftime("%d/%m/%Y") }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-label">
+                        Horário
+                    </div>
+
+                    <div class="info-value">
+
+                        {{ entrevista[1].strftime("%H:%M") }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-label">
+                        Cargo
+                    </div>
+
+                    <div class="info-value">
+
+                        {{ entrevista[5] }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-label">
+                        Empresa
+                    </div>
+
+                    <div class="info-value">
+
+                        {% if entrevista[6] %}
+
+                            {{ entrevista[6] }}
+
+                        {% else %}
+
+                            Não informada
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =====================================
+                 OBSERVAÇÕES
+            ===================================== -->
+
+            <div class="observacoes">
+
+                <h3>
+                    Observações
+                </h3>
+
+
+                <p>
+
+                    {% if entrevista[3] %}
+
+                        {{ entrevista[3] }}
+
+                    {% else %}
+
+                        Nenhuma observação foi adicionada.
+
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+
+            <!-- =====================================
+                 AÇÕES
+            ===================================== -->
+
+            <div class="actions">
+
+
+                <a
+                    href="{{ url_for('entrevistas.listar') }}"
+                    class="back-button"
+                >
+                    Voltar
+                </a>
+
+
+                <a
+                    href="{{ url_for('entrevistas.editar', id=entrevista[0]) }}"
+                    class="edit-button"
+                >
+                    Editar entrevista
+                </a>
+
+
+                <form
+                    method="POST"
+                    action="{{ url_for('entrevistas.excluir', id=entrevista[0]) }}"
+                    onsubmit="return confirmarExclusao();"
+                >
+
+                    <button
+                        type="submit"
+                        class="delete-button"
+                    >
+                        Excluir entrevista
+                    </button>
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    function confirmarExclusao() {
+
+        return confirm(
+            "Tem certeza que deseja excluir esta entrevista?"
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

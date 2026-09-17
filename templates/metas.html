@@ -1,0 +1,1031 @@
+{% extends "base.html" %}
+
+{% block title %}
+Metas | ProCareer
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+
+    .page {
+        animation: pageEnter 0.5s ease;
+    }
+
+    @keyframes pageEnter {
+
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+
+    /* =========================
+       TOPO
+    ========================= */
+
+    .topbar {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 30px;
+
+        gap: 20px;
+    }
+
+
+    .topbar-content {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 14px;
+    }
+
+
+    .heading-icon {
+
+        width: 48px;
+
+        height: 48px;
+
+        border-radius: 14px;
+
+        background: linear-gradient(
+            135deg,
+            #dcfce7,
+            #ccfbf1
+        );
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 23px;
+
+        flex-shrink: 0;
+
+        box-shadow:
+            0 5px 15px rgba(22, 163, 74, 0.10);
+    }
+
+
+    .heading-text {
+
+        text-align: left;
+    }
+
+
+    .topbar h1 {
+
+        font-size: 32px;
+
+        margin: 0 0 5px;
+
+        color: #12383d;
+
+        font-weight: 900;
+
+        letter-spacing: -0.5px;
+
+        text-shadow:
+            0 3px 5px rgba(22, 163, 74, 0.35),
+            0 6px 12px rgba(22, 163, 74, 0.28);
+    }
+
+
+    /* =========================
+       PERFIL
+    ========================= */
+
+    .profile {
+
+        width: 42px;
+
+        height: 42px;
+
+        background: linear-gradient(
+            135deg,
+            #16a34a,
+            #14b8a6
+        );
+
+        color: white;
+
+        border-radius: 50%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-weight: 700;
+
+        box-shadow:
+            0 5px 15px rgba(22, 163, 74, 0.20);
+
+        flex-shrink: 0;
+    }
+
+
+    /* =========================
+       AÇÕES
+    ========================= */
+
+    .actions {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 25px;
+
+        gap: 15px;
+    }
+
+
+    .actions h2 {
+
+        font-size: 22px;
+
+        color: #0f172a;
+
+        font-weight: 800;
+    }
+
+
+    .new-button {
+
+        background: linear-gradient(
+            135deg,
+            #16a34a,
+            #14b8a6
+        );
+
+        color: white;
+
+        border: none;
+
+        padding: 12px 18px;
+
+        border-radius: 9px;
+
+        font-weight: 700;
+
+        font-size: 14px;
+
+        cursor: pointer;
+
+        text-decoration: none;
+
+        display: inline-block;
+
+        transition: 0.25s ease;
+
+        box-shadow:
+            0 5px 14px rgba(22, 163, 74, 0.18);
+    }
+
+
+    .new-button:hover {
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 8px 20px rgba(22, 163, 74, 0.25);
+    }
+
+
+    /* =========================
+       METAS
+    ========================= */
+
+    .goals {
+
+        display: grid;
+
+        gap: 15px;
+    }
+
+
+    .goal-card {
+
+        position: relative;
+
+        background: white;
+
+        border: 1px solid #e2e8f0;
+
+        border-radius: 16px;
+
+        padding: 22px 22px 22px 26px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 25px;
+
+        overflow: hidden;
+
+        transition: 0.3s ease;
+
+        box-shadow:
+            0 5px 18px rgba(15, 23, 42, 0.03);
+    }
+
+
+    .goal-card::before {
+
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+
+        top: 0;
+
+        bottom: 0;
+
+        width: 4px;
+
+        background: linear-gradient(
+            to bottom,
+            #16a34a,
+            #14b8a6
+        );
+
+        opacity: 0;
+
+        transition:
+            opacity .25s ease,
+            width .3s ease;
+    }
+
+
+    .goal-card:hover::before {
+
+        opacity: 1;
+
+        width: 6px;
+    }
+
+
+    .goal-card::after {
+
+        content: "";
+
+        position: absolute;
+
+        width: 85px;
+
+        height: 85px;
+
+        right: -30px;
+
+        top: -30px;
+
+        border-radius: 50%;
+
+        background: rgba(22, 163, 74, 0.055);
+
+        pointer-events: none;
+    }
+
+
+    .goal-card:hover {
+
+        transform: translateY(-3px);
+
+        border-color: #bbf7d0;
+
+        box-shadow:
+            0 12px 28px rgba(15, 23, 42, 0.07);
+    }
+
+
+    /* =========================
+       INFORMAÇÕES
+    ========================= */
+
+    .goal-info {
+
+        position: relative;
+
+        z-index: 1;
+
+        flex: 1;
+
+        min-width: 0;
+    }
+
+
+    .goal-info h3 {
+
+        font-size: 19px;
+
+        color: #0f172a;
+
+        margin-bottom: 8px;
+
+        font-weight: 800;
+    }
+
+
+    .goal-info p {
+
+        font-size: 14px;
+
+        color: #64748b;
+
+        margin-bottom: 8px;
+    }
+
+
+    .goal-description {
+
+        color: #475569 !important;
+
+        line-height: 1.5;
+
+        max-width: 700px;
+    }
+
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .status {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+        padding: 6px 10px;
+
+        border-radius: 20px;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        margin-top: 2px;
+    }
+
+
+    .status-pendente {
+
+        background: #fef3c7;
+
+        color: #92400e;
+    }
+
+
+    .status-concluida {
+
+        background: #dcfce7;
+
+        color: #166534;
+    }
+
+
+    /* =========================
+       AÇÕES DA META
+    ========================= */
+
+    .goal-actions {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        position: relative;
+
+        z-index: 2;
+
+        flex-shrink: 0;
+    }
+
+
+    .goal-actions form {
+
+        margin: 0;
+    }
+
+
+    .complete-button {
+
+        color: #15803d;
+
+        background: white;
+
+        border: 1px solid #bbf7d0;
+
+        padding: 8px 12px;
+
+        border-radius: 8px;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: 0.2s ease;
+    }
+
+
+    .complete-button:hover {
+
+        background: #f0fdf4;
+
+        border-color: #86efac;
+
+        transform: translateY(-1px);
+    }
+
+
+    .edit-button {
+
+        color: #0f766e;
+
+        background: white;
+
+        text-decoration: none;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        padding: 8px 12px;
+
+        border: 1px solid #99f6e4;
+
+        border-radius: 8px;
+
+        transition: 0.2s ease;
+    }
+
+
+    .edit-button:hover {
+
+        background: #f0fdfa;
+
+        border-color: #5eead4;
+
+        transform: translateY(-1px);
+    }
+
+
+    .delete-button {
+
+        color: #dc2626;
+
+        background: white;
+
+        border: 1px solid #fecaca;
+
+        padding: 8px 12px;
+
+        border-radius: 8px;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: 0.2s ease;
+    }
+
+
+    .delete-button:hover {
+
+        background: #fef2f2;
+
+        border-color: #fca5a5;
+
+        transform: translateY(-1px);
+    }
+
+
+    /* =========================
+       VAZIO
+    ========================= */
+
+    .empty {
+
+        position: relative;
+
+        overflow: hidden;
+
+        background: white;
+
+        border: 1px dashed #bbf7d0;
+
+        border-radius: 16px;
+
+        padding: 60px 20px;
+
+        text-align: center;
+
+        color: #64748b;
+
+        box-shadow:
+            0 5px 18px rgba(15, 23, 42, 0.03);
+    }
+
+
+    .empty::before {
+
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+
+        top: 0;
+
+        bottom: 0;
+
+        width: 4px;
+
+        background: linear-gradient(
+            to bottom,
+            #16a34a,
+            #14b8a6
+        );
+    }
+
+
+    .empty-icon {
+
+        width: 64px;
+
+        height: 64px;
+
+        margin: 0 auto 16px;
+
+        border-radius: 18px;
+
+        background: linear-gradient(
+            135deg,
+            #dcfce7,
+            #ccfbf1
+        );
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 30px;
+    }
+
+
+    .empty h3 {
+
+        color: #334155;
+
+        margin-bottom: 8px;
+
+        font-size: 19px;
+    }
+
+
+    .empty p {
+
+        margin-bottom: 22px;
+
+        line-height: 1.5;
+
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    @media (max-width: 900px) {
+
+        .goal-card {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            gap: 18px;
+        }
+
+
+        .goal-actions {
+
+            width: 100%;
+
+            flex-wrap: wrap;
+        }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+        .topbar {
+
+            align-items: flex-start;
+        }
+
+
+        .topbar-content {
+
+            justify-content: flex-start;
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .actions {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            gap: 15px;
+        }
+
+
+        .topbar h1 {
+
+            font-size: 24px;
+        }
+
+
+        .heading-icon {
+
+            width: 44px;
+
+            height: 44px;
+        }
+
+
+        .profile {
+
+            width: 38px;
+
+            height: 38px;
+        }
+
+
+        .goal-card {
+
+            padding: 20px 20px 20px 24px;
+        }
+
+
+        .goal-actions {
+
+            gap: 8px;
+        }
+
+    }
+
+
+    @media (max-width: 450px) {
+
+        .topbar {
+
+            gap: 10px;
+        }
+
+
+        .topbar-content {
+
+            gap: 10px;
+        }
+
+
+        .heading-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            font-size: 20px;
+        }
+
+
+        .topbar h1 {
+
+            font-size: 21px;
+        }
+
+
+        .actions h2 {
+
+            font-size: 18px;
+        }
+
+
+        .new-button {
+
+            width: 100%;
+
+            text-align: center;
+        }
+
+
+        .goal-actions {
+
+            flex-direction: column;
+
+            align-items: stretch;
+        }
+
+
+        .goal-actions form,
+        .complete-button,
+        .edit-button,
+        .delete-button {
+
+            width: 100%;
+
+            text-align: center;
+        }
+
+    }
+
+</style>
+
+
+<div class="page">
+
+
+    <!-- =========================
+         TOPO
+    ========================= -->
+
+    <div class="topbar">
+
+
+        <div class="topbar-content">
+
+
+            <div class="heading-icon">
+                🎯
+            </div>
+
+
+            <div class="heading-text">
+
+                <h1>
+                    Metas
+                </h1>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="profile">
+
+            {{ session["usuario_nome"][0] }}
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         AÇÕES
+    ========================= -->
+
+    <div class="actions">
+
+
+        <h2>
+            Minhas metas
+        </h2>
+
+
+        <a
+            href="{{ url_for('metas.nova') }}"
+            class="new-button"
+        >
+            + Nova meta
+        </a>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         LISTA DE METAS
+    ========================= -->
+
+    <section class="goals">
+
+
+        {% if metas %}
+
+
+            {% for meta in metas %}
+
+
+                <div class="goal-card">
+
+
+                    <div class="goal-info">
+
+
+                        <h3>
+                            {{ meta[1] }}
+                        </h3>
+
+
+                        {% if meta[2] %}
+
+                            <p class="goal-description">
+                                {{ meta[2] }}
+                            </p>
+
+                        {% endif %}
+
+
+                        <p>
+
+                            {% if meta[3] %}
+
+                                📅 Prazo:
+                                {{ meta[3].strftime('%d/%m/%Y') }}
+
+                            {% else %}
+
+                                📅 Prazo não definido
+
+                            {% endif %}
+
+                        </p>
+
+
+                        {% if meta[4] == "concluida" %}
+
+
+                            <span class="status status-concluida">
+
+                                ✓ Concluída
+
+                            </span>
+
+
+                        {% else %}
+
+
+                            <span class="status status-pendente">
+
+                                Em andamento
+
+                            </span>
+
+
+                        {% endif %}
+
+
+                    </div>
+
+
+
+                    <div class="goal-actions">
+
+
+                        {% if meta[4] != "concluida" %}
+
+
+                            <form
+                                action="{{ url_for('metas.concluir', id=meta[0]) }}"
+                                method="POST"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="complete-button"
+                                >
+                                    ✓ Concluir
+                                </button>
+
+                            </form>
+
+
+                        {% endif %}
+
+
+
+                        <a
+                            href="{{ url_for('metas.editar', id=meta[0]) }}"
+                            class="edit-button"
+                        >
+                            Editar
+                        </a>
+
+
+
+                        <form
+                            action="{{ url_for('metas.excluir', id=meta[0]) }}"
+                            method="POST"
+                            onsubmit="return confirm('Tem certeza que deseja excluir esta meta?');"
+                        >
+
+                            <button
+                                type="submit"
+                                class="delete-button"
+                            >
+                                Excluir
+                            </button>
+
+                        </form>
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div class="empty">
+
+
+                <div class="empty-icon">
+                    🎯
+                </div>
+
+
+                <h3>
+                    Nenhuma meta cadastrada
+                </h3>
+
+
+                <p>
+                    Crie metas para acompanhar seu crescimento
+                    profissional e manter seu foco.
+                </p>
+
+
+                <a
+                    href="{{ url_for('metas.nova') }}"
+                    class="new-button"
+                >
+                    + Criar primeira meta
+                </a>
+
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+</div>
+
+
+{% endblock %}

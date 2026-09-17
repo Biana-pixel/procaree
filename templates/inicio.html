@@ -1,0 +1,1622 @@
+{% extends "base.html" %}
+
+{% block title %}
+ProCareer | Sua carreira sob controle
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.overview {
+    max-width: 1450px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   TOPO
+========================================================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.welcome small {
+    display: block;
+    color: #0f766e;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    margin-bottom: 7px;
+}
+
+.welcome h1 {
+    color: #123238;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -1px;
+
+    text-shadow:
+        0 3px 5px rgba(22, 163, 74, 0.35),
+        0 6px 12px rgba(22, 163, 74, 0.28);
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 14px;
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    color: #60777b;
+    background: rgba(255,255,255,.88);
+    border: 1px solid #dcebea;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition: .25s ease;
+}
+
+.logout-button:hover {
+    color: #0f766e;
+    background: #f0fdfa;
+    border-color: #bce5de;
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(15,118,110,.08);
+}
+
+.profile {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #19b5a8,
+            #0f766e
+        );
+
+    box-shadow:
+        0 8px 20px rgba(15,118,110,.18);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 285px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    margin-bottom: 34px;
+    padding: 38px 42px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #effbf7 0%,
+            #ffffff 47%,
+            #f1fbfa 100%
+        );
+
+    border: 1px solid #dceee9;
+
+    box-shadow:
+        0 17px 45px rgba(15,118,110,.07);
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    right: -130px;
+    top: -190px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(45,212,191,.17) 0%,
+            rgba(45,212,191,.07) 38%,
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    left: -180px;
+    bottom: -210px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(22,163,74,.11),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+.hero-decoration {
+    position: absolute;
+
+    right: 325px;
+    top: 34px;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #16a34a;
+    opacity: .55;
+
+    box-shadow:
+        0 0 0 7px rgba(22,163,74,.06),
+        0 0 0 14px rgba(22,163,74,.025);
+}
+
+.hero-decoration-two {
+    position: absolute;
+
+    right: 390px;
+    bottom: 48px;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #0ea5e9;
+    opacity: .45;
+
+    box-shadow:
+        0 0 0 7px rgba(14,165,233,.06);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+
+    max-width: 700px;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 14px;
+
+    color: #0f766e;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.hero-label::before {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #16a34a;
+
+    box-shadow:
+        0 0 0 5px rgba(22,163,74,.08);
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,100% {
+        transform: scale(1);
+
+        box-shadow:
+            0 0 0 5px rgba(22,163,74,.08);
+    }
+
+    50% {
+        transform: scale(1.25);
+
+        box-shadow:
+            0 0 0 9px rgba(22,163,74,.025);
+    }
+}
+
+.hero h2 {
+    max-width: 690px;
+
+    margin-bottom: 14px;
+
+    color: #123238;
+
+    font-size: 39px;
+    line-height: 1.1;
+
+    letter-spacing: -1.8px;
+
+    font-weight: 900;
+}
+
+.hero h2 span {
+    color: #16834f;
+}
+
+.hero p {
+    max-width: 620px;
+
+    margin-bottom: 23px;
+
+    color: #667d81;
+
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 13px 19px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #16a34a,
+            #0f766e
+        );
+
+    font-size: 12px;
+    font-weight: 800;
+
+    box-shadow:
+        0 9px 23px rgba(15,118,110,.18);
+
+    transition: .28s ease;
+}
+
+.hero-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(15,118,110,.24);
+}
+
+.hero-button-icon {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   ATALHOS
+========================================================= */
+
+.hero-highlights {
+    position: absolute;
+
+    right: 42px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 4;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.hero-chip {
+    min-width: 190px;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 14px 16px;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    background:
+        rgba(255,255,255,.86);
+
+    border: 1px solid rgba(15,118,110,.10);
+
+    backdrop-filter: blur(12px);
+
+    color: #29494d;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    box-shadow:
+        0 9px 24px rgba(15,118,110,.065);
+
+    transition: .3s ease;
+}
+
+.hero-chip:nth-child(2) {
+    transform: translateX(18px);
+}
+
+.hero-chip:nth-child(3) {
+    transform: translateX(5px);
+}
+
+.hero-chip:hover {
+    transform:
+        translateX(-5px)
+        translateY(-3px);
+
+    background: white;
+
+    border-color:
+        rgba(22,163,74,.18);
+
+    box-shadow:
+        0 15px 30px rgba(15,118,110,.11);
+}
+
+.hero-chip:nth-child(2):hover {
+    transform:
+        translateX(12px)
+        translateY(-3px);
+}
+
+.hero-chip:nth-child(3):hover {
+    transform:
+        translateX(-1px)
+        translateY(-3px);
+}
+
+.hero-chip-icon {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #e9faf7;
+
+    color: #0f766e;
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   CABEÇALHOS
+========================================================= */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+}
+
+.section-title {
+    color: #173b42;
+
+    font-size: 16px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+}
+
+.card {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 135px;
+
+    padding: 18px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #fafffe
+        );
+
+    border: 1px solid #dfedeb;
+
+    box-shadow:
+        0 6px 20px rgba(15,118,110,.035);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+
+    border-color: #b9e2db;
+
+    box-shadow:
+        0 18px 33px rgba(15,118,110,.10);
+}
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #16a34a,
+            #2dd4bf
+        );
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    transition: .3s ease;
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 105px;
+    height: 105px;
+
+    right: -48px;
+    bottom: -48px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(45,212,191,.11),
+            transparent 70%
+        );
+
+    transition: .3s ease;
+}
+
+.card:hover::after {
+    transform: scale(1.4);
+}
+
+.card-top {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+}
+
+.card-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    color: #0f766e;
+    background: #e9faf7;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    transition: .3s ease;
+}
+
+.card:hover .card-icon {
+    transform: scale(1.08) rotate(-4deg);
+}
+
+.card-label {
+    color: #849598;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: .9px;
+}
+
+.card-number {
+    position: relative;
+    z-index: 2;
+
+    display: inline-block;
+
+    color: #123238;
+
+    font-size: 32px;
+    line-height: 1;
+
+    font-weight: 950;
+
+    letter-spacing: -1.8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #123238 10%,
+            #0f766e 55%,
+            #16a34a 100%
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+
+    filter:
+        drop-shadow(
+            0 4px 5px rgba(15,118,110,.12)
+        );
+
+    transition:
+        transform .3s ease,
+        filter .3s ease;
+}
+
+.card:hover .card-number {
+    transform: translateY(-2px) scale(1.04);
+
+    filter:
+        drop-shadow(
+            0 6px 9px rgba(15,118,110,.18)
+        );
+}
+
+
+/* =========================================================
+   ÁREA INFERIOR
+========================================================= */
+
+.bottom {
+    display: grid;
+
+    grid-template-columns:
+        1.35fr 1fr;
+
+    gap: 15px;
+}
+
+.panel {
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,.96);
+
+    border: 1px solid #dfedeb;
+
+    box-shadow:
+        0 6px 20px rgba(15,118,110,.035);
+
+    transition: .25s ease;
+}
+
+.panel:hover {
+    border-color: #c7e5df;
+
+    box-shadow:
+        0 13px 28px rgba(15,118,110,.07);
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+}
+
+.panel h3 {
+    color: #173b42;
+
+    font-size: 15px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   PROCESSOS
+========================================================= */
+
+.process {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 12px 3px;
+
+    border-bottom: 1px solid #edf3f2;
+
+    transition: .25s ease;
+}
+
+.process:last-child {
+    border-bottom: none;
+}
+
+.process:hover {
+    padding-left: 9px;
+    padding-right: 9px;
+
+    border-radius: 10px;
+
+    background: #f7fcfb;
+}
+
+.process-info {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+.process-icon {
+    width: 35px;
+    height: 35px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    color: #0f766e;
+    background: #effaf8;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    transition: .25s ease;
+}
+
+.process:hover .process-icon {
+    transform: scale(1.08);
+}
+
+.company {
+    color: #183b42;
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.role {
+    color: #87999d;
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+.status {
+    flex-shrink: 0;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    color: #0f766e;
+    background: #e8faf6;
+
+    border: 1px solid #d3f0ea;
+
+    font-size: 9px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   COMPROMISSOS
+========================================================= */
+
+.appointment {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 11px 3px;
+
+    border-bottom: 1px solid #edf3f2;
+
+    transition: .25s ease;
+}
+
+.appointment:last-child {
+    border-bottom: none;
+}
+
+.appointment:hover {
+    padding-left: 8px;
+
+    background: #f8fcfb;
+
+    border-radius: 10px;
+}
+
+.date-box {
+    width: 41px;
+    height: 41px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eafaf7;
+
+    border: 1px solid #d5eee9;
+
+    transition: .25s ease;
+}
+
+.appointment:hover .date-box {
+    transform: scale(1.06);
+}
+
+.date-box strong {
+    color: #0f766e;
+
+    font-size: 13px;
+
+    line-height: 1;
+}
+
+.date-box span {
+    color: #719095;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    margin-top: 3px;
+
+    text-transform: uppercase;
+}
+
+.appointment-info {
+    min-width: 0;
+}
+
+.appointment-title {
+    color: #183b42;
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.appointment-time {
+    color: #87999d;
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   ASSINATURA
+========================================================= */
+
+.project-credit {
+    text-align: center;
+
+    margin-top: 32px;
+    padding-bottom: 8px;
+
+    color: #a7b5b7;
+
+    font-size: 8px;
+    font-weight: 600;
+
+    letter-spacing: .3px;
+}
+
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+.hero {
+    animation:
+        heroIn .6s ease both;
+}
+
+.card {
+    animation:
+        cardIn .5s ease both;
+}
+
+.card:nth-child(2) {
+    animation-delay: .06s;
+}
+
+.card:nth-child(3) {
+    animation-delay: .12s;
+}
+
+.card:nth-child(4) {
+    animation-delay: .18s;
+}
+
+@keyframes heroIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .cards {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .hero-highlights {
+        right: 25px;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .hero {
+        min-height: auto;
+        padding: 34px 30px;
+    }
+
+    .hero h2 {
+        font-size: 33px;
+    }
+
+    .hero-highlights {
+        display: none;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .bottom {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .topbar {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .welcome h1 {
+        font-size: 25px;
+    }
+
+    .welcome small {
+        font-size: 10px;
+    }
+
+    .logout-button {
+        padding: 9px 10px;
+        font-size: 10px;
+    }
+
+    .profile {
+        width: 39px;
+        height: 39px;
+    }
+
+    .hero {
+        padding: 27px 22px;
+        margin-bottom: 27px;
+        border-radius: 21px;
+    }
+
+    .hero h2 {
+        font-size: 29px;
+        letter-spacing: -1.2px;
+    }
+
+    .hero p {
+        font-size: 12px;
+    }
+
+    .hero-button {
+        font-size: 11px;
+    }
+
+    .cards {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 10px;
+    }
+
+    .card {
+        min-height: 120px;
+        padding: 15px;
+    }
+
+    .card-label {
+        font-size: 9px;
+    }
+
+    .card-number {
+        font-size: 28px;
+    }
+
+    .section-title {
+        font-size: 15px;
+    }
+
+    .project-credit {
+        margin-top: 27px;
+        font-size: 7px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .topbar {
+        flex-direction: column;
+    }
+
+    .topbar-right {
+        align-self: flex-end;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h2 {
+        font-size: 26px;
+    }
+}
+
+</style>
+
+
+<div class="overview">
+
+
+    <!-- =====================================================
+         TOPO
+    ====================================================== -->
+
+    <div class="topbar">
+
+        <div class="welcome">
+
+            <small>
+                PAINEL DE CARREIRA
+            </small>
+
+            <h1>
+                Olá, {{ session["usuario_nome"] }} 👋
+            </h1>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="logout-button"
+            >
+                Sair da conta
+            </a>
+
+            <div class="profile">
+                {{ session["usuario_nome"][0] }}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-decoration"></div>
+
+        <div class="hero-decoration-two"></div>
+
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                Sua carreira em movimento
+            </div>
+
+
+            <h2>
+                Sua busca por oportunidades,
+                <span>agora com estratégia.</span>
+            </h2>
+
+
+            <p>
+                Centralize suas candidaturas, organize entrevistas,
+                acompanhe seu desenvolvimento e tenha uma visão mais
+                clara dos próximos passos da sua carreira.
+            </p>
+
+
+            <a
+                href="{{ url_for('candidaturas.nova') }}"
+                class="hero-button"
+            >
+
+                <span class="hero-button-icon">
+                    +
+                </span>
+
+                Nova candidatura
+
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             ATALHOS
+        ================================================== -->
+
+        <div class="hero-highlights">
+
+
+            <a
+                href="{{ url_for('candidaturas.listar') }}"
+                class="hero-chip"
+            >
+
+                <div class="hero-chip-icon">
+                    ✓
+                </div>
+
+                <strong>
+                    Candidaturas
+                </strong>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('entrevistas.listar') }}"
+                class="hero-chip"
+            >
+
+                <div class="hero-chip-icon">
+                    ◷
+                </div>
+
+                <strong>
+                    Entrevistas
+                </strong>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('competencias.listar') }}"
+                class="hero-chip"
+            >
+
+                <div class="hero-chip-icon">
+                    ↗
+                </div>
+
+                <strong>
+                    Evolução
+                </strong>
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         RESUMO
+    ====================================================== -->
+
+    <div class="section-heading">
+
+        <div class="section-title">
+            Resumo da carreira
+        </div>
+
+    </div>
+
+
+    <section class="cards">
+
+
+        <!-- CANDIDATURAS -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="card-label">
+                    CANDIDATURAS
+                </div>
+
+                <div class="card-icon">
+                    ✓
+                </div>
+
+            </div>
+
+            <div class="card-number">
+                {{ total_candidaturas }}
+            </div>
+
+        </div>
+
+
+        <!-- ENTREVISTAS -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="card-label">
+                    ENTREVISTAS
+                </div>
+
+                <div class="card-icon">
+                    ◷
+                </div>
+
+            </div>
+
+            <div class="card-number">
+                {{ total_entrevistas }}
+            </div>
+
+        </div>
+
+
+        <!-- COMPETÊNCIAS -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="card-label">
+                    COMPETÊNCIAS
+                </div>
+
+                <div class="card-icon">
+                    ✦
+                </div>
+
+            </div>
+
+            <div class="card-number">
+                {{ total_competencias }}
+            </div>
+
+        </div>
+
+
+        <!-- EVOLUÇÃO -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="card-label">
+                    EVOLUÇÃO
+                </div>
+
+                <div class="card-icon">
+                    %
+                </div>
+
+            </div>
+
+            <div class="card-number">
+                {{ evolucao }}%
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTEÚDO INFERIOR
+    ====================================================== -->
+
+    <section class="bottom">
+
+
+        <!-- PROCESSOS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    Processos recentes
+                </h3>
+
+            </div>
+
+
+            {% if processos_recentes %}
+
+                {% for processo in processos_recentes %}
+
+                <div class="process">
+
+                    <div class="process-info">
+
+                        <div class="process-icon">
+
+                            {% if processo[2] == "entrevista" %}
+                                ✓
+                            {% elif processo[2] == "teste_tecnico" %}
+                                &lt;/&gt;
+                            {% else %}
+                                ◆
+                            {% endif %}
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="company">
+                                {{ processo[0] }}
+                            </div>
+
+                            <div class="role">
+                                {{ processo[1] }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="status">
+
+                        {% if processo[2] == "interessado" %}
+                            Candidatado
+
+                        {% elif processo[2] == "entrevista" %}
+                            Entrevista
+
+                        {% elif processo[2] == "teste_tecnico" %}
+                            Teste técnico
+
+                        {% elif processo[2] == "enviado" %}
+                            Enviado
+
+                        {% elif processo[2] == "aprovado" %}
+                            Aprovado
+
+                        {% elif processo[2] == "recusado" %}
+                            Encerrado
+
+                        {% else %}
+                            {{ processo[2] }}
+
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+
+            {% else %}
+
+                <div class="process">
+
+                    <div class="process-info">
+
+                        <div class="process-icon">
+                            +
+                        </div>
+
+                        <div>
+
+                            <div class="company">
+                                Nenhuma candidatura ainda
+                            </div>
+
+                            <div class="role">
+                                Comece adicionando sua primeira oportunidade.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+        <!-- PRÓXIMOS COMPROMISSOS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    Próximos compromissos
+                </h3>
+
+            </div>
+
+
+            {% if proximos_compromissos %}
+
+                {% for compromisso in proximos_compromissos %}
+
+                <div class="appointment">
+
+                    <div class="date-box">
+
+                        <strong>
+                            {{ compromisso[0].strftime('%d') }}
+                        </strong>
+
+                        <span>
+                            {{ compromisso[0].strftime('%b') }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="appointment-info">
+
+                        <div class="appointment-title">
+
+                            {% if compromisso[1] %}
+                                {{ compromisso[1] }}
+                            {% else %}
+                                Entrevista
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="appointment-time">
+
+                            {{ compromisso[0].strftime('%d/%m') }}
+                            ·
+                            {{ compromisso[0].strftime('%H:%M') }}
+
+                            {% if compromisso[3] %}
+                                · {{ compromisso[3] }}
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+
+            {% else %}
+
+                <div class="appointment">
+
+                    <div class="date-box">
+
+                        <strong>
+                            —
+                        </strong>
+
+                        <span>
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="appointment-info">
+
+                        <div class="appointment-title">
+                            Nenhum compromisso próximo
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         CRÉDITO
+    ====================================================== -->
+
+    <div class="project-credit">
+        Projeto feito por Bianca Regina F. dos Santos
+    </div>
+
+
+</div>
+
+{% endblock %}

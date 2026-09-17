@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nova meta | ProCareer</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+
+        /* =========================
+           PÁGINA
+        ========================= */
+
+        .page {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+
+            animation: pageEnter 0.5s ease;
+        }
+
+
+        @keyframes pageEnter {
+
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================= */
+
+        .page-heading {
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .heading-icon {
+            width: 52px;
+            height: 52px;
+
+            border-radius: 15px;
+
+            background: linear-gradient(
+                135deg,
+                #dcfce7,
+                #ccfbf1
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 24px;
+
+            margin-bottom: 12px;
+
+            box-shadow:
+                0 6px 18px rgba(22, 163, 74, 0.12);
+        }
+
+
+        .page-heading h1 {
+            font-size: 30px;
+
+            color: #12383d;
+
+            font-weight: 900;
+
+            letter-spacing: -0.5px;
+
+            text-shadow:
+                0 3px 5px rgba(22, 163, 74, 0.35),
+                0 6px 12px rgba(22, 163, 74, 0.28);
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .form-card {
+            position: relative;
+
+            width: 100%;
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 18px;
+
+            padding: 32px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.05);
+
+            transition: 0.3s ease;
+        }
+
+
+        .form-card:hover {
+            box-shadow:
+                0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+
+        /* LINHA VERDE */
+
+        .form-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #16a34a,
+                    #14b8a6,
+                    #16a34a
+                );
+        }
+
+
+        /* CÍRCULO DECORATIVO */
+
+        .form-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 110px;
+            height: 110px;
+
+            right: -40px;
+            top: -40px;
+
+            border-radius: 50%;
+
+            background: rgba(22, 163, 74, 0.06);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        .form-header {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 28px;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        .form-header-icon {
+            width: 46px;
+            height: 46px;
+
+            border-radius: 12px;
+
+            background: #f0fdf4;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+
+            flex-shrink: 0;
+        }
+
+
+        .form-header h2 {
+            font-size: 20px;
+
+            color: #0f172a;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
+        .form-group {
+            margin-bottom: 23px;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+            color: #334155;
+        }
+
+
+        .required {
+            color: #16a34a;
+
+            font-size: 17px;
+        }
+
+
+        .input-wrapper {
+            position: relative;
+        }
+
+
+        .input-icon {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 17px;
+
+            pointer-events: none;
+        }
+
+
+        .textarea-icon {
+            position: absolute;
+
+            left: 14px;
+            top: 16px;
+
+            font-size: 17px;
+
+            pointer-events: none;
+        }
+
+
+        .form-group input,
+        .form-group textarea {
+
+            width: 100%;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            background: white;
+
+            color: #1e293b;
+
+            transition: 0.2s ease;
+
+            font-family: inherit;
+        }
+
+
+        .form-group input {
+
+            height: 52px;
+
+            padding: 0 14px 0 44px;
+        }
+
+
+        .form-group textarea {
+
+            min-height: 135px;
+
+            resize: vertical;
+
+            padding: 13px 14px 13px 44px;
+
+            line-height: 1.5;
+        }
+
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+
+            color: #94a3b8;
+
+            font-size: 15px;
+        }
+
+
+        .form-group input:hover,
+        .form-group textarea:hover {
+
+            border-color: #86efac;
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+
+            border-color: #16a34a;
+
+            box-shadow:
+                0 0 0 3px rgba(22, 163, 74, 0.10);
+        }
+
+
+        /* =========================
+           BOTÕES
+        ========================= */
+
+        .buttons {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 12px;
+
+            margin-top: 30px;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        .btn {
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 13px 21px;
+
+            min-height: 48px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            transition: 0.25s ease;
+        }
+
+
+        .btn-primary {
+
+            background: linear-gradient(
+                135deg,
+                #16a34a,
+                #14b8a6
+            );
+
+            color: white;
+
+            box-shadow:
+                0 5px 14px rgba(22, 163, 74, 0.18);
+        }
+
+
+        .btn-primary:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(22, 163, 74, 0.25);
+        }
+
+
+        .btn-cancel {
+
+            background: white;
+
+            color: #64748b;
+
+            border: 1px solid #cbd5e1;
+        }
+
+
+        .btn-cancel:hover {
+
+            background: #f8fafc;
+
+            border-color: #94a3b8;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 25px 15px;
+            }
+
+
+            .page-heading h1 {
+                font-size: 26px;
+            }
+
+
+            .heading-icon {
+                width: 48px;
+                height: 48px;
+
+                font-size: 22px;
+            }
+
+
+            .form-card {
+                padding: 25px;
+            }
+
+
+            .form-header h2 {
+                font-size: 18px;
+            }
+
+
+            .form-group label {
+                font-size: 15px;
+            }
+
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+
+            .page-heading {
+                margin-bottom: 24px;
+            }
+
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+
+
+            .form-card {
+                padding: 22px 18px;
+            }
+
+
+            .form-header {
+                margin-bottom: 24px;
+            }
+
+
+            .form-header h2 {
+                font-size: 18px;
+            }
+
+
+            .form-group label {
+                font-size: 15px;
+            }
+
+
+            .form-group input {
+                height: 52px;
+
+                font-size: 16px;
+            }
+
+
+            .form-group textarea {
+                font-size: 16px;
+            }
+
+
+            .form-group input::placeholder,
+            .form-group textarea::placeholder {
+                font-size: 14px;
+            }
+
+
+            .required {
+                font-size: 16px;
+            }
+
+
+            .buttons {
+                flex-direction: column-reverse;
+            }
+
+
+            .btn {
+                width: 100%;
+
+                text-align: center;
+
+                font-size: 15px;
+
+                min-height: 48px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="page">
+
+
+        <!-- TÍTULO -->
+
+        <div class="page-heading">
+
+            <div class="heading-icon">
+                🎯
+            </div>
+
+            <h1>
+                Nova meta
+            </h1>
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <div class="form-card">
+
+
+            <div class="form-header">
+
+                <div class="form-header-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <h2>
+                        Cadastrar nova meta
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <form
+                method="POST"
+                id="metaForm"
+                autocomplete="off"
+            >
+
+
+                <!-- TÍTULO -->
+
+                <div class="form-group">
+
+                    <label for="titulo">
+
+                        Título da meta
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🎯
+                        </span>
+
+                        <input
+                            type="text"
+                            id="titulo"
+                            name="titulo"
+                            placeholder="Ex.: Conseguir meu primeiro emprego na área"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- DESCRIÇÃO -->
+
+                <div class="form-group">
+
+                    <label for="descricao">
+                        Descrição
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="textarea-icon">
+                            📝
+                        </span>
+
+                        <textarea
+                            id="descricao"
+                            name="descricao"
+                            placeholder="Descreva o que você pretende alcançar..."
+                            autocomplete="off"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRAZO -->
+
+                <div class="form-group">
+
+                    <label for="prazo">
+                        Prazo
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            📅
+                        </span>
+
+                        <input
+                            type="date"
+                            id="prazo"
+                            name="prazo"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÕES -->
+
+                <div class="buttons">
+
+
+                    <a
+                        href="{{ url_for('metas.listar') }}"
+                        class="btn btn-cancel"
+                    >
+                        Cancelar
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        💾 Salvar meta
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+        const form = document.getElementById("metaForm");
+
+        const prazo = document.getElementById("prazo");
+
+
+        form.addEventListener("submit", function(event) {
+
+            const valor = prazo.value;
+
+
+            if (valor) {
+
+                const partes = valor.split("-");
+
+
+                if (
+                    partes.length !== 3 ||
+                    partes[0].length !== 4 ||
+                    !/^\d{4}$/.test(partes[0])
+                ) {
+
+                    event.preventDefault();
+
+
+                    alert(
+                        "Digite uma data válida com ano de 4 dígitos."
+                    );
+
+
+                    prazo.focus();
+
+                }
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

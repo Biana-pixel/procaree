@@ -1,0 +1,1142 @@
+{% extends "base.html" %}
+
+{% block title %}
+Empresas | ProCareer
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    /* =========================
+       PÁGINA
+    ========================= */
+
+    .companies-page {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding-bottom: 45px;
+        animation: pageEnter .5s ease;
+    }
+
+
+    @keyframes pageEnter {
+
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+
+    /* =========================
+       TOPO
+    ========================= */
+
+    .page-topbar {
+        position: relative;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 32px;
+    }
+
+
+    .page-heading {
+        display: flex;
+
+        align-items: center;
+
+        gap: 15px;
+    }
+
+
+    .heading-icon {
+        width: 48px;
+        height: 48px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 14px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #d1fae5,
+                #ccfbf1
+            );
+
+        color: #0f766e;
+
+        font-size: 22px;
+
+        box-shadow:
+            0 8px 22px
+            rgba(20, 184, 166, .12);
+
+        transition:
+            transform .25s ease,
+            box-shadow .25s ease;
+    }
+
+
+    .heading-icon:hover {
+        transform:
+            rotate(-5deg)
+            scale(1.06);
+
+        box-shadow:
+            0 11px 26px
+            rgba(20, 184, 166, .20);
+    }
+
+
+    .page-heading h1 {
+        margin: 0;
+
+        font-size: 28px;
+
+        color: #12383d;
+
+        letter-spacing: -.5px;
+
+        font-weight: 900;
+
+        text-shadow:
+            0 3px 5px rgba(22, 163, 74, .35),
+            0 6px 12px rgba(22, 163, 74, .28);
+    }
+
+
+    /* =========================
+       PERFIL
+    ========================= */
+
+    .profile {
+        width: 43px;
+        height: 43px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0f766e,
+                #14b8a6
+            );
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        box-shadow:
+            0 7px 18px
+            rgba(20, 184, 166, .20);
+
+        transition:
+            transform .25s ease,
+            box-shadow .25s ease;
+    }
+
+
+    .profile:hover {
+        transform:
+            translateY(-2px)
+            scale(1.05);
+
+        box-shadow:
+            0 10px 24px
+            rgba(20, 184, 166, .28);
+    }
+
+
+    /* =========================
+       CABEÇALHO DA LISTA
+    ========================= */
+
+    .actions {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-bottom: 20px;
+
+        gap: 15px;
+    }
+
+
+    .section-title {
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+    }
+
+
+    .section-icon {
+        width: 36px;
+        height: 36px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 10px;
+
+        background: #ecfdf5;
+
+        color: #0f766e;
+
+        font-size: 16px;
+    }
+
+
+    .section-title h2 {
+        margin: 0;
+
+        font-size: 20px;
+
+        color: #183f43;
+
+        font-weight: 800;
+    }
+
+
+    .section-count {
+        min-width: 30px;
+        height: 26px;
+
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 0 9px;
+
+        border-radius: 20px;
+
+        background: #f0fdfa;
+
+        color: #0f766e;
+
+        font-size: 13px;
+
+        font-weight: 800;
+
+        font-variant-numeric: tabular-nums;
+    }
+
+
+    /* =========================
+       BOTÃO NOVA EMPRESA
+    ========================= */
+
+    .new-button {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 7px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0f766e,
+                #14b8a6
+            );
+
+        color: white;
+
+        border: none;
+
+        padding: 11px 18px;
+
+        min-height: 48px;
+
+        border-radius: 10px;
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        cursor: pointer;
+
+        text-decoration: none;
+
+        box-shadow:
+            0 8px 18px
+            rgba(20, 184, 166, .18);
+
+        transition:
+            transform .2s ease,
+            box-shadow .2s ease;
+    }
+
+
+    .new-button:hover {
+        transform:
+            translateY(-2px);
+
+        box-shadow:
+            0 12px 24px
+            rgba(20, 184, 166, .27);
+    }
+
+
+    .new-button:active {
+        transform:
+            translateY(0);
+    }
+
+
+    /* =========================
+       LISTA
+    ========================= */
+
+    .companies {
+        display: grid;
+
+        gap: 14px;
+    }
+
+
+    /* =========================
+       CARD EMPRESA
+    ========================= */
+
+    .company-card {
+        position: relative;
+
+        overflow: hidden;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 20px;
+
+        background: white;
+
+        border:
+            1px solid #e1ecef;
+
+        border-radius: 16px;
+
+        padding: 20px 22px;
+
+        box-shadow:
+            0 5px 18px
+            rgba(15, 118, 110, .035);
+
+        transition:
+            transform .25s ease,
+            box-shadow .25s ease,
+            border-color .25s ease;
+    }
+
+
+    /* LINHA LATERAL — APARECE SOMENTE NO HOVER */
+
+    .company-card::before {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        top: 0;
+        bottom: 0;
+
+        width: 4px;
+
+        background:
+            linear-gradient(
+                180deg,
+                #0f766e,
+                #14b8a6
+            );
+
+        border-radius:
+            16px 0 0 16px;
+
+        opacity: 0;
+
+        transition:
+            opacity .25s ease;
+    }
+
+
+    .company-card:hover::before {
+        opacity: 1;
+    }
+
+
+    .company-card::after {
+        content: "";
+
+        position: absolute;
+
+        width: 65px;
+        height: 65px;
+
+        right: -30px;
+        top: -30px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(20, 184, 166, .055);
+
+        pointer-events: none;
+    }
+
+
+    .company-card:hover {
+        transform:
+            translateY(-3px);
+
+        border-color:
+            #cce9e6;
+
+        box-shadow:
+            0 12px 28px
+            rgba(15, 118, 110, .09);
+    }
+
+
+    /* =========================
+       INFORMAÇÕES
+    ========================= */
+
+    .company-info {
+        min-width: 0;
+
+        padding-left: 6px;
+    }
+
+
+    .company-title {
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .company-dot {
+        width: 9px;
+        height: 9px;
+
+        flex-shrink: 0;
+
+        border-radius: 50%;
+
+        background:
+            #14b8a6;
+
+        box-shadow:
+            0 0 0 4px #ccfbf1;
+    }
+
+
+    .company-info h3 {
+        margin: 0;
+
+        font-size: 18px;
+
+        color: #183f43;
+
+        font-weight: 800;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    .company-meta {
+        display: flex;
+
+        align-items: center;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        font-size: 14px;
+
+        color: #64748b;
+    }
+
+
+    .company-meta .separator {
+        color: #cbd5e1;
+
+        font-size: 13px;
+    }
+
+
+    .company-site {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+        color: #0f766e;
+
+        text-decoration: none;
+
+        font-weight: 800;
+
+        transition:
+            color .2s ease;
+    }
+
+
+    .company-site:hover {
+        color: #0d9488;
+
+        text-decoration: underline;
+    }
+
+
+    .no-site {
+        color: #64748b;
+    }
+
+
+    /* =========================
+       DATA
+    ========================= */
+
+    .date-info {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 5px;
+    }
+
+
+    /* =========================
+       AÇÕES DA EMPRESA
+    ========================= */
+
+    .company-actions {
+        position: relative;
+
+        z-index: 2;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        flex-shrink: 0;
+    }
+
+
+    .edit-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 6px;
+
+        color: #0f766e;
+
+        text-decoration: none;
+
+        font-size: 14px;
+
+        font-weight: 800;
+
+        padding: 9px 13px;
+
+        min-height: 44px;
+
+        border: 1px solid #bce3de;
+
+        background: white;
+
+        border-radius: 9px;
+
+        transition:
+            background .2s ease,
+            border-color .2s ease,
+            transform .2s ease;
+    }
+
+
+    .edit-button:hover {
+        background: #f0fdfa;
+
+        border-color: #99d6cf;
+
+        transform: translateY(-1px);
+    }
+
+
+    .delete-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 6px;
+
+        color: #dc2626;
+
+        background: white;
+
+        border: 1px solid #fecaca;
+
+        padding: 9px 13px;
+
+        min-height: 44px;
+
+        border-radius: 9px;
+
+        font-size: 14px;
+
+        font-weight: 800;
+
+        cursor: pointer;
+
+        transition:
+            background .2s ease,
+            border-color .2s ease,
+            transform .2s ease;
+    }
+
+
+    .delete-button:hover {
+        background: #fef2f2;
+
+        border-color: #fca5a5;
+
+        transform: translateY(-1px);
+    }
+
+
+    /* =========================
+       ESTADO VAZIO
+    ========================= */
+
+    .empty {
+        position: relative;
+
+        overflow: hidden;
+
+        background: white;
+
+        border:
+            1px dashed #b8d8d5;
+
+        border-radius: 18px;
+
+        padding: 65px 25px;
+
+        text-align: center;
+
+        color: #64748b;
+    }
+
+
+    .empty::after {
+        content: "";
+
+        position: absolute;
+
+        width: 120px;
+        height: 120px;
+
+        right: -50px;
+        top: -50px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(20, 184, 166, .06);
+
+        pointer-events: none;
+    }
+
+
+    .empty-icon {
+        width: 65px;
+        height: 65px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        margin: 0 auto 18px;
+
+        border-radius: 18px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #ecfdf5,
+                #ccfbf1
+            );
+
+        font-size: 30px;
+
+        box-shadow:
+            0 8px 20px
+            rgba(20, 184, 166, .10);
+    }
+
+
+    .empty h3 {
+        margin: 0 0 8px;
+
+        color: #334155;
+
+        font-size: 18px;
+
+        font-weight: 800;
+    }
+
+
+    .empty p {
+        max-width: 470px;
+
+        margin: 0 auto 24px;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =========================
+       RESPONSIVO
+    ========================= */
+
+    @media (max-width: 800px) {
+
+        .company-card {
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            gap: 18px;
+        }
+
+
+        .company-actions {
+            width: 100%;
+        }
+
+
+        .edit-button,
+        .delete-button {
+            flex: 1;
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .page-topbar {
+            margin-bottom: 25px;
+        }
+
+
+        .heading-icon {
+            width: 42px;
+            height: 42px;
+
+            font-size: 20px;
+        }
+
+
+        .page-heading h1 {
+            font-size: 24px;
+        }
+
+
+        .profile {
+            width: 38px;
+            height: 38px;
+
+            font-size: 14px;
+        }
+
+
+        .actions {
+            align-items: stretch;
+
+            gap: 15px;
+        }
+
+
+        .section-title {
+            justify-content: center;
+        }
+
+
+        .section-title h2 {
+            font-size: 18px;
+        }
+
+
+        .section-count {
+            font-size: 13px;
+        }
+
+
+        .new-button {
+            width: 100%;
+
+            font-size: 15px;
+        }
+
+
+        .company-card {
+            padding: 19px;
+        }
+
+
+        .company-info {
+            width: 100%;
+        }
+
+
+        .company-info h3 {
+            font-size: 17px;
+        }
+
+
+        .company-meta {
+            font-size: 14px;
+        }
+
+
+        .company-actions {
+            width: 100%;
+        }
+
+
+        .edit-button,
+        .delete-button {
+            font-size: 14px;
+
+            min-height: 46px;
+        }
+
+    }
+
+
+    @media (max-width: 430px) {
+
+        .page-heading h1 {
+            font-size: 24px;
+        }
+
+
+        .company-meta {
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            gap: 6px;
+
+            font-size: 14px;
+        }
+
+
+        .company-meta .separator {
+            display: none;
+        }
+
+
+        .company-actions {
+            flex-direction: column;
+        }
+
+
+        .edit-button,
+        .delete-button {
+            width: 100%;
+
+            min-height: 48px;
+
+            font-size: 15px;
+        }
+
+
+        .empty {
+            padding: 55px 20px;
+        }
+
+
+        .empty h3 {
+            font-size: 18px;
+        }
+
+
+        .empty p {
+            font-size: 14px;
+        }
+
+    }
+
+</style>
+
+
+<div class="companies-page">
+
+
+    <!-- =========================
+         TOPO
+    ========================= -->
+
+    <div class="page-topbar">
+
+        <div class="page-heading">
+
+            <div class="heading-icon">
+                🏢
+            </div>
+
+            <h1>
+                Empresas
+            </h1>
+
+        </div>
+
+
+        <div class="profile">
+            {{ session["usuario_nome"][0] }}
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
+
+    <div class="actions">
+
+        <div class="section-title">
+
+            <div class="section-icon">
+                🏢
+            </div>
+
+            <h2>
+                Minhas empresas
+            </h2>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('empresas.nova') }}"
+            class="new-button"
+        >
+            ＋ Nova empresa
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         LISTA
+    ========================= -->
+
+    <section class="companies">
+
+
+        {% if empresas %}
+
+
+            {% for empresa in empresas %}
+
+                <div class="company-card">
+
+
+                    <div class="company-info">
+
+                        <div class="company-title">
+
+                            <span class="company-dot"></span>
+
+                            <h3>
+                                {{ empresa[1] }}
+                            </h3>
+
+                        </div>
+
+
+                        <div class="company-meta">
+
+
+                            {% if empresa[2] %}
+
+                                <a
+                                    href="{{ empresa[2] }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="company-site"
+                                >
+                                    🌐 Visitar site
+                                </a>
+
+                            {% else %}
+
+                                <span class="no-site">
+                                    Site não informado
+                                </span>
+
+                            {% endif %}
+
+
+                            <span class="separator">
+                                •
+                            </span>
+
+
+                            <span class="date-info">
+                                📅
+                                Cadastrada em
+                                {{ empresa[3].strftime('%d/%m/%Y') if empresa[3] else '-' }}
+                            </span>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="company-actions">
+
+
+                        <a
+                            href="{{ url_for('empresas.editar', id=empresa[0]) }}"
+                            class="edit-button"
+                        >
+                            ✏️ Editar
+                        </a>
+
+
+                        <form
+                            action="{{ url_for('empresas.excluir', id=empresa[0]) }}"
+                            method="POST"
+                            onsubmit="return confirm('Tem certeza que deseja excluir esta empresa?');"
+                        >
+
+                            <button
+                                type="submit"
+                                class="delete-button"
+                            >
+                                🗑️ Excluir
+                            </button>
+
+                        </form>
+
+
+                    </div>
+
+
+                </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <!-- =========================
+                 ESTADO VAZIO
+            ========================= -->
+
+            <div class="empty">
+
+
+                <div class="empty-icon">
+                    🏢
+                </div>
+
+
+                <h3>
+                    Nenhuma empresa cadastrada
+                </h3>
+
+
+                <p>
+                    Comece adicionando uma empresa para organizar
+                    melhor sua busca por oportunidades.
+                </p>
+
+
+                <a
+                    href="{{ url_for('empresas.nova') }}"
+                    class="new-button"
+                >
+                    ＋ Cadastrar primeira empresa
+                </a>
+
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+</div>
+
+
+{% endblock %}

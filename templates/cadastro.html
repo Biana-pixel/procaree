@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="autocomplete"
+        content="off"
+    >
+
+    <title>Cadastro | ProCareer</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(45, 212, 191, 0.30),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(14, 165, 233, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 90%,
+                    rgba(20, 184, 166, 0.25),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #e8f8f6,
+                    #eaf7fc
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            color: #111827;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            min-height: 480px;
+
+            background: white;
+
+            border-radius: 24px;
+            overflow: hidden;
+
+            display: grid;
+            grid-template-columns: 45% 55%;
+
+            box-shadow:
+                0 25px 70px
+                rgba(15, 23, 42, 0.15);
+
+            animation:
+                containerEntrada
+                0.7s ease;
+        }
+
+        .left {
+            background: #083b42;
+
+            color: white;
+
+            padding: 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: #0f9f99;
+
+            opacity: 0.15;
+
+            top: -110px;
+            right: -100px;
+
+            animation:
+                flutuar1
+                7s ease-in-out infinite;
+        }
+
+        .left::after {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            border-radius: 50%;
+
+            background: #5eead4;
+
+            opacity: 0.10;
+
+            bottom: -110px;
+            left: -100px;
+
+            animation:
+                flutuar2
+                9s ease-in-out infinite;
+        }
+
+        .logo {
+            position: relative;
+            z-index: 2;
+
+            font-size: 25px;
+            font-weight: 800;
+
+            margin-bottom: 45px;
+
+            animation:
+                aparecer
+                0.8s ease;
+        }
+
+        .logo span {
+            color: #5eead4;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+
+            animation:
+                formEntrada
+                0.8s ease;
+        }
+
+        .content h1 {
+            font-size: 36px;
+
+            line-height: 1.15;
+
+            margin-bottom: 18px;
+
+            letter-spacing: -1.5px;
+        }
+
+        .content p {
+            color: #cbd5e1;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            max-width: 360px;
+        }
+
+        .features {
+            margin-top: 28px;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+        .feature {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #e5e7eb;
+
+            font-size: 13px;
+
+            transition: 0.25s ease;
+        }
+
+        .feature:hover {
+            transform:
+                translateX(5px);
+        }
+
+        .check {
+            width: 24px;
+            height: 24px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(94, 234, 212, 0.15);
+
+            color: #5eead4;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+
+            transition: 0.25s ease;
+        }
+
+        .feature:hover .check {
+            transform:
+                scale(1.1);
+
+            background:
+                rgba(94, 234, 212, 0.25);
+        }
+
+        .right {
+            padding: 40px 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            width: 100%;
+
+            max-width: 380px;
+
+            animation:
+                formEntrada
+                0.8s ease;
+        }
+
+        .form-container h2 {
+            font-size: 28px;
+
+            margin-bottom: 8px;
+
+            letter-spacing: -0.7px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+
+            font-size: 14px;
+
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+
+            color: #374151;
+        }
+
+        input {
+            width: 100%;
+
+            height: 47px;
+
+            padding: 0 16px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            transition: 0.25s ease;
+
+            background: white;
+        }
+
+        input:hover {
+            border-color: #7ccdc7;
+        }
+
+        input:focus {
+            border-color: #0f9f99;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(15, 159, 153, 0.10);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            padding-right: 50px;
+        }
+
+        .toggle-password {
+            position: absolute;
+
+            right: 15px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            width: auto;
+            height: auto;
+
+            padding: 5px;
+
+            margin: 0;
+
+            border: none;
+
+            background: transparent;
+
+            color: #6b7280;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            transition: 0.2s ease;
+        }
+
+        .toggle-password:hover {
+            background: transparent;
+
+            color: #0f9f99;
+
+            transform:
+                translateY(-50%)
+                scale(1.08);
+        }
+
+        .toggle-password:active {
+            transform:
+                translateY(-50%)
+                scale(0.95);
+        }
+
+        .toggle-password svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+
+            height: 47px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f766e,
+                    #0f9f99
+                );
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+
+            margin-top: 4px;
+
+            box-shadow:
+                0 8px 20px
+                rgba(15, 118, 110, 0.18);
+        }
+
+        button[type="submit"]:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(15, 118, 110, 0.25);
+        }
+
+        button[type="submit"]:active {
+            transform:
+                translateY(0);
+        }
+
+        .login {
+            text-align: center;
+
+            margin-top: 18px;
+
+            font-size: 14px;
+
+            color: #6b7280;
+        }
+
+        .login a {
+            color: #0f766e;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            transition: 0.2s ease;
+        }
+
+        .login a:hover {
+            color: #0f9f99;
+
+            text-decoration: underline;
+        }
+
+        @keyframes containerEntrada {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(15px)
+                    scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+        @keyframes formEntrada {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateX(15px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+
+        }
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+        }
+
+        @keyframes flutuar1 {
+
+            0%,
+            100% {
+                transform:
+                    translate(0, 0)
+                    scale(1);
+            }
+
+            50% {
+                transform:
+                    translate(-25px, 25px)
+                    scale(1.08);
+            }
+
+        }
+
+        @keyframes flutuar2 {
+
+            0%,
+            100% {
+                transform:
+                    translate(0, 0)
+                    scale(1);
+            }
+
+            50% {
+                transform:
+                    translate(25px, -20px)
+                    scale(1.06);
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .container {
+                grid-template-columns: 1fr;
+
+                max-width: 520px;
+
+                min-height: auto;
+            }
+
+            .left {
+                padding: 40px;
+
+                min-height: 330px;
+            }
+
+            .logo {
+                margin-bottom: 30px;
+            }
+
+            .content h1 {
+                font-size: 32px;
+            }
+
+            .features {
+                display: none;
+            }
+
+            .right {
+                padding: 40px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                border-radius: 18px;
+            }
+
+            .left,
+            .right {
+                padding: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <section class="left">
+
+        <div class="logo">
+            Pro<span>Career</span>
+        </div>
+
+
+        <div class="content">
+
+            <h1>
+                Sua próxima oportunidade começa aqui.
+            </h1>
+
+
+            <p>
+                Crie sua conta e comece a organizar sua jornada profissional
+                de forma mais inteligente e estratégica.
+            </p>
+
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <span>
+                        Organize suas candidaturas
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <span>
+                        Acompanhe seus processos seletivos
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="check">
+                        ✓
+                    </div>
+
+                    <span>
+                        Tenha sua carreira centralizada
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="right">
+
+        <div class="form-container">
+
+
+            <h2>
+                Crie sua conta
+            </h2>
+
+
+            <p class="subtitle">
+                Comece agora a organizar sua carreira.
+            </p>
+
+
+            <form
+                method="POST"
+                action="/cadastro"
+                autocomplete="off"
+                id="cadastroForm"
+                novalidate
+            >
+
+
+                <!-- =========================
+                     NOME
+                ========================= -->
+
+                <div class="form-group">
+
+                    <label for="campoPerfil">
+                        Nome
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="campoPerfil"
+                        name="campoPerfil"
+                        placeholder="Seu nome"
+                        autocomplete="new-password"
+                        autocapitalize="words"
+                        autocorrect="off"
+                        spellcheck="false"
+                        value=""
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =========================
+                     EMAIL
+                ========================= -->
+
+                <div class="form-group">
+
+                    <label for="campoContato">
+                        E-mail
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="campoContato"
+                        name="campoContato"
+                        placeholder="seu@email.com"
+                        autocomplete="new-password"
+                        autocapitalize="none"
+                        autocorrect="off"
+                        spellcheck="false"
+                        inputmode="email"
+                        value=""
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =========================
+                     SENHA
+                ========================= -->
+
+                <div class="form-group">
+
+                    <label for="campoSeguranca">
+                        Senha
+                    </label>
+
+
+                    <div class="password-container">
+
+                        <input
+                            type="password"
+                            id="campoSeguranca"
+                            name="campoSeguranca"
+                            placeholder="Crie uma senha"
+                            autocomplete="new-password"
+                            autocapitalize="none"
+                            autocorrect="off"
+                            spellcheck="false"
+                            value=""
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            onclick="togglePassword()"
+                            aria-label="Mostrar senha"
+                        >
+
+                            <svg
+                                id="eyeIcon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                />
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit">
+                    Criar minha conta
+                </button>
+
+
+            </form>
+
+
+            <div class="login">
+
+                Já possui uma conta?
+
+                <a href="/login">
+                    Entrar
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+    /*
+     * ================================
+     * LIMPEZA DOS CAMPOS
+     * ================================
+     */
+
+    function limparCampos() {
+
+        const nome =
+            document.getElementById(
+                "campoPerfil"
+            );
+
+        const email =
+            document.getElementById(
+                "campoContato"
+            );
+
+        const senha =
+            document.getElementById(
+                "campoSeguranca"
+            );
+
+
+        if (nome) {
+
+            nome.value = "";
+
+        }
+
+
+        if (email) {
+
+            email.value = "";
+
+        }
+
+
+        if (senha) {
+
+            senha.value = "";
+
+            senha.type = "password";
+
+        }
+
+    }
+
+
+    /*
+     * ================================
+     * AO CARREGAR O DOM
+     * ================================
+     */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            limparCampos();
+
+
+            setTimeout(
+                limparCampos,
+                50
+            );
+
+
+            setTimeout(
+                limparCampos,
+                300
+            );
+
+
+            setTimeout(
+                limparCampos,
+                1000
+            );
+
+        }
+    );
+
+
+    /*
+     * ================================
+     * AO RESTAURAR A PÁGINA
+     * ================================
+     */
+
+    window.addEventListener(
+        "pageshow",
+        function () {
+
+            limparCampos();
+
+
+            setTimeout(
+                limparCampos,
+                100
+            );
+
+        }
+    );
+
+
+    /*
+     * ================================
+     * DETECTA DIGITAÇÃO MANUAL
+     * ================================
+     */
+
+    document
+        .getElementById("campoPerfil")
+        .addEventListener(
+            "input",
+            function () {
+
+                this.dataset.usuarioDigitou = "sim";
+
+            }
+        );
+
+
+    document
+        .getElementById("campoContato")
+        .addEventListener(
+            "input",
+            function () {
+
+                this.dataset.usuarioDigitou = "sim";
+
+            }
+        );
+
+
+    document
+        .getElementById("campoSeguranca")
+        .addEventListener(
+            "input",
+            function () {
+
+                this.dataset.usuarioDigitou = "sim";
+
+            }
+        );
+
+
+    /*
+     * ================================
+     * EVITA VALORES AUTOMÁTICOS
+     * ================================
+     */
+
+    document.addEventListener(
+        "focusin",
+        function (event) {
+
+            const camposProtegidos = [
+
+                "campoPerfil",
+                "campoContato",
+                "campoSeguranca"
+
+            ];
+
+
+            if (
+                camposProtegidos.includes(
+                    event.target.id
+                )
+            ) {
+
+                if (
+                    event.target.dataset.usuarioDigitou !== "sim"
+                    &&
+                    event.target.value !== ""
+                ) {
+
+                    event.target.value = "";
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /*
+     * ================================
+     * ANTES DE ENVIAR
+     *
+     * O Flask continua recebendo:
+     * nome
+     * email
+     * senha
+     * ================================
+     */
+
+    document
+        .getElementById("cadastroForm")
+        .addEventListener(
+            "submit",
+            function () {
+
+                const nome =
+                    document.getElementById(
+                        "campoPerfil"
+                    );
+
+                const email =
+                    document.getElementById(
+                        "campoContato"
+                    );
+
+                const senha =
+                    document.getElementById(
+                        "campoSeguranca"
+                    );
+
+
+                nome.name = "nome";
+
+                email.name = "email";
+
+                senha.name = "senha";
+
+            }
+        );
+
+
+    /*
+     * ================================
+     * MOSTRAR / ESCONDER SENHA
+     * ================================
+     */
+
+    function togglePassword() {
+
+        const senha =
+            document.getElementById(
+                "campoSeguranca"
+            );
+
+        const eyeIcon =
+            document.getElementById(
+                "eyeIcon"
+            );
+
+
+        if (senha.type === "password") {
+
+            senha.type = "text";
+
+
+            eyeIcon.innerHTML = `
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3l18 18"
+                />
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10.584 10.587a2 2 0 001.414.586"
+                />
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.88 4.24A9.77 9.77 0 0112 4c4.477 0 8.268 2.943 9.542 7a10.06 10.06 0 01-4.132 5.114"
+                />
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6.228 6.228A10.06 10.06 0 002.458 12C3.732 16.057 7.523 19 12 19a9.77 9.77 0 004.24-.88"
+                />
+
+            `;
+
+        } else {
+
+            senha.type = "password";
+
+
+            eyeIcon.innerHTML = `
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+
+            `;
+
+        }
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

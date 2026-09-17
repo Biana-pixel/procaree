@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Detalhes do currículo | ProCareer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fcfd,
+                    #eef8fa
+                );
+
+            min-height: 100vh;
+
+            color: #334155;
+
+            padding: 35px 20px 50px;
+
+        }
+
+
+        /* =========================
+           PÁGINA
+        ========================= */
+
+        .details-page {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            animation: pageEnter .5s ease;
+
+        }
+
+
+        @keyframes pageEnter {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           TOPO
+        ========================= */
+
+        .page-topbar {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin-bottom: 30px;
+
+            text-align: center;
+
+        }
+
+
+        .page-heading {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 9px;
+
+        }
+
+
+        .heading-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dff6ff,
+                    #dffaf7
+                );
+
+            color: #0ea5e9;
+
+            font-size: 23px;
+
+            box-shadow:
+                0 8px 22px
+                rgba(14, 165, 233, .12);
+
+            transition: .25s ease;
+
+        }
+
+
+        .heading-icon:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.05);
+
+            box-shadow:
+                0 12px 27px
+                rgba(14, 165, 233, .20);
+
+        }
+
+
+        .page-heading h1 {
+
+            font-size: 30px;
+
+            color: #12383d;
+
+            font-weight: 900;
+
+            letter-spacing: -.6px;
+
+            text-shadow:
+                0 3px 5px
+                rgba(14, 165, 233, .35),
+
+                0 6px 12px
+                rgba(14, 165, 233, .28);
+
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .details-container {
+
+            position: relative;
+
+            width: 100%;
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            background: white;
+
+            border: 1px solid #e1ecef;
+
+            border-radius: 20px;
+
+            padding: 34px;
+
+            box-shadow:
+                0 14px 38px
+                rgba(15, 118, 110, .07);
+
+            overflow: hidden;
+
+        }
+
+
+        .details-container::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0ea5e9,
+                    #38bdf8,
+                    #0ea5e9
+                );
+
+        }
+
+
+        .details-container::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+
+            height: 100px;
+
+            right: -45px;
+
+            top: -45px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(14, 165, 233, .07);
+
+            pointer-events: none;
+
+        }
+
+
+        /* =========================
+           ÍCONE
+        ========================= */
+
+        .curriculo-icon {
+
+            position: relative;
+
+            z-index: 1;
+
+            width: 65px;
+
+            height: 65px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e0f2fe,
+                    #ecfeff
+                );
+
+            border: 1px solid #bae6fd;
+
+            color: #0ea5e9;
+
+            font-size: 29px;
+
+            box-shadow:
+                0 7px 18px
+                rgba(14, 165, 233, .08);
+
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================= */
+
+        .details-container h2 {
+
+            position: relative;
+
+            z-index: 1;
+
+            margin: 0 0 8px;
+
+            font-size: 20px;
+
+            font-weight: 900;
+
+            color: #183f43;
+
+            word-break: break-word;
+
+        }
+
+
+        .created {
+
+            position: relative;
+
+            z-index: 1;
+
+            margin-bottom: 30px;
+
+            color: #64748b;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================
+           INFORMAÇÕES
+        ========================= */
+
+        .info-section {
+
+            position: relative;
+
+            z-index: 1;
+
+            border-top: 1px solid #edf2f3;
+
+            padding-top: 25px;
+
+        }
+
+
+        .info-item {
+
+            margin-bottom: 24px;
+
+        }
+
+
+        .info-item:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .info-label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 8px;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            color: #64748b;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+        }
+
+
+        .info-label::before {
+
+            content: "";
+
+            width: 7px;
+
+            height: 7px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #0ea5e9;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(14, 165, 233, .10);
+
+        }
+
+
+        .info-value {
+
+            font-size: 16px;
+
+            line-height: 1.5;
+
+            color: #1e293b;
+
+            word-break: break-word;
+
+        }
+
+
+        /* =========================
+           LINK
+        ========================= */
+
+        .curriculo-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #0284c7;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            transition:
+                color .2s ease,
+                gap .2s ease;
+
+        }
+
+
+        .curriculo-link:hover {
+
+            color: #0369a1;
+
+            gap: 9px;
+
+        }
+
+
+        .no-link {
+
+            color: #94a3b8;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================
+           AÇÕES
+        ========================= */
+
+        .actions {
+
+            position: relative;
+
+            z-index: 1;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 30px;
+
+            padding-top: 23px;
+
+            border-top: 1px solid #edf2f3;
+
+        }
+
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 11px 17px;
+
+            min-height: 48px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+
+        }
+
+
+        /* VOLTAR */
+
+        .back-button {
+
+            color: #475569;
+
+            background: white;
+
+            border: 1px solid #d8e2e5;
+
+        }
+
+
+        .back-button:hover {
+
+            background: #f8fafc;
+
+            border-color: #cbd5e1;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* EDITAR */
+
+        .edit-button {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0284c7,
+                    #0ea5e9
+                );
+
+            box-shadow:
+                0 7px 17px
+                rgba(14, 165, 233, .18);
+
+        }
+
+
+        .edit-button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 11px 23px
+                rgba(14, 165, 233, .26);
+
+        }
+
+
+        /* EXCLUIR */
+
+        .delete-button {
+
+            color: white;
+
+            background: #ef4444;
+
+            border: none;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+        }
+
+
+        .delete-button:hover {
+
+            background: #dc2626;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 18px
+                rgba(239, 68, 68, .18);
+
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            body {
+
+                padding:
+                    25px 14px 40px;
+
+            }
+
+
+            .page-topbar {
+
+                margin-bottom: 25px;
+
+            }
+
+
+            .heading-icon {
+
+                width: 46px;
+
+                height: 46px;
+
+                font-size: 20px;
+
+            }
+
+
+            .page-heading h1 {
+
+                font-size: 24px;
+
+            }
+
+
+            .details-container {
+
+                padding: 23px;
+
+                border-radius: 17px;
+
+            }
+
+
+            .details-container h2 {
+
+                font-size: 19px;
+
+            }
+
+
+            .created {
+
+                font-size: 14px;
+
+            }
+
+
+            .info-label {
+
+                font-size: 12px;
+
+            }
+
+
+            .info-value {
+
+                font-size: 15px;
+
+            }
+
+
+            .curriculo-link {
+
+                font-size: 14px;
+
+            }
+
+
+            .no-link {
+
+                font-size: 14px;
+
+            }
+
+
+            .actions {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+
+            .button,
+            .actions form {
+
+                width: 100%;
+
+            }
+
+
+            .delete-button {
+
+                width: 100%;
+
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .page-heading h1 {
+
+                font-size: 24px;
+
+            }
+
+
+            .details-container {
+
+                padding: 19px;
+
+            }
+
+
+            .curriculo-icon {
+
+                width: 58px;
+
+                height: 58px;
+
+                font-size: 27px;
+
+            }
+
+
+            .details-container h2 {
+
+                font-size: 18px;
+
+            }
+
+
+            .created {
+
+                font-size: 14px;
+
+            }
+
+
+            .info-label {
+
+                font-size: 12px;
+
+            }
+
+
+            .info-value {
+
+                font-size: 15px;
+
+            }
+
+
+            .curriculo-link {
+
+                font-size: 14px;
+
+            }
+
+
+            .no-link {
+
+                font-size: 14px;
+
+            }
+
+
+            .button {
+
+                font-size: 15px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="details-page">
+
+
+        <!-- TOPO -->
+
+        <div class="page-topbar">
+
+            <div class="page-heading">
+
+                <div class="heading-icon">
+                    📄
+                </div>
+
+                <h1>
+                    Detalhes do currículo
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <!-- CARD -->
+
+        <div class="details-container">
+
+
+            <div class="curriculo-icon">
+                📄
+            </div>
+
+
+            <h2>
+                {{ curriculo[1] }}
+            </h2>
+
+
+            <div class="created">
+
+                Criado em:
+                {{ curriculo[3].strftime("%d/%m/%Y às %H:%M") }}
+
+            </div>
+
+
+            <!-- INFORMAÇÕES -->
+
+            <div class="info-section">
+
+
+                <div class="info-item">
+
+                    <div class="info-label">
+                        Nome
+                    </div>
+
+                    <div class="info-value">
+                        {{ curriculo[1] }}
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-label">
+                        Link do currículo
+                    </div>
+
+
+                    {% if curriculo[2] %}
+
+                        <div class="info-value">
+
+                            <a
+                                href="{{ curriculo[2] }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="curriculo-link"
+                            >
+                                Visualizar currículo →
+                            </a>
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="no-link">
+                            Nenhum link foi informado.
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+            </div>
+
+
+            <!-- AÇÕES -->
+
+            <div class="actions">
+
+
+                <a
+                    href="{{ url_for('curriculos.listar') }}"
+                    class="button back-button"
+                >
+                    Voltar
+                </a>
+
+
+                <a
+                    href="{{ url_for('curriculos.editar', id=curriculo[0]) }}"
+                    class="button edit-button"
+                >
+                    ✏️ Editar currículo
+                </a>
+
+
+                <form
+                    method="POST"
+                    action="{{ url_for('curriculos.excluir', id=curriculo[0]) }}"
+                    onsubmit="return confirmarExclusao();"
+                    style="display: inline;"
+                >
+
+                    <button
+                        type="submit"
+                        class="button delete-button"
+                    >
+                        🗑️ Excluir currículo
+                    </button>
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+        function confirmarExclusao() {
+
+            return confirm(
+                "Tem certeza que deseja excluir este currículo?\n\nEssa ação não poderá ser desfeita."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{% block title %}ProCareer{% endblock %}</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+    /* =====================================================
+       RESET
+    ====================================================== */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    /* =====================================================
+       BODY
+    ====================================================== */
+
+    body {
+
+        font-family: "Inter", sans-serif;
+
+        background:
+            radial-gradient(
+                circle at 10% 10%,
+                rgba(14, 165, 233, 0.08),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 90% 90%,
+                rgba(45, 212, 191, 0.08),
+                transparent 30%
+            ),
+            #f5fafb;
+
+        color: #123238;
+
+        min-height: 100vh;
+    }
+
+
+    /* =====================================================
+       SIDEBAR
+    ====================================================== */
+
+    .sidebar {
+
+        width: 255px;
+
+        height: 100vh;
+
+        background:
+            linear-gradient(
+                155deg,
+                #083d4a 0%,
+                #064c5a 48%,
+                #063c49 100%
+            );
+
+        color: white;
+
+        padding: 15px 14px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        z-index: 1000;
+
+        box-shadow:
+            10px 0 35px rgba(3, 52, 64, 0.15);
+
+        overflow: hidden;
+    }
+
+
+    /* =====================================================
+       BRILHO DECORATIVO
+    ====================================================== */
+
+    .sidebar::before {
+
+        content: "";
+
+        position: absolute;
+
+        width: 300px;
+        height: 300px;
+
+        right: -205px;
+        top: -145px;
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(56, 189, 248, 0.15),
+                transparent 68%
+            );
+
+        pointer-events: none;
+    }
+
+
+    .sidebar::after {
+
+        content: "";
+
+        position: absolute;
+
+        width: 240px;
+        height: 240px;
+
+        left: -170px;
+        bottom: -125px;
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(45, 212, 191, 0.10),
+                transparent 68%
+            );
+
+        pointer-events: none;
+    }
+
+
+    /* =====================================================
+       LOGO
+    ====================================================== */
+
+    .brand {
+
+        position: relative;
+
+        z-index: 3;
+
+        padding: 0 13px 18px;
+    }
+
+
+    .brand-name {
+
+        font-size: 24px;
+
+        font-weight: 900;
+
+        letter-spacing: -1.2px;
+
+        color: #ffffff;
+
+        text-shadow:
+            0 5px 15px rgba(0,0,0,.15);
+    }
+
+
+    .brand-name span {
+
+        color: #67e8f9;
+
+        text-shadow:
+            0 0 20px rgba(103,232,249,.20);
+    }
+
+
+    .brand-line {
+
+        width: 48px;
+
+        height: 3px;
+
+        margin-top: 8px;
+
+        border-radius: 20px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #67e8f9,
+                #2dd4bf
+            );
+
+        box-shadow:
+            0 3px 10px rgba(45,212,191,.20);
+    }
+
+
+    /* =====================================================
+       TÍTULOS DAS SEÇÕES
+    ====================================================== */
+
+    .menu-title {
+
+        position: relative;
+
+        z-index: 3;
+
+        padding: 0 11px;
+
+        margin-bottom: 8px;
+
+        color:
+            rgba(255,255,255,.47);
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        letter-spacing: 1.9px;
+
+        text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       MENU
+    ====================================================== */
+
+    .menu {
+
+        position: relative;
+
+        z-index: 3;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+
+    /* =====================================================
+       LINKS
+    ====================================================== */
+
+    .menu a {
+
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 11px;
+
+        min-height: 43px;
+
+        padding: 7px 10px;
+
+        border-radius: 12px;
+
+        border: 1px solid
+            rgba(255,255,255,.035);
+
+        background:
+            rgba(255,255,255,.025);
+
+        color:
+            rgba(255,255,255,.74);
+
+        text-decoration: none;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        transition:
+            background .25s ease,
+            border-color .25s ease,
+            color .25s ease,
+            transform .25s ease,
+            box-shadow .25s ease;
+    }
+
+
+    /* =====================================================
+       BARRA LATERAL
+    ====================================================== */
+
+    .menu a::before {
+
+        content: "";
+
+        position: absolute;
+
+        left: -1px;
+
+        top: 50%;
+
+        width: 3px;
+
+        height: 0;
+
+        border-radius:
+            0 5px 5px 0;
+
+        background:
+            linear-gradient(
+                180deg,
+                #67e8f9,
+                #2dd4bf
+            );
+
+        transform:
+            translateY(-50%);
+
+        opacity: 0;
+
+        transition:
+            height .25s ease,
+            opacity .25s ease;
+    }
+
+
+    /* =====================================================
+       ÍCONES
+    ====================================================== */
+
+    .menu-icon {
+
+        width: 30px;
+
+        height: 30px;
+
+        min-width: 30px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 9px;
+
+        background:
+            rgba(255,255,255,.065);
+
+        border: 1px solid
+            rgba(255,255,255,.035);
+
+        color:
+            rgba(255,255,255,.72);
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        transition:
+            background .25s ease,
+            color .25s ease,
+            transform .25s ease,
+            box-shadow .25s ease;
+    }
+
+
+    /* =====================================================
+       HOVER
+    ====================================================== */
+
+    .menu a:hover {
+
+        color: #ffffff;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(103,232,249,.12),
+                rgba(45,212,191,.045)
+            );
+
+        border-color:
+            rgba(103,232,249,.14);
+
+        transform:
+            translateX(3px);
+
+        box-shadow:
+            0 7px 18px
+            rgba(0,0,0,.07);
+    }
+
+
+    .menu a:hover::before {
+
+        height: 23px;
+
+        opacity: .85;
+    }
+
+
+    .menu a:hover .menu-icon {
+
+        color: #67e8f9;
+
+        background:
+            rgba(103,232,249,.14);
+
+        border-color:
+            rgba(103,232,249,.10);
+
+        transform:
+            scale(1.06);
+
+        box-shadow:
+            0 4px 10px
+            rgba(0,0,0,.08);
+    }
+
+
+    /* =====================================================
+       ITEM ATIVO
+    ====================================================== */
+
+    .menu a.active {
+
+        color: #064c5a;
+
+        background:
+            linear-gradient(
+                135deg,
+                #e5fbff 0%,
+                #d8f7f6 100%
+            );
+
+        border-color:
+            rgba(210,247,246,.95);
+
+        box-shadow:
+            0 8px 20px
+            rgba(0,0,0,.12);
+    }
+
+
+    .menu a.active::before {
+
+        height: 27px;
+
+        opacity: 1;
+
+        background:
+            linear-gradient(
+                180deg,
+                #06b6d4,
+                #0d9488
+            );
+    }
+
+
+    .menu a.active .menu-icon {
+
+        color: white;
+
+        background:
+            linear-gradient(
+                135deg,
+                #06b6d4,
+                #0d9488
+            );
+
+        border-color: transparent;
+
+        box-shadow:
+            0 5px 12px
+            rgba(13,148,136,.25);
+    }
+
+
+    .menu a.active:hover {
+
+        transform:
+            translateX(3px);
+
+        background:
+            linear-gradient(
+                135deg,
+                #edfdff 0%,
+                #ddfaf7 100%
+            );
+    }
+
+
+    /* =====================================================
+       SEÇÃO CARREIRA
+    ====================================================== */
+
+    .menu-section {
+
+        margin-top: 17px;
+
+        padding-top: 2px;
+    }
+
+
+    /* =====================================================
+       CONTEÚDO
+    ====================================================== */
+
+    .content {
+
+        margin-left: 255px;
+
+        width:
+            calc(100% - 255px);
+
+        padding: 32px 42px;
+
+        min-height: 100vh;
+
+        animation:
+            pageEnter .35s ease;
+    }
+
+
+    /* =====================================================
+       ANIMAÇÃO
+    ====================================================== */
+
+    @keyframes pageEnter {
+
+        from {
+
+            opacity: 0;
+
+            transform:
+                translateY(5px);
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+    }
+
+
+    /* =====================================================
+       TABLET
+    ====================================================== */
+
+    @media (max-width: 900px) {
+
+        .sidebar {
+
+            width: 210px;
+
+            padding: 15px 10px;
+        }
+
+
+        .content {
+
+            margin-left: 210px;
+
+            width:
+                calc(100% - 210px);
+
+            padding: 25px;
+        }
+
+
+        .menu a {
+
+            min-height: 40px;
+
+            font-size: 12px;
+        }
+
+
+        .menu-icon {
+
+            width: 27px;
+
+            height: 27px;
+
+            min-width: 27px;
+        }
+    }
+
+
+    /* =====================================================
+       CELULAR
+    ====================================================== */
+
+    @media (max-width: 650px) {
+
+        .sidebar {
+
+            width: 100%;
+
+            height: auto;
+
+            position: relative;
+
+            padding: 18px;
+        }
+
+
+        .brand {
+
+            padding-bottom: 18px;
+        }
+
+
+        .menu {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 6px;
+        }
+
+
+        .menu-section {
+
+            margin-top: 18px;
+        }
+
+
+        .content {
+
+            margin-left: 0;
+
+            width: 100%;
+
+            padding: 20px;
+        }
+    }
+
+
+    /* =====================================================
+       CELULAR PEQUENO
+    ====================================================== */
+
+    @media (max-width: 430px) {
+
+        .menu {
+
+            grid-template-columns: 1fr;
+        }
+
+
+        .menu a {
+
+            min-height: 42px;
+
+            padding: 8px 10px;
+        }
+    }
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
+
+<aside class="sidebar">
+
+
+    <!-- LOGO -->
+
+    <div class="brand">
+
+        <div class="brand-name">
+            Pro<span>Career</span>
+        </div>
+
+        <div class="brand-line"></div>
+
+    </div>
+
+
+    <!-- WORKSPACE -->
+
+    <div class="menu-title">
+        Workspace
+    </div>
+
+
+    <nav class="menu">
+
+
+        <!-- VISÃO GERAL -->
+
+        <a
+            href="{{ url_for('pagina_inicio') }}"
+            class="{% if request.endpoint == 'pagina_inicio' %}active{% endif %}"
+        >
+
+            <span class="menu-icon">
+                ⌂
+            </span>
+
+            <span>
+                Visão geral
+            </span>
+
+        </a>
+
+
+        <!-- CANDIDATURAS -->
+
+        <a
+            href="{{ url_for('candidaturas.listar') }}"
+            class="{% if request.endpoint == 'candidaturas.listar' %}active{% endif %}"
+        >
+
+            <span class="menu-icon">
+                ✓
+            </span>
+
+            <span>
+                Candidaturas
+            </span>
+
+        </a>
+
+
+        <!-- ENTREVISTAS -->
+
+        <a
+            href="{{ url_for('entrevistas.listar') }}"
+            class="{% if request.endpoint == 'entrevistas.listar' %}active{% endif %}"
+        >
+
+            <span class="menu-icon">
+                ◷
+            </span>
+
+            <span>
+                Entrevistas
+            </span>
+
+        </a>
+
+
+        <!-- EMPRESAS -->
+
+        <a
+            href="{{ url_for('empresas.listar') }}"
+            class="{% if request.endpoint == 'empresas.listar' %}active{% endif %}"
+        >
+
+            <span class="menu-icon">
+                ▣
+            </span>
+
+            <span>
+                Empresas
+            </span>
+
+        </a>
+
+
+        <!-- CURRÍCULOS -->
+
+        <a
+            href="{{ url_for('curriculos.listar') }}"
+            class="{% if request.endpoint == 'curriculos.listar' %}active{% endif %}"
+        >
+
+            <span class="menu-icon">
+                ▤
+            </span>
+
+            <span>
+                Currículos
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- CARREIRA -->
+
+    <div class="menu-title menu-section">
+        Carreira
+    </div>
+
+
+    <nav class="menu">
+
+
+        <!-- ANÁLISE DE PERFIL -->
+
+        <a
+            href="{{ url_for('analise.perfil') }}"
+            class="{% if request.endpoint == 'analise.perfil' %}active{% endif %}"
+        >
+
+            <span class="menu-icon">
+                ◉
+            </span>
+
+            <span>
+                Análise de perfil
+            </span>
+
+        </a>
+
+
+        <!-- COMPETÊNCIAS -->
+
+        <a
+            href="{{ url_for('competencias.listar') }}"
+            class="{% if request.endpoint == 'competencias.listar' %}active{% endif %}"
+        >
+
+            <span class="menu-icon">
+                ◆
+            </span>
+
+            <span>
+                Competências
+            </span>
+
+        </a>
+
+
+        <!-- METAS -->
+
+        <a
+            href="{{ url_for('metas.listar') }}"
+            class="{% if request.endpoint == 'metas.listar' %}active{% endif %}"
+        >
+
+            <span class="menu-icon">
+                ↗
+            </span>
+
+            <span>
+                Metas
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+</aside>
+
+
+<!-- =====================================================
+     CONTEÚDO
+====================================================== -->
+
+<main class="content">
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+
+</body>
+
+</html>

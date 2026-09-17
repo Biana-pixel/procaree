@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | ProCareer</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f5f7f6;
+            color: #17211b;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 250px;
+            height: 100vh;
+
+            background: #ffffff;
+
+            border-right: 1px solid #e5e7eb;
+
+            padding: 30px 20px;
+
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+            font-weight: 700;
+
+            color: #16a34a;
+
+            margin-bottom: 40px;
+
+            padding-left: 10px;
+
+        }
+
+
+        .menu {
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 8px;
+
+        }
+
+
+        .menu a {
+
+            text-decoration: none;
+
+            color: #647067;
+
+            padding: 13px 14px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            transition: 0.2s;
+
+        }
+
+
+        .menu a:hover {
+
+            background: #f0fdf4;
+
+            color: #16a34a;
+
+        }
+
+
+        .menu .active {
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
+        .content {
+
+            margin-left: 250px;
+
+            padding: 40px;
+
+            min-height: 100vh;
+
+        }
+
+
+        .top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .title h1 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .title p {
+
+            color: #6b756e;
+
+            font-size: 14px;
+
+        }
+
+
+        .welcome {
+
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            padding: 12px 18px;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+
+            color: #59635c;
+
+        }
+
+
+        .welcome strong {
+
+            color: #16a34a;
+
+        }
+
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .card {
+
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            padding: 24px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        .card-icon {
+
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #dcfce7;
+
+            color: #16a34a;
+
+            border-radius: 10px;
+
+            font-size: 19px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .card-label {
+
+            font-size: 13px;
+
+            color: #737d76;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .card-number {
+
+            font-size: 32px;
+
+            font-weight: 700;
+
+            color: #17211b;
+
+        }
+
+
+        /* =========================
+           ÁREA INFERIOR
+        ========================= */
+
+        .dashboard-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.4fr 1fr;
+
+            gap: 20px;
+
+        }
+
+
+        .panel {
+
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            min-height: 250px;
+
+        }
+
+
+        .panel h2 {
+
+            font-size: 18px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .panel-description {
+
+            font-size: 13px;
+
+            color: #737d76;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================
+           GRÁFICO
+        ========================= */
+
+        .chart-container {
+
+            width: 100%;
+
+            height: 220px;
+
+            position: relative;
+
+        }
+
+
+        /* =========================
+           ENTREVISTAS
+        ========================= */
+
+        .interviews-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+        }
+
+
+        .interview-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 14px;
+
+            background: #f8faf9;
+
+            border: 1px solid #edf0ee;
+
+            border-radius: 12px;
+
+            transition: 0.2s;
+
+            text-decoration: none;
+
+            color: inherit;
+
+        }
+
+
+        .interview-item:hover {
+
+            background: #f0fdf4;
+
+            border-color: #bbf7d0;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .interview-icon {
+
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #dcfce7;
+
+            color: #16a34a;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+
+        }
+
+
+        .interview-info {
+
+            min-width: 0;
+
+            flex: 1;
+
+        }
+
+
+        .interview-company {
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #17211b;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .interview-role {
+
+            font-size: 12px;
+
+            color: #737d76;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .interview-date {
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            color: #16a34a;
+
+        }
+
+
+        .interview-arrow {
+
+            font-size: 20px;
+
+            color: #16a34a;
+
+            margin-left: auto;
+
+            transition: 0.2s;
+
+        }
+
+
+        .interview-item:hover .interview-arrow {
+
+            transform: translateX(4px);
+
+        }
+
+
+        /* =========================
+           ESTADO VAZIO
+        ========================= */
+
+        .empty {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 150px;
+
+            color: #7a847d;
+
+            text-align: center;
+
+        }
+
+
+        .empty-icon {
+
+            font-size: 35px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .dashboard-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+
+                position: relative;
+
+                width: 100%;
+
+                height: auto;
+
+                border-right: none;
+
+                border-bottom:
+                    1px solid #e5e7eb;
+
+            }
+
+
+            .menu {
+
+                flex-direction: row;
+
+                flex-wrap: wrap;
+
+            }
+
+
+            .content {
+
+                margin-left: 0;
+
+                padding: 25px 18px;
+
+            }
+
+
+            .top {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            ProCareer
+        </div>
+
+
+        <nav class="menu">
+
+            <a
+                href="{{ url_for('dashboard.inicio') }}"
+                class="active"
+            >
+                📊 Dashboard
+            </a>
+
+
+            <a
+                href="{{ url_for('candidaturas.listar') }}"
+            >
+                💼 Candidaturas
+            </a>
+
+
+            <a
+                href="{{ url_for('entrevistas.listar') }}"
+            >
+                📅 Entrevistas
+            </a>
+
+
+            <a
+                href="{{ url_for('curriculos.listar') }}"
+            >
+                📄 Currículos
+            </a>
+
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+            >
+                Sair
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================= -->
+
+    <main class="content">
+
+
+        <!-- TOPO -->
+
+        <div class="top">
+
+            <div class="title">
+
+                <h1>
+                    Dashboard
+                </h1>
+
+
+                <p>
+                    Acompanhe sua jornada profissional em um só lugar.
+                </p>
+
+            </div>
+
+
+            <div class="welcome">
+
+                Olá,
+
+                <strong>
+                    {{ session["usuario_nome"] }}
+                </strong>
+
+                👋
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             CARDS
+        ========================= -->
+
+        <section class="cards">
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💼
+                </div>
+
+
+                <div class="card-label">
+                    Total de candidaturas
+                </div>
+
+
+                <div class="card-number">
+                    {{ total_candidaturas }}
+                </div>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🚀
+                </div>
+
+
+                <div class="card-label">
+                    Em andamento
+                </div>
+
+
+                <div class="card-number">
+                    {{ candidaturas_andamento }}
+                </div>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📅
+                </div>
+
+
+                <div class="card-label">
+                    Entrevistas
+                </div>
+
+
+                <div class="card-number">
+                    {{ total_entrevistas }}
+                </div>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📄
+                </div>
+
+
+                <div class="card-label">
+                    Currículos
+                </div>
+
+
+                <div class="card-number">
+                    {{ total_curriculos }}
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             PAINÉIS
+        ========================= -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- =========================
+                 EVOLUÇÃO
+            ========================= -->
+
+            <div class="panel">
+
+
+                <h2>
+                    Evolução das candidaturas
+                </h2>
+
+
+                <p class="panel-description">
+                    Acompanhe o crescimento das suas candidaturas ao longo do tempo.
+                </p>
+
+
+                <div class="chart-container">
+
+                    <canvas id="candidaturasChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PRÓXIMAS ENTREVISTAS
+            ========================= -->
+
+            <div class="panel">
+
+
+                <h2>
+                    Próximas entrevistas
+                </h2>
+
+
+                <p class="panel-description">
+                    Acompanhe seus próximos compromissos.
+                </p>
+
+
+                {% if proximas_entrevistas %}
+
+
+                    <div class="interviews-list">
+
+
+                        {% for entrevista in proximas_entrevistas %}
+
+
+                            <a
+                                href="{{ url_for('entrevistas.detalhes', id=entrevista[0]) }}"
+                                class="interview-item"
+                            >
+
+
+                                <div class="interview-icon">
+                                    📅
+                                </div>
+
+
+                                <div class="interview-info">
+
+
+                                    <div class="interview-company">
+
+                                        {{ entrevista[4] or "Empresa não informada" }}
+
+                                    </div>
+
+
+                                    <div class="interview-role">
+
+                                        {{ entrevista[3] }}
+
+                                    </div>
+
+
+                                    <div class="interview-date">
+
+                                        {{ entrevista[1].strftime("%d/%m/%Y às %H:%M") }}
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="interview-arrow">
+                                    →
+                                </div>
+
+
+                            </a>
+
+
+                        {% endfor %}
+
+
+                    </div>
+
+
+                {% else %}
+
+
+                    <div class="empty">
+
+
+                        <div class="empty-icon">
+                            🗓️
+                        </div>
+
+
+                        <p>
+                            Nenhuma entrevista próxima.
+                        </p>
+
+
+                    </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         DADOS DO GRÁFICO
+    ========================= -->
+
+    <script id="chart-data" type="application/json">
+
+        {{ {
+            "labels": grafico_labels,
+            "valores": grafico_valores
+        } | tojson }}
+
+    </script>
+
+
+
+    <!-- =========================
+         GRÁFICO
+    ========================= -->
+
+    <script>
+
+        const chartDataElement =
+            document.getElementById("chart-data");
+
+
+        const chartData =
+            JSON.parse(
+                chartDataElement.textContent
+            );
+
+
+        const labels =
+            chartData.labels;
+
+
+        const valores =
+            chartData.valores;
+
+
+        const ctx =
+            document.getElementById(
+                "candidaturasChart"
+            );
+
+
+        /*
+         * Ajusta automaticamente o eixo Y.
+         *
+         * Com poucas candidaturas o gráfico
+         * não fica exageradamente alto.
+         */
+
+        const maiorValor =
+            valores.length > 0
+                ? Math.max(...valores)
+                : 0;
+
+
+        const limiteY =
+            maiorValor <= 1
+                ? 2
+                : maiorValor + 1;
+
+
+
+        new Chart(ctx, {
+
+
+            type: "line",
+
+
+            data: {
+
+                labels: labels,
+
+
+                datasets: [{
+
+                    label: "Candidaturas",
+
+                    data: valores,
+
+
+                    borderColor: "#16a34a",
+
+                    backgroundColor:
+                        "rgba(22, 163, 74, 0.08)",
+
+
+                    borderWidth: 2.5,
+
+
+                    tension: 0.35,
+
+
+                    fill: true,
+
+
+                    pointRadius: 5,
+
+                    pointHoverRadius: 7,
+
+
+                    pointBackgroundColor:
+                        "#16a34a",
+
+
+                    pointBorderColor:
+                        "#ffffff",
+
+
+                    pointBorderWidth: 2
+
+                }]
+
+            },
+
+
+            options: {
+
+
+                responsive: true,
+
+
+                maintainAspectRatio: false,
+
+
+                interaction: {
+
+                    intersect: false,
+
+                    mode: "index"
+
+                },
+
+
+                animation: {
+
+                    duration: 700
+
+                },
+
+
+                plugins: {
+
+
+                    legend: {
+
+                        display: false
+
+                    },
+
+
+                    tooltip: {
+
+                        backgroundColor:
+                            "#17211b",
+
+                        titleColor:
+                            "#ffffff",
+
+                        bodyColor:
+                            "#ffffff",
+
+                        padding: 12,
+
+                        displayColors: false,
+
+
+                        callbacks: {
+
+                            label: function(context) {
+
+                                return (
+                                    " " +
+                                    context.parsed.y +
+                                    " candidatura(s)"
+                                );
+
+                            }
+
+                        }
+
+                    }
+
+                },
+
+
+                scales: {
+
+
+                    y: {
+
+                        beginAtZero: true,
+
+
+                        suggestedMax:
+                            limiteY,
+
+
+                        ticks: {
+
+                            precision: 0,
+
+                            color: "#8a948d",
+
+                            padding: 8
+
+                        },
+
+
+                        grid: {
+
+                            color:
+                                "#eef1ef",
+
+                            drawBorder: false
+
+                        }
+
+                    },
+
+
+                    x: {
+
+                        ticks: {
+
+                            color:
+                                "#8a948d",
+
+                            padding: 8,
+
+                            maxRotation: 0
+
+                        },
+
+
+                        grid: {
+
+                            display: false
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

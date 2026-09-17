@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editar competência | ProCareer</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+
+        /* =========================
+           PÁGINA
+        ========================= */
+
+        .page {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+
+            animation: pageEnter 0.5s ease;
+        }
+
+
+        @keyframes pageEnter {
+
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================= */
+
+        .page-heading {
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .heading-icon {
+            width: 52px;
+            height: 52px;
+
+            border-radius: 15px;
+
+            background: linear-gradient(
+                135deg,
+                #dbeafe,
+                #cffafe
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 24px;
+
+            margin-bottom: 12px;
+
+            box-shadow:
+                0 6px 18px rgba(14, 165, 233, 0.12);
+        }
+
+
+        .page-heading h1 {
+            font-size: 30px;
+
+            color: #12383d;
+
+            font-weight: 900;
+
+            letter-spacing: -0.5px;
+
+            text-shadow:
+                0 3px 5px rgba(14, 165, 233, 0.35),
+                0 6px 12px rgba(14, 165, 233, 0.28);
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .form-card {
+            position: relative;
+
+            width: 100%;
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 18px;
+
+            padding: 32px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.05);
+
+            transition: 0.3s ease;
+        }
+
+
+        .form-card:hover {
+            box-shadow:
+                0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+
+        /* LINHA AZUL */
+
+        .form-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0ea5e9,
+                    #38bdf8,
+                    #0ea5e9
+                );
+        }
+
+
+        /* CÍRCULO DECORATIVO */
+
+        .form-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 110px;
+            height: 110px;
+
+            right: -40px;
+            top: -40px;
+
+            border-radius: 50%;
+
+            background: rgba(14, 165, 233, 0.06);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           CABEÇALHO DO FORM
+        ========================= */
+
+        .form-header {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 28px;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        .form-header-icon {
+            width: 46px;
+            height: 46px;
+
+            border-radius: 12px;
+
+            background: #eff6ff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+
+            flex-shrink: 0;
+        }
+
+
+        .form-header h2 {
+            font-size: 20px;
+
+            color: #0f172a;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
+        .form-group {
+            margin-bottom: 23px;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+            color: #334155;
+        }
+
+
+        .required {
+            color: #0284c7;
+
+            font-size: 17px;
+        }
+
+
+        .input-wrapper {
+            position: relative;
+        }
+
+
+        .input-icon {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 17px;
+
+            pointer-events: none;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            height: 52px;
+
+            padding: 0 14px 0 44px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            background: white;
+
+            color: #1e293b;
+
+            transition: 0.2s ease;
+
+            font-family: inherit;
+        }
+
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+
+        .form-group input::placeholder {
+            color: #94a3b8;
+
+            font-size: 15px;
+        }
+
+
+        .form-group input:hover,
+        .form-group select:hover {
+            border-color: #7dd3fc;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #0284c7;
+
+            box-shadow:
+                0 0 0 3px rgba(14, 165, 233, 0.10);
+        }
+
+
+        /* =========================
+           BOTÕES
+        ========================= */
+
+        .form-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 12px;
+
+            margin-top: 30px;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        .save-button {
+            background: linear-gradient(
+                135deg,
+                #0284c7,
+                #06b6d4
+            );
+
+            color: white;
+
+            border: none;
+
+            padding: 13px 21px;
+
+            min-height: 48px;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+
+            box-shadow:
+                0 5px 14px rgba(14, 165, 233, 0.18);
+        }
+
+
+        .save-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(14, 165, 233, 0.25);
+        }
+
+
+        .cancel-button {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: white;
+
+            color: #64748b;
+
+            border: 1px solid #cbd5e1;
+
+            padding: 13px 21px;
+
+            min-height: 48px;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            transition: 0.2s ease;
+        }
+
+
+        .cancel-button:hover {
+            background: #f8fafc;
+
+            border-color: #94a3b8;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 25px 15px;
+            }
+
+
+            .page-heading h1 {
+                font-size: 26px;
+            }
+
+
+            .heading-icon {
+                width: 48px;
+                height: 48px;
+
+                font-size: 22px;
+            }
+
+
+            .form-card {
+                padding: 25px;
+            }
+
+
+            .form-header h2 {
+                font-size: 18px;
+            }
+
+
+            .form-group label {
+                font-size: 15px;
+            }
+
+
+            .form-group input,
+            .form-group select {
+                font-size: 16px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+
+            .page-heading {
+                margin-bottom: 24px;
+            }
+
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+
+
+            .form-card {
+                padding: 22px 18px;
+            }
+
+
+            .form-header {
+                margin-bottom: 24px;
+            }
+
+
+            .form-header h2 {
+                font-size: 18px;
+            }
+
+
+            .form-group label {
+                font-size: 15px;
+            }
+
+
+            .form-group input,
+            .form-group select {
+                height: 52px;
+
+                font-size: 16px;
+            }
+
+
+            .form-group input::placeholder {
+                font-size: 14px;
+            }
+
+
+            .required {
+                font-size: 16px;
+            }
+
+
+            .form-actions {
+                flex-direction: column-reverse;
+            }
+
+
+            .save-button,
+            .cancel-button {
+                width: 100%;
+
+                text-align: center;
+
+                font-size: 15px;
+
+                min-height: 48px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="page">
+
+
+        <!-- TÍTULO -->
+
+        <div class="page-heading">
+
+            <div class="heading-icon">
+                🎯
+            </div>
+
+            <h1>
+                Editar competência
+            </h1>
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <div class="form-card">
+
+
+            <div class="form-header">
+
+                <div class="form-header-icon">
+                    ✏️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Informações da competência
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <form method="POST" autocomplete="off">
+
+
+                <!-- NOME -->
+
+                <div class="form-group">
+
+                    <label for="nome">
+
+                        Nome da competência
+
+                        <span class="required">*</span>
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            💡
+                        </span>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            value="{{ competencia[1] }}"
+                            placeholder="Ex.: Python, SQL, Git..."
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- NÍVEL -->
+
+                <div class="form-group">
+
+                    <label for="nivel">
+
+                        Nível
+
+                        <span class="required">*</span>
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            📊
+                        </span>
+
+
+                        <select
+                            id="nivel"
+                            name="nivel"
+                            required
+                        >
+
+                            <option value="Iniciante"
+                                {% if competencia[2] == "Iniciante" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Iniciante
+                            </option>
+
+
+                            <option value="Básico"
+                                {% if competencia[2] == "Básico" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Básico
+                            </option>
+
+
+                            <option value="Intermediário"
+                                {% if competencia[2] == "Intermediário" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Intermediário
+                            </option>
+
+
+                            <option value="Avançado"
+                                {% if competencia[2] == "Avançado" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Avançado
+                            </option>
+
+
+                            <option value="Especialista"
+                                {% if competencia[2] == "Especialista" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Especialista
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÕES -->
+
+                <div class="form-actions">
+
+
+                    <a
+                        href="{{ url_for('competencias.listar') }}"
+                        class="cancel-button"
+                    >
+                        Cancelar
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+                        💾 Salvar alterações
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
