@@ -1,1309 +1,851 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
 
-<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>{% block title %}ProCareer{% endblock %}</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <title>{% block title %}ProCareer{% endblock %}</title>
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    /* =====================================================
+       RESET
+    ====================================================== */
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        width: 100%;
+        min-height: 100%;
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        font-family: "Inter", Arial, sans-serif;
+        background: #f5fafb;
+        color: #123238;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+    }
 
 
-    <!-- =====================================================
-         FONTE
-    ====================================================== -->
+    /* =====================================================
+       SIDEBAR
+    ====================================================== */
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    .sidebar {
+        width: 255px;
+        height: 100vh;
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
+        z-index: 1000;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 15px 14px;
+
+        color: white;
+
+        background: linear-gradient(
+            155deg,
+            #083d4a 0%,
+            #064c5a 48%,
+            #063c49 100%
+        );
+
+        box-shadow: 8px 0 22px rgba(3, 52, 64, 0.10);
+
+        overflow: hidden;
+    }
 
 
-    <style>
+    /* =====================================================
+       BRILHOS DECORATIVOS
+    ====================================================== */
 
-        /* =====================================================
-           RESET
-        ====================================================== */
+    .sidebar::before {
+        content: "";
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        position: absolute;
+
+        width: 260px;
+        height: 260px;
+
+        right: -180px;
+        top: -130px;
+
+        border-radius: 50%;
+
+        background: rgba(56, 189, 248, 0.07);
+
+        pointer-events: none;
+    }
+
+    .sidebar::after {
+        content: "";
+
+        position: absolute;
+
+        width: 210px;
+        height: 210px;
+
+        left: -150px;
+        bottom: -110px;
+
+        border-radius: 50%;
+
+        background: rgba(45, 212, 191, 0.05);
+
+        pointer-events: none;
+    }
+
+
+    /* =====================================================
+       LOGO
+    ====================================================== */
+
+    .brand {
+        position: relative;
+        z-index: 2;
+
+        padding: 0 13px 18px;
+    }
+
+    .brand-name {
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: -1.2px;
+        color: #ffffff;
+    }
+
+    .brand-name span {
+        color: #67e8f9;
+    }
+
+    .brand-line {
+        width: 48px;
+        height: 3px;
+
+        margin-top: 8px;
+
+        border-radius: 20px;
+
+        background: linear-gradient(
+            90deg,
+            #67e8f9,
+            #2dd4bf
+        );
+    }
+
+
+    /* =====================================================
+       HOVER DA LOGO - DESKTOP
+    ====================================================== */
+
+    @media (min-width: 651px) {
+
+        .brand:hover .brand-line {
+            width: 65px;
+            box-shadow: 0 0 10px rgba(103, 232, 249, .22);
+            transition: width .2s ease;
         }
 
+    }
 
-        html {
 
-            width: 100%;
+    /* =====================================================
+       TÍTULOS
+    ====================================================== */
 
-            min-height: 100%;
+    .menu-title {
+        position: relative;
+        z-index: 2;
 
-            overflow-x: hidden;
+        padding: 0 11px;
+        margin-bottom: 8px;
 
-            -webkit-text-size-adjust: 100%;
+        color: rgba(255, 255, 255, .47);
+
+        font-size: 9px;
+        font-weight: 800;
+
+        letter-spacing: 1.9px;
+        text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       MENU
+    ====================================================== */
+
+    .menu {
+        position: relative;
+        z-index: 2;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+
+    /* =====================================================
+       LINKS
+    ====================================================== */
+
+    .menu a {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+
+        gap: 11px;
+
+        min-height: 43px;
+
+        padding: 7px 10px;
+
+        border-radius: 12px;
+
+        border: 1px solid rgba(255, 255, 255, .035);
+
+        background: rgba(255, 255, 255, .025);
+
+        color: rgba(255, 255, 255, .74);
+
+        text-decoration: none;
+
+        font-size: 13px;
+        font-weight: 600;
+
+        touch-action: manipulation;
+
+        -webkit-tap-highlight-color: transparent;
+    }
+
+
+    /* =====================================================
+       BARRA DO ITEM
+    ====================================================== */
+
+    .menu a::before {
+        content: "";
+
+        position: absolute;
+
+        left: -1px;
+        top: 50%;
+
+        width: 3px;
+        height: 0;
+
+        border-radius: 0 5px 5px 0;
+
+        background: linear-gradient(
+            180deg,
+            #67e8f9,
+            #2dd4bf
+        );
+
+        transform: translateY(-50%);
+
+        opacity: 0;
+    }
+
+
+    /* =====================================================
+       ÍCONES
+    ====================================================== */
+
+    .menu-icon {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 9px;
+
+        background: rgba(255, 255, 255, .065);
+
+        border: 1px solid rgba(255, 255, 255, .035);
+
+        color: rgba(255, 255, 255, .72);
+
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+
+    /* =====================================================
+       HOVER DESKTOP
+    ====================================================== */
+
+    @media (min-width: 651px) {
+
+        .menu a {
+            transition:
+                background .15s ease,
+                border-color .15s ease,
+                color .15s ease,
+                transform .15s ease;
         }
 
+        .menu a:hover {
+            color: #ffffff;
 
-        /* =====================================================
-           BODY
-        ====================================================== */
+            background: rgba(103, 232, 249, .09);
 
-        body {
+            border-color: rgba(103, 232, 249, .13);
 
-            font-family: "Inter", sans-serif;
-
-            background:
-                radial-gradient(
-                    circle at 10% 10%,
-                    rgba(14, 165, 233, 0.07),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 90% 90%,
-                    rgba(45, 212, 191, 0.07),
-                    transparent 30%
-                ),
-                #f5fafb;
-
-            color: #123238;
-
-            min-height: 100vh;
-
-            width: 100%;
-
-            overflow-x: hidden;
-
-            -webkit-tap-highlight-color: transparent;
+            transform: translateX(3px);
         }
 
+        .menu a:hover::before {
+            height: 23px;
+            opacity: .85;
+        }
 
-        /* =====================================================
-           SIDEBAR
-        ====================================================== */
+        .menu a:hover .menu-icon {
+            color: #67e8f9;
+            background: rgba(103, 232, 249, .12);
+            border-color: rgba(103, 232, 249, .12);
+        }
+
+    }
+
+
+    /* =====================================================
+       ITEM ATIVO
+    ====================================================== */
+
+    .menu a.active {
+        color: #064c5a;
+
+        background: linear-gradient(
+            135deg,
+            #e5fbff 0%,
+            #d8f7f6 100%
+        );
+
+        border-color: rgba(210, 247, 246, .95);
+
+        box-shadow: 0 4px 10px rgba(0, 0, 0, .07);
+    }
+
+    .menu a.active::before {
+        height: 27px;
+        opacity: 1;
+
+        background: linear-gradient(
+            180deg,
+            #06b6d4,
+            #0d9488
+        );
+    }
+
+    .menu a.active .menu-icon {
+        color: white;
+
+        background: linear-gradient(
+            135deg,
+            #06b6d4,
+            #0d9488
+        );
+
+        border-color: transparent;
+
+        box-shadow: 0 3px 7px rgba(13, 148, 136, .16);
+    }
+
+
+    @media (min-width: 651px) {
+
+        .menu a.active:hover {
+            transform: translateX(2px);
+        }
+
+    }
+
+
+    /* =====================================================
+       CONTEÚDO
+    ====================================================== */
+
+    .content {
+        margin-left: 255px;
+
+        width: calc(100% - 255px);
+
+        min-height: 100vh;
+
+        padding: 32px 42px;
+
+        overflow-x: hidden;
+    }
+
+
+    /* =====================================================
+       SEÇÃO CARREIRA
+    ====================================================== */
+
+    .menu-section {
+        margin-top: 17px;
+        padding-top: 2px;
+    }
+
+
+    /* =====================================================
+       TABLET
+    ====================================================== */
+
+    @media (max-width: 900px) and (min-width: 651px) {
 
         .sidebar {
+            width: 210px;
+            padding: 15px 10px;
+        }
 
-            width: 255px;
+        .content {
+            margin-left: 210px;
+            width: calc(100% - 210px);
+            padding: 25px;
+        }
 
-            height: 100vh;
+        .menu a {
+            min-height: 40px;
+            font-size: 12px;
+        }
 
-            background:
-                linear-gradient(
-                    155deg,
-                    #083d4a 0%,
-                    #064c5a 48%,
-                    #063c49 100%
-                );
+        .menu-icon {
+            width: 27px;
+            height: 27px;
+            min-width: 27px;
+        }
 
-            color: white;
+    }
+
+
+    /* =====================================================
+       CELULAR
+    ====================================================== */
+
+    @media (max-width: 650px) {
+
+        body {
+            background: #f5fafb;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 100%;
+            height: auto;
+            min-height: 0;
+
+            position: relative;
+            top: auto;
+            left: auto;
+            bottom: auto;
 
             padding: 15px 14px;
 
-            display: flex;
-
-            flex-direction: column;
-
-            position: fixed;
-
-            top: 0;
-
-            left: 0;
-
-            bottom: 0;
-
-            z-index: 1000;
-
-            box-shadow:
-                10px 0 35px rgba(3, 52, 64, 0.15);
-
-            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(3, 52, 64, .08);
         }
 
 
-        /* =====================================================
-           BRILHOS
-        ====================================================== */
+        /* DESATIVA OS BRILHOS PESADOS NO CELULAR */
 
-        .sidebar::before {
-
-            content: "";
-
-            position: absolute;
-
-            width: 300px;
-
-            height: 300px;
-
-            right: -205px;
-
-            top: -145px;
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(56, 189, 248, 0.15),
-                    transparent 68%
-                );
-
-            pointer-events: none;
-        }
-
-
+        .sidebar::before,
         .sidebar::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 240px;
-
-            height: 240px;
-
-            left: -170px;
-
-            bottom: -125px;
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(45, 212, 191, 0.10),
-                    transparent 68%
-                );
-
-            pointer-events: none;
+            display: none;
         }
 
 
-        /* =====================================================
-           LOGO
-        ====================================================== */
+        /* LOGO */
 
         .brand {
-
-            position: relative;
-
-            z-index: 3;
-
-            padding: 0 13px 18px;
+            padding: 0 8px 14px;
         }
-
 
         .brand-name {
-
-            font-size: 24px;
-
-            font-weight: 900;
-
-            letter-spacing: -1.2px;
-
-            color: #ffffff;
-
-            text-shadow:
-                0 5px 15px rgba(0, 0, 0, .15);
+            font-size: 23px;
         }
-
-
-        .brand-name span {
-
-            color: #67e8f9;
-        }
-
 
         .brand-line {
-
-            width: 48px;
-
-            height: 3px;
-
-            margin-top: 8px;
-
-            border-radius: 20px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #67e8f9,
-                    #2dd4bf
-                );
-
-            transition:
-                width .25s ease,
-                box-shadow .25s ease;
+            width: 45px;
+            margin-top: 7px;
         }
 
 
-        /* =====================================================
-           HOVER DA LINHA - SOMENTE DESKTOP
-        ====================================================== */
-
-        @media (min-width: 651px) {
-
-            .brand:hover .brand-line {
-
-                width: 68px;
-
-                box-shadow:
-                    0 0 12px
-                    rgba(103, 232, 249, .30);
-            }
-
-        }
-
-
-        /* =====================================================
-           TÍTULOS DO MENU
-        ====================================================== */
+        /* TÍTULO */
 
         .menu-title {
+            padding: 0 8px;
+            margin-bottom: 7px;
 
-            position: relative;
-
-            z-index: 3;
-
-            padding: 0 11px;
-
-            margin-bottom: 8px;
-
-            color:
-                rgba(255, 255, 255, .47);
-
-            font-size: 9px;
-
-            font-weight: 800;
-
-            letter-spacing: 1.9px;
-
-            text-transform: uppercase;
+            font-size: 8.5px;
+            letter-spacing: 1.7px;
         }
 
 
-        /* =====================================================
-           MENU
-        ====================================================== */
+        /* MENU */
 
         .menu {
+            display: grid;
 
-            position: relative;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
 
-            z-index: 3;
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 5px;
+            gap: 6px;
         }
 
 
-        /* =====================================================
-           LINKS
-        ====================================================== */
+        /* LINKS */
 
         .menu a {
+            min-width: 0;
+            min-height: 45px;
 
-            position: relative;
+            padding: 7px 9px;
 
-            display: flex;
+            gap: 8px;
 
-            align-items: center;
+            font-size: 12px;
 
-            gap: 11px;
-
-            min-height: 43px;
-
-            padding: 7px 10px;
-
-            border-radius: 12px;
-
-            border:
-                1px solid
-                rgba(255, 255, 255, .035);
-
-            background:
-                rgba(255, 255, 255, .025);
-
-            color:
-                rgba(255, 255, 255, .74);
-
-            text-decoration: none;
-
-            font-size: 13px;
-
-            font-weight: 600;
-
-            touch-action: manipulation;
-
-            -webkit-tap-highlight-color: transparent;
-
-            transition:
-                background .16s ease,
-                border-color .16s ease,
-                color .16s ease,
-                transform .16s ease,
-                box-shadow .16s ease;
+            border-radius: 11px;
         }
 
 
-        /* =====================================================
-           BARRA DO ITEM
-        ====================================================== */
-
-        .menu a::before {
-
-            content: "";
-
-            position: absolute;
-
-            left: -1px;
-
-            top: 50%;
-
-            width: 3px;
-
-            height: 0;
-
-            border-radius:
-                0 5px 5px 0;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #67e8f9,
-                    #2dd4bf
-                );
-
-            transform:
-                translateY(-50%);
-
-            opacity: 0;
-
-            transition:
-                height .18s ease,
-                opacity .18s ease;
-        }
-
-
-        /* =====================================================
-           ÍCONES
-        ====================================================== */
+        /* ÍCONES */
 
         .menu-icon {
+            width: 29px;
+            height: 29px;
+            min-width: 29px;
 
-            width: 30px;
+            border-radius: 8px;
 
-            height: 30px;
-
-            min-width: 30px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            border-radius: 9px;
-
-            background:
-                rgba(255, 255, 255, .065);
-
-            border:
-                1px solid
-                rgba(255, 255, 255, .035);
-
-            color:
-                rgba(255, 255, 255, .72);
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            transition:
-                transform .16s ease,
-                color .16s ease,
-                background .16s ease,
-                border-color .16s ease;
+            font-size: 12px;
         }
 
 
-        /* =====================================================
-           HOVER - DESKTOP
-        ====================================================== */
+        /* REMOVE TODAS AS ANIMAÇÕES DE HOVER */
 
-        @media (min-width: 651px) {
+        .menu a:hover {
+            transform: none;
+            box-shadow: none;
 
-            .menu a:hover {
+            color: rgba(255, 255, 255, .74);
 
-                color: #ffffff;
+            background: rgba(255, 255, 255, .025);
 
-                background:
-                    linear-gradient(
-                        90deg,
-                        rgba(103, 232, 249, .12),
-                        rgba(45, 212, 191, .045)
-                    );
+            border-color: rgba(255, 255, 255, .035);
+        }
 
-                border-color:
-                    rgba(103, 232, 249, .14);
+        .menu a:hover::before {
+            height: 0;
+            opacity: 0;
+        }
 
-                transform:
-                    translateX(3px);
+        .menu a:hover .menu-icon {
+            color: rgba(255, 255, 255, .72);
 
-                box-shadow:
-                    0 5px 16px
-                    rgba(0, 0, 0, .08);
-            }
+            background: rgba(255, 255, 255, .065);
 
-
-            .menu a:hover::before {
-
-                height: 23px;
-
-                opacity: .85;
-            }
-
-
-            .menu a:hover .menu-icon {
-
-                color: #67e8f9;
-
-                background:
-                    rgba(103, 232, 249, .14);
-
-                border-color:
-                    rgba(103, 232, 249, .15);
-
-                transform:
-                    scale(1.06);
-            }
-
+            border-color: rgba(255, 255, 255, .035);
         }
 
 
-        /* =====================================================
-           ITEM ATIVO
-        ====================================================== */
+        /* TOQUE */
+
+        .menu a:active {
+            transform: scale(.99);
+        }
+
+
+        /* ATIVO */
 
         .menu a.active {
+            box-shadow: 0 2px 7px rgba(0, 0, 0, .05);
+        }
+
+        .menu a.active:hover {
+            transform: none;
 
             color: #064c5a;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #e5fbff 0%,
-                    #d8f7f6 100%
-                );
+            background: linear-gradient(
+                135deg,
+                #e5fbff 0%,
+                #d8f7f6 100%
+            );
+        }
 
-            border-color:
-                rgba(210, 247, 246, .95);
-
-            box-shadow:
-                0 5px 14px
-                rgba(0, 0, 0, .09);
+        .menu a.active:active {
+            transform: scale(.99);
         }
 
 
-        .menu a.active::before {
+        /* CARREIRA */
 
-            height: 27px;
-
-            opacity: 1;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #06b6d4,
-                    #0d9488
-                );
+        .menu-section {
+            margin-top: 14px;
+            padding-top: 1px;
         }
 
 
-        .menu a.active .menu-icon {
-
-            color: white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #06b6d4,
-                    #0d9488
-                );
-
-            border-color: transparent;
-
-            box-shadow:
-                0 4px 10px
-                rgba(13, 148, 136, .20);
-        }
-
-
-        @media (min-width: 651px) {
-
-            .menu a.active:hover {
-
-                transform:
-                    translateX(2px);
-
-                box-shadow:
-                    0 7px 18px
-                    rgba(0, 0, 0, .11);
-            }
-
-        }
-
-
-        /* =====================================================
-           CONTEÚDO
-        ====================================================== */
+        /* CONTEÚDO */
 
         .content {
-
-            margin-left: 255px;
-
-            width:
-                calc(100% - 255px);
-
-            padding: 32px 42px;
+            margin-left: 0;
+            width: 100%;
 
             min-height: 100vh;
 
-            overflow-x: hidden;
+            padding: 18px 14px;
         }
 
+    }
 
-        /* =====================================================
-           CARREIRA
-        ====================================================== */
 
-        .menu-section {
+    /* =====================================================
+       CELULAR PEQUENO
+    ====================================================== */
 
-            margin-top: 17px;
+    @media (max-width: 430px) {
 
-            padding-top: 2px;
+        .sidebar {
+            padding: 14px 12px;
         }
 
-
-        /* =====================================================
-           TABLET
-        ====================================================== */
-
-        @media (max-width: 900px) and (min-width: 651px) {
-
-            .sidebar {
-
-                width: 210px;
-
-                padding: 15px 10px;
-            }
-
-
-            .content {
-
-                margin-left: 210px;
-
-                width:
-                    calc(100% - 210px);
-
-                padding: 25px;
-            }
-
-
-            .menu a {
-
-                min-height: 40px;
-
-                font-size: 12px;
-            }
-
-
-            .menu-icon {
-
-                width: 27px;
-
-                height: 27px;
-
-                min-width: 27px;
-            }
-
+        .brand {
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-bottom: 13px;
         }
 
-
-        /* =====================================================
-           CELULAR
-        ====================================================== */
-
-        @media (max-width: 650px) {
-
-            body {
-
-                background:
-                    radial-gradient(
-                        circle at 10% 5%,
-                        rgba(14, 165, 233, 0.05),
-                        transparent 28%
-                    ),
-                    #f5fafb;
-            }
-
-
-            /* =================================================
-               SIDEBAR MOBILE
-            ================================================== */
-
-            .sidebar {
-
-                width: 100%;
-
-                height: auto;
-
-                min-height: 0;
-
-                position: relative;
-
-                top: auto;
-
-                left: auto;
-
-                bottom: auto;
-
-                padding: 15px 14px;
-
-                box-shadow:
-                    0 5px 18px
-                    rgba(3, 52, 64, .10);
-
-                overflow: hidden;
-            }
-
-
-            /* =================================================
-               BRILHOS MOBILE
-            ================================================== */
-
-            .sidebar::before {
-
-                width: 220px;
-
-                height: 220px;
-
-                right: -150px;
-
-                top: -120px;
-
-                opacity: .22;
-            }
-
-
-            .sidebar::after {
-
-                width: 180px;
-
-                height: 180px;
-
-                left: -130px;
-
-                bottom: -110px;
-
-                opacity: .18;
-            }
-
-
-            /* =================================================
-               LOGO MOBILE
-            ================================================== */
-
-            .brand {
-
-                padding:
-                    0 8px 14px;
-            }
-
-
-            .brand-name {
-
-                font-size: 23px;
-            }
-
-
-            .brand-line {
-
-                width: 45px;
-
-                margin-top: 7px;
-            }
-
-
-            /* =================================================
-               TÍTULO MOBILE
-            ================================================== */
-
-            .menu-title {
-
-                padding: 0 8px;
-
-                margin-bottom: 7px;
-
-                font-size: 8.5px;
-
-                letter-spacing: 1.7px;
-            }
-
-
-            /* =================================================
-               MENU MOBILE
-            ================================================== */
-
-            .menu {
-
-                display: grid;
-
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-
-                gap: 6px;
-            }
-
-
-            /* =================================================
-               LINKS MOBILE
-            ================================================== */
-
-            .menu a {
-
-                min-width: 0;
-
-                min-height: 45px;
-
-                padding:
-                    7px 9px;
-
-                gap: 8px;
-
-                font-size: 12px;
-
-                border-radius: 11px;
-
-                transition:
-                    background .12s ease,
-                    border-color .12s ease,
-                    transform .12s ease;
-            }
-
-
-            /* =================================================
-               ÍCONES MOBILE
-            ================================================== */
-
-            .menu-icon {
-
-                width: 29px;
-
-                height: 29px;
-
-                min-width: 29px;
-
-                border-radius: 8px;
-
-                font-size: 12px;
-            }
-
-
-            /* =================================================
-               DESATIVA HOVER NO CELULAR
-            ================================================== */
-
-            .menu a:hover {
-
-                transform: none;
-
-                box-shadow: none;
-
-                color:
-                    rgba(255, 255, 255, .74);
-
-                background:
-                    rgba(255, 255, 255, .025);
-
-                border-color:
-                    rgba(255, 255, 255, .035);
-            }
-
-
-            .menu a:hover::before {
-
-                height: 0;
-
-                opacity: 0;
-            }
-
-
-            .menu a:hover .menu-icon {
-
-                color:
-                    rgba(255, 255, 255, .72);
-
-                background:
-                    rgba(255, 255, 255, .065);
-
-                border-color:
-                    rgba(255, 255, 255, .035);
-
-                transform: none;
-            }
-
-
-            /* =================================================
-               TOQUE MOBILE
-            ================================================== */
-
-            .menu a:active {
-
-                transform:
-                    scale(.98);
-
-                background:
-                    rgba(103, 232, 249, .12);
-
-                border-color:
-                    rgba(103, 232, 249, .16);
-            }
-
-
-            .menu a:active .menu-icon {
-
-                transform:
-                    scale(.95);
-            }
-
-
-            /* =================================================
-               ITEM ATIVO MOBILE
-            ================================================== */
-
-            .menu a.active {
-
-                box-shadow:
-                    0 3px 10px
-                    rgba(0, 0, 0, .06);
-            }
-
-
-            .menu a.active:hover {
-
-                transform: none;
-
-                color: #064c5a;
-
-                background:
-                    linear-gradient(
-                        135deg,
-                        #e5fbff 0%,
-                        #d8f7f6 100%
-                    );
-            }
-
-
-            .menu a.active:active {
-
-                transform:
-                    scale(.98);
-
-                background:
-                    linear-gradient(
-                        135deg,
-                        #dffaff 0%,
-                        #d4f5f2 100%
-                    );
-            }
-
-
-            /* =================================================
-               CARREIRA MOBILE
-            ================================================== */
-
-            .menu-section {
-
-                margin-top: 14px;
-
-                padding-top: 1px;
-            }
-
-
-            /* =================================================
-               CONTEÚDO MOBILE
-            ================================================== */
-
-            .content {
-
-                margin-left: 0;
-
-                width: 100%;
-
-                padding:
-                    18px 14px;
-
-                min-height: 100vh;
-
-                overflow-x: hidden;
-            }
-
+        .brand-name {
+            font-size: 22px;
         }
 
-
-        /* =====================================================
-           CELULAR PEQUENO
-        ====================================================== */
-
-        @media (max-width: 430px) {
-
-            .sidebar {
-
-                padding:
-                    14px 12px;
-            }
-
-
-            .brand {
-
-                padding-left: 8px;
-
-                padding-right: 8px;
-
-                padding-bottom: 13px;
-            }
-
-
-            .brand-name {
-
-                font-size: 22px;
-            }
-
-
-            .menu {
-
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-
-                gap: 6px;
-            }
-
-
-            .menu a {
-
-                min-height: 44px;
-
-                padding:
-                    7px 8px;
-
-                gap: 7px;
-
-                font-size: 11.5px;
-            }
-
-
-            .menu-icon {
-
-                width: 28px;
-
-                height: 28px;
-
-                min-width: 28px;
-
-                font-size: 12px;
-            }
-
-
-            .content {
-
-                padding:
-                    16px 12px;
-            }
-
+        .menu {
+            gap: 6px;
         }
 
+        .menu a {
+            min-height: 44px;
 
-        /* =====================================================
-           TELAS MUITO ESTREITAS
-        ====================================================== */
+            padding: 7px 8px;
 
-        @media (max-width: 360px) {
+            gap: 7px;
 
-            .menu {
-
-                grid-template-columns: 1fr;
-
-                gap: 6px;
-            }
-
-
-            .menu a {
-
-                min-height: 43px;
-
-                font-size: 13px;
-
-                gap: 10px;
-            }
-
-
-            .menu-icon {
-
-                width: 29px;
-
-                height: 29px;
-
-                min-width: 29px;
-            }
-
+            font-size: 11.5px;
         }
 
+        .menu-icon {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
 
-        /* =====================================================
-           ACESSIBILIDADE
-        ====================================================== */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-
-                animation: none !important;
-
-                transition: none !important;
-
-                scroll-behavior: auto !important;
-            }
-
+            font-size: 12px;
         }
 
-    </style>
+        .content {
+            padding: 16px 12px;
+        }
 
-</head>
-
-
-<body>
-
-
-    <!-- =====================================================
-         SIDEBAR
-    ====================================================== -->
-
-    <aside class="sidebar">
+    }
 
 
-        <!-- LOGO -->
+    /* =====================================================
+       TELAS MUITO ESTREITAS
+    ====================================================== */
 
-        <div class="brand">
+    @media (max-width: 360px) {
 
-            <div class="brand-name">
-                Pro<span>Career</span>
-            </div>
+        .menu {
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
 
-            <div class="brand-line"></div>
+        .menu a {
+            min-height: 43px;
+            font-size: 13px;
+            gap: 10px;
+        }
 
+        .menu-icon {
+            width: 29px;
+            height: 29px;
+            min-width: 29px;
+        }
+
+    }
+
+
+    /* =====================================================
+       ACESSIBILIDADE
+    ====================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            animation: none !important;
+            transition: none !important;
+            scroll-behavior: auto !important;
+        }
+
+    }
+
+</style>
+
+</head><body><!-- =====================================================
+     SIDEBAR
+====================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-name">
+            Pro<span>Career</span>
         </div>
 
+        <div class="brand-line"></div>
 
-        <!-- WORKSPACE -->
+    </div>
 
-        <div class="menu-title">
-            Workspace
-        </div>
 
+    <div class="menu-title">
+        Workspace
+    </div>
 
-        <nav class="menu">
 
+    <nav class="menu">
 
-            <!-- VISÃO GERAL -->
+        <a
+            href="{{ url_for('pagina_inicio') }}"
+            class="{% if request.endpoint == 'pagina_inicio' %}active{% endif %}"
+        >
+            <span class="menu-icon">⌂</span>
+            <span>Visão geral</span>
+        </a>
 
-            <a
-                href="{{ url_for('pagina_inicio') }}"
-                class="{% if request.endpoint == 'pagina_inicio' %}active{% endif %}"
-            >
 
-                <span class="menu-icon">
-                    ⌂
-                </span>
+        <a
+            href="{{ url_for('candidaturas.listar') }}"
+            class="{% if request.endpoint == 'candidaturas.listar' %}active{% endif %}"
+        >
+            <span class="menu-icon">✓</span>
+            <span>Candidaturas</span>
+        </a>
 
-                <span>
-                    Visão geral
-                </span>
 
-            </a>
+        <a
+            href="{{ url_for('entrevistas.listar') }}"
+            class="{% if request.endpoint == 'entrevistas.listar' %}active{% endif %}"
+        >
+            <span class="menu-icon">◷</span>
+            <span>Entrevistas</span>
+        </a>
 
 
-            <!-- CANDIDATURAS -->
+        <a
+            href="{{ url_for('empresas.listar') }}"
+            class="{% if request.endpoint == 'empresas.listar' %}active{% endif %}"
+        >
+            <span class="menu-icon">▣</span>
+            <span>Empresas</span>
+        </a>
 
-            <a
-                href="{{ url_for('candidaturas.listar') }}"
-                class="{% if request.endpoint == 'candidaturas.listar' %}active{% endif %}"
-            >
 
-                <span class="menu-icon">
-                    ✓
-                </span>
+        <a
+            href="{{ url_for('curriculos.listar') }}"
+            class="{% if request.endpoint == 'curriculos.listar' %}active{% endif %}"
+        >
+            <span class="menu-icon">▤</span>
+            <span>Currículos</span>
+        </a>
 
-                <span>
-                    Candidaturas
-                </span>
+    </nav>
 
-            </a>
 
+    <div class="menu-title menu-section">
+        Carreira
+    </div>
 
-            <!-- ENTREVISTAS -->
 
-            <a
-                href="{{ url_for('entrevistas.listar') }}"
-                class="{% if request.endpoint == 'entrevistas.listar' %}active{% endif %}"
-            >
+    <nav class="menu">
 
-                <span class="menu-icon">
-                    ◷
-                </span>
+        <a
+            href="{{ url_for('analise.perfil') }}"
+            class="{% if request.endpoint == 'analise.perfil' %}active{% endif %}"
+        >
+            <span class="menu-icon">◉</span>
+            <span>Análise de perfil</span>
+        </a>
 
-                <span>
-                    Entrevistas
-                </span>
 
-            </a>
+        <a
+            href="{{ url_for('competencias.listar') }}"
+            class="{% if request.endpoint == 'competencias.listar' %}active{% endif %}"
+        >
+            <span class="menu-icon">◆</span>
+            <span>Competências</span>
+        </a>
 
 
-            <!-- EMPRESAS -->
+        <a
+            href="{{ url_for('metas.listar') }}"
+            class="{% if request.endpoint == 'metas.listar' %}active{% endif %}"
+        >
+            <span class="menu-icon">↗</span>
+            <span>Metas</span>
+        </a>
 
-            <a
-                href="{{ url_for('empresas.listar') }}"
-                class="{% if request.endpoint == 'empresas.listar' %}active{% endif %}"
-            >
+    </nav>
 
-                <span class="menu-icon">
-                    ▣
-                </span>
+</aside>
 
-                <span>
-                    Empresas
-                </span>
 
-            </a>
+<!-- =====================================================
+     CONTEÚDO
+====================================================== -->
 
+<main class="content">
 
-            <!-- CURRÍCULOS -->
+    {% block content %}{% endblock %}
 
-            <a
-                href="{{ url_for('curriculos.listar') }}"
-                class="{% if request.endpoint == 'curriculos.listar' %}active{% endif %}"
-            >
+</main>
 
-                <span class="menu-icon">
-                    ▤
-                </span>
-
-                <span>
-                    Currículos
-                </span>
-
-            </a>
-
-        </nav>
-
-
-        <!-- CARREIRA -->
-
-        <div class="menu-title menu-section">
-            Carreira
-        </div>
-
-
-        <nav class="menu">
-
-
-            <!-- ANÁLISE DE PERFIL -->
-
-            <a
-                href="{{ url_for('analise.perfil') }}"
-                class="{% if request.endpoint == 'analise.perfil' %}active{% endif %}"
-            >
-
-                <span class="menu-icon">
-                    ◉
-                </span>
-
-                <span>
-                    Análise de perfil
-                </span>
-
-            </a>
-
-
-            <!-- COMPETÊNCIAS -->
-
-            <a
-                href="{{ url_for('competencias.listar') }}"
-                class="{% if request.endpoint == 'competencias.listar' %}active{% endif %}"
-            >
-
-                <span class="menu-icon">
-                    ◆
-                </span>
-
-                <span>
-                    Competências
-                </span>
-
-            </a>
-
-
-            <!-- METAS -->
-
-            <a
-                href="{{ url_for('metas.listar') }}"
-                class="{% if request.endpoint == 'metas.listar' %}active{% endif %}"
-            >
-
-                <span class="menu-icon">
-                    ↗
-                </span>
-
-                <span>
-                    Metas
-                </span>
-
-            </a>
-
-        </nav>
-
-    </aside>
-
-
-    <!-- =====================================================
-         CONTEÚDO
-    ====================================================== -->
-
-    <main class="content">
-
-        {% block content %}
-
-        {% endblock %}
-
-    </main>
-
-
-</body>
-
-</html>
+</body></html>
