@@ -20,6 +20,13 @@ def cadastro():
         email = request.form["email"]
         senha = request.form["senha"]
 
+        # Verifica se o e-mail possui @
+        if "@" not in email:
+            return render_template(
+                "cadastro.html",
+                erro="Digite um e-mail válido com @."
+            )
+
         senha_hash = generate_password_hash(senha)
 
         conn = get_connection()
@@ -46,7 +53,10 @@ def cadastro():
             cursor.close()
             conn.close()
 
-            return "Este e-mail já está cadastrado."
+            return render_template(
+                "cadastro.html",
+                erro="Este e-mail já está cadastrado."
+            )
 
         cursor.close()
         conn.close()
@@ -54,7 +64,6 @@ def cadastro():
         session["usuario_id"] = usuario_id
         session["usuario_nome"] = nome
 
-        # Depois do cadastro → Visão geral
         return redirect(url_for("pagina_inicio"))
 
     return render_template("cadastro.html")
@@ -73,6 +82,15 @@ def login():
 
         email = request.form["email"]
         senha = request.form["senha"]
+
+        # Impede login sem @
+        if "@" not in email:
+            erro = "Digite um e-mail válido com @."
+
+            return render_template(
+                "login.html",
+                erro=erro
+            )
 
         conn = get_connection()
         cursor = conn.cursor()
@@ -96,10 +114,8 @@ def login():
             session["usuario_id"] = usuario[0]
             session["usuario_nome"] = usuario[1]
 
-            # Depois do login → Visão geral
             return redirect(url_for("pagina_inicio"))
 
-        # Login inválido → permanece na tela de login
         erro = "E-mail ou senha incorretos."
 
     return render_template(
