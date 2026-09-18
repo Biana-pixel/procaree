@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, session, redirect, url_for
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 
 
 dashboard = Blueprint("dashboard", __name__)
@@ -118,7 +118,7 @@ def inicio():
     proximas_entrevistas = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "dashboard.html",

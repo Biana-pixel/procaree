@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 
 
 candidaturas = Blueprint("candidaturas", __name__)
@@ -40,7 +40,7 @@ def listar():
     dados = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "candidaturas.html",
@@ -138,12 +138,12 @@ def nova():
 
             conn.rollback()
             cursor.close()
-            conn.close()
+            release_connection(conn)
 
             return f"Erro ao salvar candidatura: {erro}"
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return redirect(url_for("candidaturas.listar"))
 
@@ -187,7 +187,7 @@ def detalhes(id):
     candidatura = cursor.fetchone()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     if not candidatura:
         return "Candidatura não encontrada.", 404
@@ -289,14 +289,13 @@ def editar(id):
 
             conn.rollback()
             cursor.close()
-            conn.close()
+            release_connection(conn)
 
             return f"Erro ao editar candidatura: {erro}"
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
-        # Depois de salvar, volta para a primeira página de candidaturas
         return redirect(
             url_for("candidaturas.listar")
         )
@@ -326,7 +325,7 @@ def editar(id):
     candidatura = cursor.fetchone()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     if not candidatura:
         return "Candidatura não encontrada.", 404
@@ -366,12 +365,12 @@ def excluir(id):
 
         conn.rollback()
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return f"Erro ao excluir candidatura: {erro}"
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return redirect(
         url_for("candidaturas.listar")

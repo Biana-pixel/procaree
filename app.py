@@ -3,7 +3,7 @@ from flask_cors import CORS
 
 from config import Config
 from database.schema import criar_tabelas
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 
 from routes.auth import auth
 from routes.candidaturas import candidaturas
@@ -195,7 +195,7 @@ def pagina_inicio():
 
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
 
     return render_template(

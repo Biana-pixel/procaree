@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 
 
 empresas = Blueprint("empresas", __name__)
@@ -27,7 +27,7 @@ def listar():
     empresas_lista = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "empresas.html",
@@ -55,15 +55,25 @@ def nova():
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute("""
-            INSERT INTO empresas (nome, site, usuario_id)
-            VALUES (%s, %s, %s)
-        """, (nome, site, usuario_id))
+        try:
 
-        conn.commit()
+            cursor.execute("""
+                INSERT INTO empresas (nome, site, usuario_id)
+                VALUES (%s, %s, %s)
+            """, (nome, site, usuario_id))
+
+            conn.commit()
+
+        except Exception as erro:
+
+            conn.rollback()
+            cursor.close()
+            release_connection(conn)
+
+            return f"Erro ao salvar empresa: {erro}", 500
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return redirect(url_for("empresas.listar"))
 
@@ -87,18 +97,28 @@ def editar(id):
         nome = request.form.get("nome", "").strip()
         site = request.form.get("site", "").strip()
 
-        cursor.execute("""
-            UPDATE empresas
-            SET nome = %s,
-                site = %s
-            WHERE id = %s
-              AND usuario_id = %s
-        """, (nome, site, id, usuario_id))
+        try:
 
-        conn.commit()
+            cursor.execute("""
+                UPDATE empresas
+                SET nome = %s,
+                    site = %s
+                WHERE id = %s
+                  AND usuario_id = %s
+            """, (nome, site, id, usuario_id))
+
+            conn.commit()
+
+        except Exception as erro:
+
+            conn.rollback()
+            cursor.close()
+            release_connection(conn)
+
+            return f"Erro ao atualizar empresa: {erro}", 500
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return redirect(url_for("empresas.listar"))
 
@@ -112,7 +132,7 @@ def editar(id):
     empresa = cursor.fetchone()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     if not empresa:
         return redirect(url_for("empresas.listar"))
@@ -135,15 +155,25 @@ def excluir(id):
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
-        DELETE FROM empresas
-        WHERE id = %s
-          AND usuario_id = %s
-    """, (id, usuario_id))
+    try:
 
-    conn.commit()
+        cursor.execute("""
+            DELETE FROM empresas
+            WHERE id = %s
+              AND usuario_id = %s
+        """, (id, usuario_id))
+
+        conn.commit()
+
+    except Exception as erro:
+
+        conn.rollback()
+        cursor.close()
+        release_connection(conn)
+
+        return f"Erro ao excluir empresa: {erro}", 500
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return redirect(url_for("empresas.listar"))

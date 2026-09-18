@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 from datetime import datetime
 
 
@@ -15,15 +15,6 @@ def listar():
 
     conn = get_connection()
     cursor = conn.cursor()
-
-    # Remove datas que o PostgreSQL aceitou,
-    # mas que o Python não consegue representar.
-    cursor.execute("""
-        DELETE FROM metas
-        WHERE prazo > DATE '9999-12-31'
-    """)
-
-    conn.commit()
 
     cursor.execute("""
         SELECT id, titulo, descricao, prazo, status, criado_em
@@ -41,7 +32,7 @@ def listar():
     metas_lista = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "metas.html",
@@ -81,25 +72,35 @@ def nova():
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute("""
-            INSERT INTO metas (
-                usuario_id,
-                titulo,
-                descricao,
-                prazo
-            )
-            VALUES (%s, %s, %s, %s)
-        """, (
-            session["usuario_id"],
-            titulo,
-            descricao if descricao else None,
-            prazo if prazo else None
-        ))
+        try:
 
-        conn.commit()
+            cursor.execute("""
+                INSERT INTO metas (
+                    usuario_id,
+                    titulo,
+                    descricao,
+                    prazo
+                )
+                VALUES (%s, %s, %s, %s)
+            """, (
+                session["usuario_id"],
+                titulo,
+                descricao if descricao else None,
+                prazo if prazo else None
+            ))
+
+            conn.commit()
+
+        except Exception as erro:
+
+            conn.rollback()
+            cursor.close()
+            release_connection(conn)
+
+            return f"Erro ao salvar meta: {erro}", 500
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return redirect(url_for("metas.listar"))
 
@@ -127,7 +128,7 @@ def editar(id):
 
         if not titulo:
             cursor.close()
-            conn.close()
+            release_connection(conn)
 
             return redirect(
                 url_for("metas.editar", id=id)
@@ -139,7 +140,7 @@ def editar(id):
             try:
                 if len(prazo) != 10:
                     cursor.close()
-                    conn.close()
+                    release_connection(conn)
 
                     return redirect(
                         url_for("metas.editar", id=id)
@@ -149,31 +150,41 @@ def editar(id):
 
             except ValueError:
                 cursor.close()
-                conn.close()
+                release_connection(conn)
 
                 return redirect(
                     url_for("metas.editar", id=id)
                 )
 
-        cursor.execute("""
-            UPDATE metas
-            SET titulo = %s,
-                descricao = %s,
-                prazo = %s
-            WHERE id = %s
-            AND usuario_id = %s
-        """, (
-            titulo,
-            descricao if descricao else None,
-            prazo if prazo else None,
-            id,
-            session["usuario_id"]
-        ))
+        try:
 
-        conn.commit()
+            cursor.execute("""
+                UPDATE metas
+                SET titulo = %s,
+                    descricao = %s,
+                    prazo = %s
+                WHERE id = %s
+                AND usuario_id = %s
+            """, (
+                titulo,
+                descricao if descricao else None,
+                prazo if prazo else None,
+                id,
+                session["usuario_id"]
+            ))
+
+            conn.commit()
+
+        except Exception as erro:
+
+            conn.rollback()
+            cursor.close()
+            release_connection(conn)
+
+            return f"Erro ao atualizar meta: {erro}", 500
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return redirect(url_for("metas.listar"))
 
@@ -190,7 +201,7 @@ def editar(id):
     meta = cursor.fetchone()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     if not meta:
         return redirect(url_for("metas.listar"))
@@ -214,20 +225,30 @@ def concluir(id):
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
-        UPDATE metas
-        SET status = 'concluida'
-        WHERE id = %s
-        AND usuario_id = %s
-    """, (
-        id,
-        session["usuario_id"]
-    ))
+    try:
 
-    conn.commit()
+        cursor.execute("""
+            UPDATE metas
+            SET status = 'concluida'
+            WHERE id = %s
+            AND usuario_id = %s
+        """, (
+            id,
+            session["usuario_id"]
+        ))
+
+        conn.commit()
+
+    except Exception as erro:
+
+        conn.rollback()
+        cursor.close()
+        release_connection(conn)
+
+        return f"Erro ao concluir meta: {erro}", 500
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return redirect(url_for("metas.listar"))
 
@@ -245,18 +266,28 @@ def excluir(id):
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
-        DELETE FROM metas
-        WHERE id = %s
-        AND usuario_id = %s
-    """, (
-        id,
-        session["usuario_id"]
-    ))
+    try:
 
-    conn.commit()
+        cursor.execute("""
+            DELETE FROM metas
+            WHERE id = %s
+            AND usuario_id = %s
+        """, (
+            id,
+            session["usuario_id"]
+        ))
+
+        conn.commit()
+
+    except Exception as erro:
+
+        conn.rollback()
+        cursor.close()
+        release_connection(conn)
+
+        return f"Erro ao excluir meta: {erro}", 500
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return redirect(url_for("metas.listar"))

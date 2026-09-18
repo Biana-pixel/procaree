@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 
 
 curriculos = Blueprint("curriculos", __name__)
@@ -35,7 +35,7 @@ def listar():
     curriculos_lista = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "curriculos.html",
@@ -88,12 +88,12 @@ def novo():
 
             conn.rollback()
             cursor.close()
-            conn.close()
+            release_connection(conn)
 
             return f"Erro ao salvar currículo: {erro}", 500
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return redirect(
             url_for("curriculos.listar")
@@ -135,7 +135,7 @@ def detalhes(id):
     curriculo = cursor.fetchone()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     if not curriculo:
         return "Currículo não encontrado.", 404
@@ -182,7 +182,7 @@ def editar(id):
     if not curriculo:
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return "Currículo não encontrado.", 404
 
@@ -195,7 +195,7 @@ def editar(id):
         if not nome:
 
             cursor.close()
-            conn.close()
+            release_connection(conn)
 
             return "O nome do currículo é obrigatório.", 400
 
@@ -224,20 +224,19 @@ def editar(id):
 
             conn.rollback()
             cursor.close()
-            conn.close()
+            release_connection(conn)
 
             return f"Erro ao atualizar currículo: {erro}", 500
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
-        # Depois de salvar, volta para a primeira página de Currículos
         return redirect(
             url_for("curriculos.listar")
         )
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "curriculo_editar.html",
@@ -278,12 +277,12 @@ def excluir(id):
 
         conn.rollback()
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return f"Erro ao excluir currículo: {erro}", 500
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return redirect(
         url_for("curriculos.listar")

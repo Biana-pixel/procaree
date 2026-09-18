@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request
 from datetime import datetime
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 
 
 entrevistas = Blueprint("entrevistas", __name__)
@@ -39,7 +39,7 @@ def listar():
     dados = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "entrevistas.html",
@@ -71,7 +71,7 @@ def nova():
 
         except ValueError:
             cursor.close()
-            conn.close()
+            release_connection(conn)
             return "Data ou horário inválido.", 400
 
         tipo = request.form.get("tipo")
@@ -96,7 +96,7 @@ def nova():
 
             if not candidatura:
                 cursor.close()
-                conn.close()
+                release_connection(conn)
                 return "Candidatura não encontrada.", 404
 
             cursor.execute(
@@ -123,12 +123,12 @@ def nova():
 
             conn.rollback()
             cursor.close()
-            conn.close()
+            release_connection(conn)
 
             return f"Erro ao salvar entrevista: {erro}"
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return redirect(
             url_for("entrevistas.listar")
@@ -152,7 +152,7 @@ def nova():
     candidaturas = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "entrevista_nova.html",
@@ -196,7 +196,7 @@ def detalhes(id):
     entrevista = cursor.fetchone()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     if not entrevista:
         return "Entrevista não encontrada.", 404
@@ -231,7 +231,7 @@ def editar(id):
 
         except ValueError:
             cursor.close()
-            conn.close()
+            release_connection(conn)
             return "Data ou horário inválido.", 400
 
         tipo = request.form.get("tipo")
@@ -258,7 +258,7 @@ def editar(id):
 
             if not entrevista_existente:
                 cursor.close()
-                conn.close()
+                release_connection(conn)
                 return "Entrevista não encontrada.", 404
 
             cursor.execute(
@@ -278,7 +278,7 @@ def editar(id):
 
             if not candidatura:
                 cursor.close()
-                conn.close()
+                release_connection(conn)
                 return "Candidatura não encontrada.", 404
 
             cursor.execute(
@@ -306,14 +306,13 @@ def editar(id):
 
             conn.rollback()
             cursor.close()
-            conn.close()
+            release_connection(conn)
 
             return f"Erro ao editar entrevista: {erro}"
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
-        # Depois de salvar, volta para a primeira página de Entrevistas
         return redirect(
             url_for("entrevistas.listar")
         )
@@ -342,7 +341,7 @@ def editar(id):
 
     if not entrevista:
         cursor.close()
-        conn.close()
+        release_connection(conn)
         return "Entrevista não encontrada.", 404
 
     cursor.execute(
@@ -363,7 +362,7 @@ def editar(id):
     candidaturas = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "entrevista_editar.html",
@@ -405,12 +404,12 @@ def excluir(id):
 
         conn.rollback()
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return f"Erro ao excluir entrevista: {erro}"
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return redirect(
         url_for("entrevistas.listar")

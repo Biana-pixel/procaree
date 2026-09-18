@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, session, redirect, url_for
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 
 
 analise = Blueprint("analise", __name__)
@@ -68,7 +68,7 @@ def perfil():
     status_candidaturas = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     # Define o nível de atividade
     if total_candidaturas >= 10 or total_entrevistas >= 3:

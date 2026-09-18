@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 
 
 auth = Blueprint("auth", __name__)
@@ -51,7 +51,7 @@ def cadastro():
 
             conn.rollback()
             cursor.close()
-            conn.close()
+            release_connection(conn)
 
             return render_template(
                 "cadastro.html",
@@ -59,7 +59,7 @@ def cadastro():
             )
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         session["usuario_id"] = usuario_id
         session["usuario_nome"] = nome
@@ -107,7 +107,7 @@ def login():
         usuario = cursor.fetchone()
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         if usuario and check_password_hash(usuario[2], senha):
 

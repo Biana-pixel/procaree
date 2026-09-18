@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from database.connection import get_connection
+from database.connection import get_connection, release_connection
 
 
 competencias = Blueprint("competencias", __name__)
@@ -25,7 +25,7 @@ def listar():
     competencias_lista = cursor.fetchall()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return render_template(
         "competencias.html",
@@ -51,23 +51,33 @@ def nova():
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute("""
-            INSERT INTO competencias (
-                usuario_id,
+        try:
+
+            cursor.execute("""
+                INSERT INTO competencias (
+                    usuario_id,
+                    nome,
+                    nivel
+                )
+                VALUES (%s, %s, %s)
+            """, (
+                session["usuario_id"],
                 nome,
                 nivel
-            )
-            VALUES (%s, %s, %s)
-        """, (
-            session["usuario_id"],
-            nome,
-            nivel
-        ))
+            ))
 
-        conn.commit()
+            conn.commit()
+
+        except Exception as erro:
+
+            conn.rollback()
+            cursor.close()
+            release_connection(conn)
+
+            return f"Erro ao salvar competência: {erro}", 500
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return redirect(url_for("competencias.listar"))
 
@@ -92,23 +102,33 @@ def editar(id):
         nome = request.form.get("nome", "").strip()
         nivel = request.form.get("nivel", "").strip()
 
-        cursor.execute("""
-            UPDATE competencias
-            SET nome = %s,
-                nivel = %s
-            WHERE id = %s
-            AND usuario_id = %s
-        """, (
-            nome,
-            nivel,
-            id,
-            session["usuario_id"]
-        ))
+        try:
 
-        conn.commit()
+            cursor.execute("""
+                UPDATE competencias
+                SET nome = %s,
+                    nivel = %s
+                WHERE id = %s
+                AND usuario_id = %s
+            """, (
+                nome,
+                nivel,
+                id,
+                session["usuario_id"]
+            ))
+
+            conn.commit()
+
+        except Exception as erro:
+
+            conn.rollback()
+            cursor.close()
+            release_connection(conn)
+
+            return f"Erro ao atualizar competência: {erro}", 500
 
         cursor.close()
-        conn.close()
+        release_connection(conn)
 
         return redirect(url_for("competencias.listar"))
 
@@ -125,7 +145,7 @@ def editar(id):
     competencia = cursor.fetchone()
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     if not competencia:
         return redirect(url_for("competencias.listar"))
@@ -149,18 +169,28 @@ def excluir(id):
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
-        DELETE FROM competencias
-        WHERE id = %s
-        AND usuario_id = %s
-    """, (
-        id,
-        session["usuario_id"]
-    ))
+    try:
 
-    conn.commit()
+        cursor.execute("""
+            DELETE FROM competencias
+            WHERE id = %s
+            AND usuario_id = %s
+        """, (
+            id,
+            session["usuario_id"]
+        ))
+
+        conn.commit()
+
+    except Exception as erro:
+
+        conn.rollback()
+        cursor.close()
+        release_connection(conn)
+
+        return f"Erro ao excluir competência: {erro}", 500
 
     cursor.close()
-    conn.close()
+    release_connection(conn)
 
     return redirect(url_for("competencias.listar"))
