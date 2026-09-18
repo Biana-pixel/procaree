@@ -74,72 +74,52 @@ def pagina_inicio():
     conn = get_connection()
     cursor = conn.cursor()
 
-
     # =================================================
-    # CANDIDATURAS
-    # =================================================
-
-    cursor.execute("""
-        SELECT COUNT(*)
-        FROM candidaturas
-        WHERE usuario_id = %s
-    """, (usuario_id,))
-
-    total_candidaturas = cursor.fetchone()[0]
-
-
-    # =================================================
-    # ENTREVISTAS
+    # TOTAIS
+    # Uma única consulta para obter todos os contadores
     # =================================================
 
-    cursor.execute("""
-        SELECT COUNT(*)
-        FROM entrevistas i
-        INNER JOIN candidaturas c
-            ON i.candidatura_id = c.id
-        WHERE c.usuario_id = %s
-    """, (usuario_id,))
+    cursor.execute(
+        """
+        SELECT
+            (SELECT COUNT(*)
+             FROM candidaturas
+             WHERE usuario_id = %s) AS total_candidaturas,
 
-    total_entrevistas = cursor.fetchone()[0]
+            (SELECT COUNT(*)
+             FROM entrevistas i
+             INNER JOIN candidaturas c
+                 ON i.candidatura_id = c.id
+             WHERE c.usuario_id = %s) AS total_entrevistas,
 
+            (SELECT COUNT(*)
+             FROM competencias
+             WHERE usuario_id = %s) AS total_competencias,
 
-    # =================================================
-    # COMPETÊNCIAS
-    # =================================================
+            (SELECT COUNT(*)
+             FROM curriculos
+             WHERE usuario_id = %s) AS total_curriculos,
 
-    cursor.execute("""
-        SELECT COUNT(*)
-        FROM competencias
-        WHERE usuario_id = %s
-    """, (usuario_id,))
+            (SELECT COUNT(*)
+             FROM metas
+             WHERE usuario_id = %s) AS total_metas
+        """,
+        (
+            usuario_id,
+            usuario_id,
+            usuario_id,
+            usuario_id,
+            usuario_id
+        )
+    )
 
-    total_competencias = cursor.fetchone()[0]
+    totais = cursor.fetchone()
 
-
-    # =================================================
-    # CURRÍCULOS
-    # =================================================
-
-    cursor.execute("""
-        SELECT COUNT(*)
-        FROM curriculos
-        WHERE usuario_id = %s
-    """, (usuario_id,))
-
-    total_curriculos = cursor.fetchone()[0]
-
-
-    # =================================================
-    # METAS
-    # =================================================
-
-    cursor.execute("""
-        SELECT COUNT(*)
-        FROM metas
-        WHERE usuario_id = %s
-    """, (usuario_id,))
-
-    total_metas = cursor.fetchone()[0]
+    total_candidaturas = totais[0]
+    total_entrevistas = totais[1]
+    total_competencias = totais[2]
+    total_curriculos = totais[3]
+    total_metas = totais[4]
 
 
     # =================================================
@@ -168,7 +148,8 @@ def pagina_inicio():
     # PROCESSOS RECENTES
     # =================================================
 
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT
             COALESCE(e.nome, 'Empresa não informada') AS empresa,
             c.cargo,
@@ -179,7 +160,9 @@ def pagina_inicio():
         WHERE c.usuario_id = %s
         ORDER BY c.criado_em DESC
         LIMIT 3
-    """, (usuario_id,))
+        """,
+        (usuario_id,)
+    )
 
     processos_recentes = cursor.fetchall()
 
@@ -188,7 +171,8 @@ def pagina_inicio():
     # PRÓXIMOS COMPROMISSOS
     # =================================================
 
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT
             i.data_hora,
             i.tipo,
@@ -203,7 +187,9 @@ def pagina_inicio():
           AND i.data_hora >= CURRENT_TIMESTAMP
         ORDER BY i.data_hora ASC
         LIMIT 3
-    """, (usuario_id,))
+        """,
+        (usuario_id,)
+    )
 
     proximos_compromissos = cursor.fetchall()
 
