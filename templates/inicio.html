@@ -41,8 +41,7 @@ ProCareer | Sua carreira sob controle
     letter-spacing: -1px;
 
     text-shadow:
-        0 3px 5px rgba(22, 163, 74, 0.35),
-        0 6px 12px rgba(22, 163, 74, 0.28);
+        0 2px 4px rgba(22, 163, 74, 0.18);
 }
 
 .topbar-right {
@@ -62,23 +61,22 @@ ProCareer | Sua carreira sob controle
     text-decoration: none;
 
     color: #60777b;
-    background: rgba(255,255,255,.88);
+    background: #ffffff;
     border: 1px solid #dcebea;
 
     font-size: 11px;
     font-weight: 700;
 
-    transition: .25s ease;
+    transition:
+        color .12s ease,
+        background .12s ease,
+        border-color .12s ease;
 }
 
 .logout-button:hover {
     color: #0f766e;
     background: #f0fdfa;
     border-color: #bce5de;
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 20px rgba(15,118,110,.08);
 }
 
 .profile {
@@ -96,15 +94,14 @@ ProCareer | Sua carreira sob controle
     font-size: 15px;
     font-weight: 900;
 
-    background:
-        linear-gradient(
-            135deg,
-            #19b5a8,
-            #0f766e
-        );
+    background: linear-gradient(
+        135deg,
+        #19b5a8,
+        #0f766e
+    );
 
     box-shadow:
-        0 8px 20px rgba(15,118,110,.18);
+        0 5px 14px rgba(15,118,110,.12);
 }
 
 
@@ -138,7 +135,7 @@ ProCareer | Sua carreira sob controle
     border: 1px solid #dceee9;
 
     box-shadow:
-        0 17px 45px rgba(15,118,110,.07);
+        0 10px 28px rgba(15,118,110,.05);
 }
 
 .hero::before {
@@ -146,19 +143,19 @@ ProCareer | Sua carreira sob controle
 
     position: absolute;
 
-    width: 420px;
-    height: 420px;
+    width: 360px;
+    height: 360px;
 
-    right: -130px;
-    top: -190px;
+    right: -110px;
+    top: -160px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(45,212,191,.17) 0%,
-            rgba(45,212,191,.07) 38%,
+            rgba(45,212,191,.12) 0%,
+            rgba(45,212,191,.04) 40%,
             transparent 70%
         );
 
@@ -170,18 +167,18 @@ ProCareer | Sua carreira sob controle
 
     position: absolute;
 
-    width: 330px;
-    height: 330px;
+    width: 280px;
+    height: 280px;
 
-    left: -180px;
-    bottom: -210px;
+    left: -150px;
+    bottom: -180px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(22,163,74,.11),
+            rgba(22,163,74,.07),
             transparent 70%
         );
 
@@ -203,8 +200,7 @@ ProCareer | Sua carreira sob controle
     opacity: .55;
 
     box-shadow:
-        0 0 0 7px rgba(22,163,74,.06),
-        0 0 0 14px rgba(22,163,74,.025);
+        0 0 0 6px rgba(22,163,74,.05);
 }
 
 .hero-decoration-two {
@@ -222,7 +218,7 @@ ProCareer | Sua carreira sob controle
     opacity: .45;
 
     box-shadow:
-        0 0 0 7px rgba(14,165,233,.06);
+        0 0 0 6px rgba(14,165,233,.05);
 }
 
 .hero-content {
@@ -259,26 +255,7 @@ ProCareer | Sua carreira sob controle
     background: #16a34a;
 
     box-shadow:
-        0 0 0 5px rgba(22,163,74,.08);
-
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-
-    0%,100% {
-        transform: scale(1);
-
-        box-shadow:
-            0 0 0 5px rgba(22,163,74,.08);
-    }
-
-    50% {
-        transform: scale(1.25);
-
-        box-shadow:
-            0 0 0 9px rgba(22,163,74,.025);
-    }
+        0 0 0 5px rgba(22,163,74,.06);
 }
 
 .hero h2 {
@@ -335,16 +312,16 @@ ProCareer | Sua carreira sob controle
     font-weight: 800;
 
     box-shadow:
-        0 9px 23px rgba(15,118,110,.18);
+        0 7px 17px rgba(15,118,110,.13);
 
-    transition: .28s ease;
+    transition:
+        box-shadow .12s ease,
+        background .12s ease;
 }
 
 .hero-button:hover {
-    transform: translateY(-3px);
-
     box-shadow:
-        0 15px 30px rgba(15,118,110,.24);
+        0 10px 22px rgba(15,118,110,.17);
 }
 
 .hero-button-icon {
@@ -385,12 +362,9 @@ ProCareer | Sua carreira sob controle
 
     text-decoration: none;
 
-    background:
-        rgba(255,255,255,.86);
+    background: rgba(255,255,255,.97);
 
     border: 1px solid rgba(15,118,110,.10);
-
-    backdrop-filter: blur(12px);
 
     color: #29494d;
 
@@ -398,9 +372,12 @@ ProCareer | Sua carreira sob controle
     font-weight: 900;
 
     box-shadow:
-        0 9px 24px rgba(15,118,110,.065);
+        0 6px 17px rgba(15,118,110,.05);
 
-    transition: .3s ease;
+    transition:
+        background .12s ease,
+        border-color .12s ease,
+        box-shadow .12s ease;
 }
 
 .hero-chip:nth-child(2) {
@@ -412,29 +389,21 @@ ProCareer | Sua carreira sob controle
 }
 
 .hero-chip:hover {
-    transform:
-        translateX(-5px)
-        translateY(-3px);
-
     background: white;
 
     border-color:
         rgba(22,163,74,.18);
 
     box-shadow:
-        0 15px 30px rgba(15,118,110,.11);
+        0 10px 22px rgba(15,118,110,.08);
 }
 
 .hero-chip:nth-child(2):hover {
-    transform:
-        translateX(12px)
-        translateY(-3px);
+    transform: translateX(18px);
 }
 
 .hero-chip:nth-child(3):hover {
-    transform:
-        translateX(-1px)
-        translateY(-3px);
+    transform: translateX(5px);
 }
 
 .hero-chip-icon {
@@ -514,21 +483,18 @@ ProCareer | Sua carreira sob controle
     border: 1px solid #dfedeb;
 
     box-shadow:
-        0 6px 20px rgba(15,118,110,.035);
+        0 5px 16px rgba(15,118,110,.03);
 
     transition:
-        transform .3s ease,
-        box-shadow .3s ease,
-        border-color .3s ease;
+        box-shadow .12s ease,
+        border-color .12s ease;
 }
 
 .card:hover {
-    transform: translateY(-6px);
-
     border-color: #b9e2db;
 
     box-shadow:
-        0 18px 33px rgba(15,118,110,.10);
+        0 10px 23px rgba(15,118,110,.07);
 }
 
 .card::before {
@@ -549,15 +515,14 @@ ProCareer | Sua carreira sob controle
             #2dd4bf
         );
 
-    transform: scaleX(0);
+    opacity: 0;
 
-    transform-origin: left;
-
-    transition: .3s ease;
+    transition:
+        opacity .12s ease;
 }
 
 .card:hover::before {
-    transform: scaleX(1);
+    opacity: 1;
 }
 
 .card::after {
@@ -565,26 +530,16 @@ ProCareer | Sua carreira sob controle
 
     position: absolute;
 
-    width: 105px;
-    height: 105px;
+    width: 80px;
+    height: 80px;
 
-    right: -48px;
-    bottom: -48px;
+    right: -38px;
+    bottom: -38px;
 
     border-radius: 50%;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(45,212,191,.11),
-            transparent 70%
-        );
-
-    transition: .3s ease;
-}
-
-.card:hover::after {
-    transform: scale(1.4);
+        rgba(45,212,191,.06);
 }
 
 .card-top {
@@ -613,12 +568,6 @@ ProCareer | Sua carreira sob controle
 
     font-size: 13px;
     font-weight: 900;
-
-    transition: .3s ease;
-}
-
-.card:hover .card-icon {
-    transform: scale(1.08) rotate(-4deg);
 }
 
 .card-label {
@@ -657,24 +606,6 @@ ProCareer | Sua carreira sob controle
     -webkit-text-fill-color: transparent;
 
     background-clip: text;
-
-    filter:
-        drop-shadow(
-            0 4px 5px rgba(15,118,110,.12)
-        );
-
-    transition:
-        transform .3s ease,
-        filter .3s ease;
-}
-
-.card:hover .card-number {
-    transform: translateY(-2px) scale(1.04);
-
-    filter:
-        drop-shadow(
-            0 6px 9px rgba(15,118,110,.18)
-        );
 }
 
 
@@ -702,16 +633,18 @@ ProCareer | Sua carreira sob controle
     border: 1px solid #dfedeb;
 
     box-shadow:
-        0 6px 20px rgba(15,118,110,.035);
+        0 5px 16px rgba(15,118,110,.03);
 
-    transition: .25s ease;
+    transition:
+        box-shadow .12s ease,
+        border-color .12s ease;
 }
 
 .panel:hover {
     border-color: #c7e5df;
 
     box-shadow:
-        0 13px 28px rgba(15,118,110,.07);
+        0 9px 20px rgba(15,118,110,.06);
 }
 
 .panel-header {
@@ -745,7 +678,9 @@ ProCareer | Sua carreira sob controle
 
     border-bottom: 1px solid #edf3f2;
 
-    transition: .25s ease;
+    transition:
+        background .12s ease,
+        padding .12s ease;
 }
 
 .process:last-child {
@@ -785,12 +720,6 @@ ProCareer | Sua carreira sob controle
 
     font-size: 12px;
     font-weight: 900;
-
-    transition: .25s ease;
-}
-
-.process:hover .process-icon {
-    transform: scale(1.08);
 }
 
 .company {
@@ -839,7 +768,9 @@ ProCareer | Sua carreira sob controle
 
     border-bottom: 1px solid #edf3f2;
 
-    transition: .25s ease;
+    transition:
+        background .12s ease,
+        padding .12s ease;
 }
 
 .appointment:last-child {
@@ -870,12 +801,6 @@ ProCareer | Sua carreira sob controle
     background: #eafaf7;
 
     border: 1px solid #d5eee9;
-
-    transition: .25s ease;
-}
-
-.appointment:hover .date-box {
-    transform: scale(1.06);
 }
 
 .date-box strong {
@@ -934,59 +859,6 @@ ProCareer | Sua carreira sob controle
     font-weight: 600;
 
     letter-spacing: .3px;
-}
-
-
-/* =========================================================
-   ANIMAÇÕES
-========================================================= */
-
-.hero {
-    animation:
-        heroIn .6s ease both;
-}
-
-.card {
-    animation:
-        cardIn .5s ease both;
-}
-
-.card:nth-child(2) {
-    animation-delay: .06s;
-}
-
-.card:nth-child(3) {
-    animation-delay: .12s;
-}
-
-.card:nth-child(4) {
-    animation-delay: .18s;
-}
-
-@keyframes heroIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes cardIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 
@@ -1390,7 +1262,7 @@ ProCareer | Sua carreira sob controle
 
     <!-- =====================================================
          CONTEÚDO INFERIOR
-    ====================================================== -->
+========================================================= -->
 
     <section class="bottom">
 
